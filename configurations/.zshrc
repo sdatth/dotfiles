@@ -1,0 +1,260 @@
+## Dependencies for zsh 
+#    zsh                      > ZSH Shell
+#    zsh-syntax-highlighting  > syntax highlighting for ZSH in standard repos
+#    autojump                 > jump to directories with j or jc for child or jo to open in file manager
+#    zsh-autosuggestions      > Suggestions based on your history
+#
+# config file location "~/.zshrc"
+# see /usr/share/doc/zsh/examples/zshrc for examples
+
+# to start tmux automatically when tmux launches
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  tmux -u
+fi
+
+setopt autocd              # change directory just by typing its name
+#setopt correct            # auto correct mistakes
+setopt interactivecomments # allow comments in interactive mode
+setopt ksharrays           # arrays start at 0
+setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt nonomatch           # hide error message if there is no match for the pattern
+setopt notify              # report the status of background jobs immediately
+setopt numericglobsort     # sort filenames numerically when it makes sense
+setopt promptsubst         # enable command substitution in prompt
+
+WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
+
+# hide EOL sign ('%')
+export PROMPT_EOL_MARK=""
+
+# configure key keybindings
+bindkey -e                                        # emacs key bindings
+bindkey ' ' magic-space                           # do history expansion on space
+bindkey '^[[3;5~' kill-word                       # ctrl + Supr
+bindkey '^[[1;5C' forward-word                    # ctrl + ->
+bindkey '^[[C' forward-word                       # ctrl + ->
+bindkey '^[[1;5D' backward-word                   # ctrl + <-
+bindkey '^[[D' backward-word                      # ctrl + <-
+bindkey '^[[5~' beginning-of-buffer-or-history    # page up
+bindkey '^[[6~' end-of-buffer-or-history          # page down
+bindkey '^[[Z' undo                               # shift + tab undo last action
+
+# enable completion features
+autoload -Uz compinit
+compinit -d ~/.cache/zcompdump
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive tab completion
+
+# History configurations
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=2000
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+#setopt share_history         # share command history data
+
+# force zsh to show the complete history
+alias history="history 0"
+
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+# theme ㉿ λ 🐧  
+if [ "$color_prompt" = yes ]; then
+    PROMPT=$'%F{%(#.white.red)}${debian_chroot:+($debian_chroot)}❰%B%F{%(#.red.white)}%n%(#.💀.(💀))%m%b%F{%(#.blue.red)}❱ {%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.red)}}\n%B%(#.%F{red}#.%F{blue}->)%b%F{reset} '
+    RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{white}%B⚙%b%F{reset}.)'
+
+else
+    PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%# '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    TERM_TITLE='\e]0;${debian_chroot:+($debian_chroot)}%n@%m: %~\a'
+    ;;
+*)
+    ;;
+esac
+
+new_line_before_prompt=yes
+precmd() {
+    # Print the previously configured title
+    print -Pn "$TERM_TITLE"
+
+    # Print a new line before the prompt, but only if it is not the first line
+    if [ "$new_line_before_prompt" = yes ]; then
+        if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then
+            _NEW_LINE_BEFORE_PROMPT=1
+        else
+            print ""
+        fi
+    fi
+}
+
+# enable color support of ls, less and man, and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias diff='diff --color=auto'
+    alias ip='ip --color=auto'
+
+    export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+    export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+    export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+    export LESS_TERMCAP_so=$'\E[01;33m'    # begin reverse video
+    export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+    export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+    export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+    # Take advantage of $LS_COLORS for completion as well
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+fi
+
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/autojump/autojump.zsh 
+source /home/datthu/.vim/plugged/gruvbox/gruvbox_256palette.sh
+source /home/datthu/.config/broot/launcher/bash/br
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+## aliases
+# system & update sec
+alias au='sudo apt update'
+alias aU='sudo apt upgrade'
+alias ai='sudo apt install'
+alias fu='flatpak update'
+alias fU='flatpak uninstall --unused'
+alias ar='sudo apt --purge remove'
+alias ssn='sudo shutdown now'
+alias sr='sudo reboot'
+alias sd='sudo'
+alias sn='shutdown now'
+alias ua='bash ~/Stuff/files/configs/shell-scripts/startup.sh'
+
+# rclone sec
+alias rfiles='echo "Syncing to drive" | cowsay -f tux && rclone sync -P files/ drivec:/files/ --exclude ".git/**" --exclude ".gitsecret/**" '
+alias rcloud='echo "Syncing to drive" | cowsay -f tux && rclone sync -P dropbox/ drivec:/dropbox/'
+alias revfiles='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/files/ files/ --exclude ".git/**" --exclude ".gitsecret/**" '
+alias revcloud='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/dropbox/ dropbox/'
+alias rdrop='echo "Syncing to both cloud providers" | cowsay -f tux && rclone sync -P dropbox/ db:/unsec/ && echo "" && rclone sync -P dropbox/ drivec:/dropbox/'
+alias revdrop='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P db:/unsec/ dropbox/'
+
+# text editors
+alias v='vim'
+alias nv='nvim'
+alias vimrc='vim ~/.vimrc'
+alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias zshrc='nvim ~/.zshrc'
+
+# vagrant sec
+alias vu='vagrant up'
+alias vh='vagrant halt'
+alias vd='vagrant destroy'
+alias vs='vagrant ssh'
+
+# exa
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing 
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs 
+alias ll='exa -l --color=always --group-directories-first'  # long format 
+alias l.='exa -a | egrep "^\."'
+
+# others
+alias gt='gpg2 --card-status'
+alias yt='ykman list'
+alias yd='youtube-dl'
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias btop='bpytop'
+alias dc='sudo docker'
+alias secret='cat ~/.secret'
+alias wu='sudo wg-quick up wg0'
+alias wd='sudo wg-quick down wg0'
+alias ll='ls -la'
+alias l='ls -CF'
+alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
+alias config='/usr/bin/git --git-dir=$HOME/Downloads/mimic/dotfiles/ --work-tree=$HOME/Downloads/mimic/'
+
+# other program configs
+FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+export BAT_PAGER="less -R"
+# fzf configs
+#export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}"'
+export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview'"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+#export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type 1  $FD_OPTIONS"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+
+
+# fzf 
+#alias fz="du ~/ | awk '{print $2}' | fzf | xargs -r nvim"
+
+#
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+md(){
+    glow "$@" -s dark | less -r 
+}
+
+# uncomment the below line to use starship prompt
+eval "$(starship init zsh)"
+
+

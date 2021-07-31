@@ -1,0 +1,69 @@
+shell:
+  program: /usr/bin/tmux
+
+background_opacity : 0.8
+draw_bold_text_with_bright_colors: true
+
+# Link to change color scceme -> https://github.com/alacritty/alacritty/wiki/Color-schemes
+# The 'Dark dimmed' colorscheme from Github.
+colors:
+  primary:
+    background: '#222D31'
+    foreground: '#d8d8d8'
+  normal:
+    black:   '#2d333b'
+    red:     '#f47067'
+    green:   '#a5ffe1'
+    yellow:  '#f69d50'
+    blue:    '#6cb6ff'
+    magenta: '#dcbdfb'
+    cyan:    '#96d0ff'
+    white:   '#adbac7'
+  bright:
+    black:   '#768390'
+    red:     '#f47067'
+    green:   '#a5ffe1'
+    yellow:  '#f69d50'
+    blue:    '#6cb6ff'
+    magenta: '#dcbdfb'
+    cyan:    '#96d0ff'
+    white:   '#adbac7'
+
+scrolling:
+ history: 0
+ multiplier: 3
+ faux_multiplier: 3
+ auto_scroll: true
+
+font:
+  normal:
+   family: "Hack Nerd Font"
+   style: Regular
+  
+   bold:
+    family: "Hack Nerd Font"
+    style: Bold
+  
+   italic:
+    family: "Hack Nerd Font"
+    style: Italic
+  
+   bold_italic:
+    family: "Hack Nerd Font"
+    style: Bold Italic
+  
+  size: 11.0
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+window:
+  padding:
+    x: 2
+    y: 2
+

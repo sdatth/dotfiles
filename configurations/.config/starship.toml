@@ -1,0 +1,43 @@
+# config location "~/.config/starship.toml"
+# more info on documentation link "https://starship.rs/config/"
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Make prompt a single line instead of two lines
+[line_break]
+disabled = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[❱](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[aws]
+disabled = true
+
+[vagrant]
+format = "via [ $version](bold green) "
+
+#[directory]
+# truncation_length = 8
+# truncation_symbol = "…/"
+#format = "[$path ﱮ]($style)[$read_only]($read_only_style) "
+
+# Please follow the steps for your shell to complete the installation:
+
+#  Bash
+#  Add the following to the end of ~/.bashrc:
+#
+#      eval "$(starship init bash)"
+
+#  Fish
+#  Add the following to the end of ~/.config/fish/config.fish:
+
+#      starship init fish | source
+
+# zsh
+#  add the following to the end of ~/.zshrc:
+
+#     eval "$(starship init zsh)"
+
