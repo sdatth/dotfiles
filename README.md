@@ -10,7 +10,7 @@ You will need `git` and GNU `stow`
 Clone into your `$HOME` directory or `~`
 
 ```bash
-git clone https://github.com/ChristianChiarulli/Machfiles.git ~
+git clone https://github.com/sdatth/dotfiles.git ~/
 ```
 
 Run the bash script to install my configuration
