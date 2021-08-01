@@ -16,8 +16,8 @@ success_symbol = "[❱](bold red)"     # The "success_symbol" segment is being s
 [aws]
 disabled = true
 
-[vagrant]
-format = "via [ $version](bold green) "
+#[vagrant]
+#format = "via [ﰨ $version](bold green) "
 
 #[directory]
 # truncation_length = 8

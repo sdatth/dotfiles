@@ -10,9 +10,14 @@
 #
 
 echo
-echo "Install Script" | figlet | lolcat 
-# installing dependencies
+echo "Install Script"
+
+# making sure $HOME/.local/bin is present
+[ ! -d "$HOME/.local/bin" ] && mkdir -p $HOME/.local/bin
 export PATH=$PATH:$HOME/.local/bin 
+
+# installing dependencies
+echo 
 sudo apt update
 sudo apt install neovim vim vim-gtk3 curl git ranger zsh zsh-syntax-highlighting autojump \
      zsh-autosuggestions tmux fd-find stow ncdu compton unzip build-essential lolcat figlet fortune cowsay || exit
@@ -91,7 +96,6 @@ echo done!
 # exa
 echo ""
 echo "installing exa" | cowsay | lolcat
-mkdir -p $HOME/.local/bin
 cd $HOME/Downloads
 mkdir exa
 wget -P $HOME/Downloads/exa https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip
