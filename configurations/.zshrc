@@ -215,7 +215,7 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 #export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type 1  $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
-
+export PATH=$PATH:$HOME/.local/bin
 
 # fzf 
 #alias fz="du ~/ | awk '{print $2}' | fzf | xargs -r nvim"
