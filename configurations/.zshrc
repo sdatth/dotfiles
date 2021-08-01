@@ -149,7 +149,6 @@ fi
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/autojump/autojump.zsh 
-source /home/datthu/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source /home/datthu/.config/broot/launcher/bash/br
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -198,7 +197,6 @@ alias l.='exa -a | egrep "^\."'
 alias gt='gpg2 --card-status'
 alias yt='ykman list'
 alias yd='youtube-dl'
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias btop='bpytop'
 alias dc='sudo docker'
 alias secret='cat ~/.secret'
@@ -207,7 +205,6 @@ alias wd='sudo wg-quick down wg0'
 alias ll='ls -la'
 alias l='ls -CF'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
-alias config='/usr/bin/git --git-dir=$HOME/Downloads/mimic/dotfiles/ --work-tree=$HOME/Downloads/mimic/'
 
 # other program configs
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
