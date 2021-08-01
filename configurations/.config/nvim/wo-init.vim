@@ -100,7 +100,7 @@ call plug#end()
 " colorscheme gruvbox
 
 " enables the nvim-colorizer plugin
-lua require'colorizer'.setup()
+" lua require'colorizer'.setup()
 
 let g:python3_host_prog = '/bin/python3'
 

@@ -149,7 +149,6 @@ fi
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/autojump/autojump.zsh 
-source /home/datthu/.config/broot/launcher/bash/br
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## aliases
