@@ -143,7 +143,6 @@ if [ $choice == "y" ]; then
     rm configurations/.config/nvim/init.vim 
     mv configurations/.config/nvim/wo-init.vim configurations/.config/nvim/init.vim
     stow configurations/
-    git restore .
     echo done!
 
 elif [ $choice == "n" ]; then
@@ -211,7 +210,8 @@ echo "NOTE!" | cowsay | lolcat
 echo "1. Open vim n nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
 echo "2. Uncomment the colorscheme line in the vimrc and nvimrc file to apply the theme"
 echo "3. Update the '/etc/passwd file, change the users shell to 'zsh' "
-echo "4. Reboot and ENjOy!"
+echo "4: Once everything is done exec 'git restore .' in the '$HOME/dotfiles' dir "
+echo "4. Reboot(Optional) and ENjOy!"
 
 echo ""
 echo "Done installing the script!"
