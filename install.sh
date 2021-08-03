@@ -5,7 +5,7 @@
 #     | || | | \__ \ || (_| | | | \__ \ (__| |  | | |_) | |_
 #    |___|_| |_|___/\__\__,_|_|_| |___/\___|_|  |_| .__/ \__|
 #                                                 |_|
-# source - https://github.com/sdatth
+# source - https://github.com/sdatth/dotfiles
 #
 
 echo

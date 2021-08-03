@@ -1,3 +1,11 @@
+
+"     _ ____   _(_)_ __ ___  _ __ ___
+"    | '_ \ \ / / | '_ ` _ \| '__/ __|
+"    | | | \ V /| | | | | | | | | (__
+"    |_| |_|\_/ |_|_| |_| |_|_|  \___|
+"
+" source: https://github.com/sdatth/dotfiles
+
 " Nvim config file
 " config file location "~/.config/nvim/init.vim"
 " dependencies
