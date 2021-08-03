@@ -3,6 +3,7 @@
 ![machfiles image](./ss.png)
 
 !! Warning, install.sh script only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! 
+!! Other people can copy my config files or symlink it using the `stow` command.
 
 ## Installing
 
@@ -21,4 +22,10 @@ Run the bash script to install my configuration
 cd dotfiles
 chmod +x install.sh
 bash install.sh
+```
+
+Symlink my config files
+```bash
+cd dotfiles
+stow configurations/
 ```
