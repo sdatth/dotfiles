@@ -2,7 +2,7 @@
 
 ![machfiles image](./ss.png)
 
-!! Warning, install.sh script only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! \ 
+!! Warning, install.sh script only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! <br> 
 !! Other people can copy my config files or symlink it using the `stow` command.
 
 ## Installing
