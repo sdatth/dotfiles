@@ -2,7 +2,7 @@
 # more info on documentation link "https://starship.rs/config/"
 
 # Inserts a blank line between shell prompts
-add_newline = false
+add_newline = true
 
 # Make prompt a single line instead of two lines
 [line_break]
