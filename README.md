@@ -2,12 +2,12 @@
 
 ![machfiles image](./ss.png)
 
-!! Warning, install.sh script only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! <br> 
+!! Warning, this only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! <br> 
 !! Other people can copy my config files or symlink it using the `stow` command.
 
 ## Installing
 
-You will need `git` and GNU `stow`
+You will need `make` & `build-essential` 
 
 Clone into your `$HOME` directory or `~`
 
@@ -17,11 +17,17 @@ git clone https://github.com/sdatth/dotfiles.git ~/
 git clone https://gitlab.com/sdatth/dotfiles.git ~/
 ```
 
-Run the bash script to install my configuration
+Run the make command to get my configuration
 ```bash
 cd dotfiles
-chmod +x install.sh
-bash install.sh
+make
+```
+
+Compile alacritty from scratch
+```bash
+# this just follows all the steps from the official repo "https://github.com/alacritty/alacritty"
+cd dotfiles
+make alacritty
 ```
 
 Symlink my config files
