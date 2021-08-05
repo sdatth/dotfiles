@@ -26,12 +26,15 @@ make
 Compile alacritty from scratch
 ```bash
 # this just follows all the steps from the official repo "https://github.com/alacritty/alacritty"
-cd dotfiles
 make alacritty
 ```
 
 Symlink my config files
 ```bash
-cd dotfiles
 stow configurations/
+```
+
+Copy the config files without symlinks
+```bash
+make cpconf
 ```

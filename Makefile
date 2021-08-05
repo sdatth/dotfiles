@@ -14,7 +14,7 @@ PACKAGES += lolcat figlet fortune cowsay
 APACKAGES = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 
 .ONESHELL:
-all: dep bindir delete nvimplug vimplug fzf bat glow exa fd nerdfonts starship install clean note
+all: dep bindir delete nvimplug vimplug fzf bat glow exa fd nerdfonts starship symlink clean note
 
 dep: 
 	@echo
@@ -109,7 +109,7 @@ fd:
 	echo "installing fd" | cowsay | lolcat
 	#wget -P ~/Downloads/ https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb
 	#sudo dpkg -i ~/Downloads/fd_8.2.1_amd64.deb
-	ln -s /usr/bin/fdfind $(HOME)/.local/bin/fd
+	ln -s $$(which fdfind) $(HOME)/.local/bin/fd
 	echo done!
 
 nerdfonts:
@@ -130,50 +130,31 @@ starship:
 	sh -c $(HOME)/Downloads/starship.sh
 	echo done!
 
-install:
+symlink:
 	@echo 
-	echo "Copying configuration files " | cowsay | lolcat
-	read -p "Symlink files [y|n]? " choice
-	if [ $$choice == "y" ]; then
-		# symlink
-		echo ""
-		echo "symlink" | cowsay | lolcat
-		rm $(HOME)/.zshrc
-		cd $(HOME)/dotfiles/
-		rm configurations/.vimrc
-		mv configurations/.wo-vimrc configurations/.vimrc
-		rm configurations/.config/nvim/init.vim 
-		mv configurations/.config/nvim/wo-init.vim configurations/.config/nvim/init.vim
-		stow configurations/
-		echo done!
+	echo "Symlinking configuration files " | cowsay | lolcat
+	rm $(HOME)/.zshrc
+	cd $(HOME)/dotfiles/
+	rm configurations/.vimrc
+	mv configurations/.wo-vimrc configurations/.vimrc
+	rm configurations/.config/nvim/init.vim 
+	mv configurations/.config/nvim/wo-init.vim configurations/.config/nvim/init.vim
+	stow configurations/
+	echo done!
 
-	elif [ $$choice == "n" ]; then
-		echo "Copying files"
-		cd $(HOME)/dotfiles/
-		
-		# copying vimrc
-		mkdir -p ~/.vim/plugged
-		cp configurations/.wo-vimrc $(HOME)/.vimrc
-
-		# copying nvimrc
-		mkdir -p ~/.config/nvim/plugged
-		cp configurations/.config/nvim/wo-init.vim $(HOME)/.config/nvim/init.vim
-
-		# starship
-		cp configurations/.config/starship.toml $(HOME)/.config/starship.toml
-
-		# ranger
-		cp -r configurations/.config/ranger $(HOME)/.config/
-
-		# Xrsources
-		cp configurations/.Xresources $(HOME)/
-
-		# zshrc
-		cp configurations/.zshrc $(HOME)/
-
-		# alacritty
-		cp -r configurations/.config/alacritty/ $(HOME)/.config/
-	fi
+cpconf:
+	@echo
+	echo "Copying files"
+	cd $(HOME)/dotfiles/
+	mkdir -p ~/.vim/plugged
+	cp configurations/.wo-vimrc $(HOME)/.vimrc
+	mkdir -p ~/.config/nvim/plugged
+	cp configurations/.config/nvim/wo-init.vim $(HOME)/.config/nvim/init.vim
+	cp configurations/.config/starship.toml $(HOME)/.config/starship.toml
+	cp -r configurations/.config/ranger $(HOME)/.config/
+	cp configurations/.Xresources $(HOME)/
+	cp configurations/.zshrc $(HOME)/
+	cp -r configurations/.config/alacritty/ $(HOME)/.config/
 
 alacritty:
 	@echo
