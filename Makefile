@@ -14,17 +14,24 @@ PACKAGES += lolcat figlet fortune cowsay
 APACKAGES = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 
 .ONESHELL:
-all: dep bindir delete nvimplug vimplug fzf bat glow exa fd nerdfonts starship symlink clean note
+all: dep bindir fzf bat glow exa fd nerdfonts starship symlink clean note ## Symlink config files
 
-dep: 
+copy: dep bindir fzf bat glow exa fd nerdfonts starship cpconf clean note ## Copy config files
+
+help: ## Show available options
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	| sort \
+	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+dep: ## Install dependencies
 	@echo
 	sudo apt update
 	sudo apt install $(PACKAGES) 
 	
-bindir:
+bindir: ## Create ~/.local/bin dir
 	[ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
 
-delete:
+delete: ## Delete old config files
 	@echo
 	read -p "Warning this will delete old files if present [y|n]: " choice
 	if [ $$choice == "y" ]; then    
@@ -48,7 +55,7 @@ delete:
 	fi
 	echo done!
 
-nvimplug:
+nvimplug: ## Install plug for neovim
 	@echo 
 	echo "installing plug for nvim" | cowsay | lolcat
 	[ ! -d "$(HOME)/.local/share/nvim/site/autoload" ] && mkdir -p "$(HOME)/.local/share/nvim/site/autoload"
@@ -61,7 +68,7 @@ nvimplug:
 	fi
 	echo done!
 
-vimplug:
+vimplug: ## Install plug for vim
 	@echo
 	echo "installing plug for vim" | cowsay | lolcat
 	[ ! -d "$(HOME)/.vim/autoload" ] && mkdir -p "$(HOME)/.vim/autoload"
@@ -72,28 +79,28 @@ vimplug:
 	fi
 	echo done!
 
-fzf:
+fzf: ## Install fzf
 	@echo
 	echo "installing fzf" | cowsay | lolcat
 	git clone --depth 1 https://github.com/junegunn/fzf.git $(HOME)/.fzf
 	$(HOME)/.fzf/install
 	echo done!
 
-bat:
+bat: ## Install bat
 	@echo 
 	echo "installing bat" | cowsay | lolcat
 	wget -P $(HOME)/Downloads/ https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
 	sudo dpkg -i $(HOME)/Downloads/bat_0.18.2_amd64.deb
 	echo done!
 
-glow:
+glow: ## Install glow
 	@echo 
 	echo "installing glow" | cowsay | lolcat
 	wget -P $(HOME)/Downloads/ https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_amd64.deb
 	sudo dpkg -i $(HOME)/Downloads/glow_1.4.1_linux_amd64.deb
 	echo done!
 
-exa:
+exa: ## Install exa
 	@echo
 	echo "installing exa" | cowsay | lolcat
 	cd $(HOME)/Downloads
@@ -104,7 +111,7 @@ exa:
 	cp bin/exa $(HOME)/.local/bin/
 	echo done!
 
-fd:
+fd: ## Install fd
 	@echo
 	echo "installing fd" | cowsay | lolcat
 	#wget -P ~/Downloads/ https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb
@@ -112,7 +119,7 @@ fd:
 	ln -s $$(which fdfind) $(HOME)/.local/bin/fd
 	echo done!
 
-nerdfonts:
+nerdfonts: ## Install nerd fonts
 	echo "nerd fonts" | cowsay | lolcat
 	cd $(HOME)/Downloads
 	mkdir fonts && cd fonts
@@ -122,7 +129,7 @@ nerdfonts:
 	cd ttf && cp * $(HOME)/.local/share/fonts/hack/ 
 	echo done!
 
-starship:
+starship: ## Install starship prompt
 	@echo 
 	echo "installing starship" | cowsay | lolcat
 	curl -fsSL https://starship.rs/install.sh > $(HOME)/Downloads/starship.sh
@@ -130,7 +137,7 @@ starship:
 	sh -c $(HOME)/Downloads/starship.sh
 	echo done!
 
-symlink:
+symlink: delete vimplug nvimplug
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
 	rm $(HOME)/.zshrc
@@ -142,7 +149,7 @@ symlink:
 	stow configurations/
 	echo done!
 
-cpconf:
+cpconf: delete vimplug nvimplug 
 	@echo
 	echo "Copying files"
 	cd $(HOME)/dotfiles/
@@ -156,7 +163,7 @@ cpconf:
 	cp configurations/.zshrc $(HOME)/
 	cp -r configurations/.config/alacritty/ $(HOME)/.config/
 
-alacritty:
+alacritty: ## Compile and install alacritty
 	@echo
 	echo "Installing alacritty" | cowsay | lolcat
 	read -p "Do you want to compile and install alacritty from source [y|n]: " choice
@@ -182,7 +189,7 @@ alacritty:
 		echo "Not installing alacritty "
 	fi
 
-clean:
+clean: ## Clean up junk files after installation
 	@echo
 	echo "cleaning up!" | cowsay | lolcat
 	rm -rf $HOME/Downloads/*
@@ -199,4 +206,3 @@ note:
 	echo ""
 	echo "Done installing the script!"
 
-stow: delete vimplug nvimplug symlink

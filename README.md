@@ -3,7 +3,7 @@
 ![machfiles image](./ss.png)
 
 !! Warning, this only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! <br> 
-!! Other people can copy my config files or symlink it using the `stow` command.
+!! Other people can inspect and manually copy the elements of the files! 
 
 ## Installing
 
@@ -29,12 +29,7 @@ Compile alacritty from scratch
 make alacritty
 ```
 
-Symlink my config files
-```bash
-make stow
-```
-
 Copy the config files without symlinks
 ```bash
-make cpconf
+make copy
 ```
