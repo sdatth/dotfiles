@@ -31,7 +31,7 @@ make alacritty
 
 Symlink my config files
 ```bash
-stow configurations/
+make stow
 ```
 
 Copy the config files without symlinks

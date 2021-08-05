@@ -199,3 +199,4 @@ note:
 	echo ""
 	echo "Done installing the script!"
 
+stow: delete vimplug nvimplug symlink
