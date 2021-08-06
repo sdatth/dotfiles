@@ -8,15 +8,17 @@
 
 SHELL = /bin/bash
 
-PACKAGES = neovim vim vim-gtk3 curl git ranger zsh zsh-syntax-highlighting autojump
-PACKAGES += zsh-autosuggestions tmux fd-find stow ncdu compton unzip build-essential
-PACKAGES += lolcat figlet fortune cowsay
-APACKAGES = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+PIP_PKGS = bpytop
+CONF_PKGS = neovim vim vim-gtk3 curl git ranger zsh zsh-syntax-highlighting autojump
+CONF_PKGS += zsh-autosuggestions tmux fd-find stow ncdu compton unzip build-essential
+CONF_PKGS += lolcat figlet fortune cowsay python python3-testresources
+ALACRITTY_PKGS = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+MORE_PKGS = wormhole
 
 .ONESHELL:
-all: dep bindir fzf bat glow exa fd nerdfonts starship symlink clean note ## Symlink config files
+all: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl symlink clean note ## Symlink config files
 
-copy: dep bindir fzf bat glow exa fd nerdfonts starship cpconf clean note ## Copy config files
+copy: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl cpconf clean note ## Copy config files
 
 help: ## Show available options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -25,11 +27,28 @@ help: ## Show available options
 
 dep: ## Install dependencies
 	@echo
+	echo "Installing Dependencies"
 	sudo apt update
-	sudo apt install $(PACKAGES) 
+	sudo apt install $(CONF_PKGS) $(MORE_PKGS) || exit
+
+more: ## Install additional packages
+	@echo
+	echo "Installing Additional Packages" | cowsay | lolcat
+	sudo apt update
+	sudo apt install $(MORE_PKGS)
 	
+pipinstall: # Install pip and its packages
+	@echo
+	echo "Installing pip and its packages" | cowsay | lolcat
+	cd $(HOME)/Downloads
+	curl "https://bootstrap.pypa.io/get-pip.py" -o "install-pip3.py"
+	python3 install-pip3.py
+	pip install --user --upgrade pip
+	pip install --user $(PIP_PKGS)
+
 bindir: ## Create ~/.local/bin dir
 	[ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
+	[ ! -d "$(HOME)/Downloads" ] && mkdir -p $(HOME)/Downloads
 
 delete: ## Delete old config files
 	@echo
@@ -137,6 +156,12 @@ starship: ## Install starship prompt
 	sh -c $(HOME)/Downloads/starship.sh
 	echo done!
 
+utubedl: ## Install youtube-dl
+	@echo 
+	echo "Installing youtube-dl" | cowsay | lolcat
+	curl -L https://yt-dl.org/downloads/latest/youtube-dl -o $(HOME)/.local/bin/youtube-dl
+	chmod a+rx $(HOME)/.local/bin/youtube-dl
+
 symlink: delete vimplug nvimplug
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
@@ -169,7 +194,7 @@ alacritty: ## Compile and install alacritty
 	read -p "Do you want to compile and install alacritty from source [y|n]: " choice
 	if [ $$choice == "y" ]; then 
 		echo "installing alacritty" | cowsay | lolcat
-		sudo apt install $(APACKAGES) 
+		sudo apt install $(ALACRITTY_PKGS) 
 		# install rust
 		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 		source $(HOME)/.bashrc
