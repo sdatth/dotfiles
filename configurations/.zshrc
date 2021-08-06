@@ -97,7 +97,7 @@ alias revdrop='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P db:
 
 # text editors
 alias v='vim'
-alias nv='nvim'
+alias e='nvim'
 alias vimrc='vim ~/.vimrc'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias zshrc='nvim ~/.zshrc'
@@ -113,6 +113,14 @@ alias ls='exa -l --color=always --group-directories-first' # my preferred listin
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs 
 alias ll='exa -l --color=always --group-directories-first'  # long format 
 alias l.='exa -a | egrep "^\."'
+
+# git
+alias pull='git pull github main && sleep 5 && git pull gitlab main'
+alias push='git push -u github main && sleep 5 && git push -u gitlab main'
+alias add='git add .'
+alias commit='git commit -S -m'
+alias rcommit='git commit -m'
+alias status='git status'
 
 # others
 alias gt='gpg2 --card-status'

@@ -30,6 +30,7 @@ dep: ## Install dependencies
 	echo "Installing Dependencies"
 	sudo apt update
 	sudo apt install $(CONF_PKGS) $(MORE_PKGS) || exit
+	echo
 
 more: ## Install additional packages
 	@echo
@@ -139,6 +140,7 @@ fd: ## Install fd
 	echo done!
 
 nerdfonts: ## Install nerd fonts
+	@echo
 	echo "nerd fonts" | cowsay | lolcat
 	cd $(HOME)/Downloads
 	mkdir fonts && cd fonts

@@ -63,7 +63,7 @@ noremap <leader>; :Files~/<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 " to comment a selected content with double quotations '"''
-vmap <leader>' gc
+vmap <leader>l gc
 
 " to change focus to different window
 noremap <leader>w <C-w>
@@ -97,13 +97,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'neoclide/coc.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
-" let g:gruvbox_termcolors=16
-" let g:gruvbox_italic=1
+
 " colour scheme of the editor
 colorscheme tender
 
-let g:python3_host_prog = '/bin/python3'

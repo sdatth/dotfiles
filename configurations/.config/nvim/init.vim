@@ -67,7 +67,7 @@ noremap <leader>; :Files~/<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 " to comment a selected content with double quotations '"''
-vmap <leader>' gc
+vmap <leader>l gc
 
 " to change focus to different window
 noremap <leader>w <C-w>
@@ -101,16 +101,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
 Plug 'norcalli/nvim-colorizer.lua'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" use value 'medium' if the contrast is too dark
+let g:gruvbox_contrast_dark = 'hard'
 
 " colour scheme of the editor
 colorscheme gruvbox
 
 " enables the nvim-colorizer plugin
 lua require'colorizer'.setup()
-
-let g:python3_host_prog = '/bin/python3'
 
 
 
