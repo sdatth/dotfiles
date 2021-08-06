@@ -33,3 +33,8 @@ Copy the config files without symlinks
 ```bash
 make copy
 ```
+
+Use the help recipe to see available options
+```bash
+make help
+```
