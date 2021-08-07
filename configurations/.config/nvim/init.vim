@@ -101,6 +101,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " use value 'medium' if the contrast is too dark

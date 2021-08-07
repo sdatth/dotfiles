@@ -33,7 +33,7 @@ set softtabstop=4
 set shiftwidth=4
 set noswapfile
 set scrolloff=5
-"set termguicolors
+set encoding=UTF-8
 
 " leader key
 let mapleader = "," 
@@ -98,7 +98,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 

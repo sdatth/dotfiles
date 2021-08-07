@@ -142,12 +142,8 @@ fd: ## Install fd
 nerdfonts: ## Install nerd fonts
 	@echo
 	echo "nerd fonts" | cowsay | lolcat
-	cd $(HOME)/Downloads
-	mkdir fonts && cd fonts
-	mkdir -p $(HOME)/.local/share/fonts/hack
-	wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-	unzip Hack-v3.003-ttf.zip
-	cd ttf && cp * $(HOME)/.local/share/fonts/hack/ 
+	mkdir -p $(HOME)/.local/share/fonts/firacode
+	cp $(HOME)/dotfiles/fonts/* $(HOME)/.local/share/fonts/firacode/ 
 	echo done!
 
 starship: ## Install starship prompt
