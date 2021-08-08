@@ -49,8 +49,8 @@ pipinstall: # Install pip and its packages
 	pip install --user $(PIP_PKGS)
 
 bindir: ## Create ~/.local/bin dir
-	[ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
-	[ ! -d "$(HOME)/Downloads" ] && mkdir -p $(HOME)/Downloads
+	- [ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
+	- [ ! -d "$(HOME)/Downloads" ] && mkdir -p $(HOME)/Downloads
 
 delete: ## Delete old config files
 	@echo
@@ -79,7 +79,7 @@ delete: ## Delete old config files
 nvimplug: ## Install plug for neovim
 	@echo 
 	echo "installing plug for nvim" | cowsay | lolcat
-	[ ! -d "$(HOME)/.local/share/nvim/site/autoload" ] && mkdir -p "$(HOME)/.local/share/nvim/site/autoload"
+	- [ ! -d "$(HOME)/.local/share/nvim/site/autoload" ] && mkdir -p "$(HOME)/.local/share/nvim/site/autoload"
 	if [ -f "$(HOME)/.local/share/nvim/site/autoload/plug.vim" ]; then
 		echo "Plug for neovim already installed"
 	else
@@ -92,7 +92,7 @@ nvimplug: ## Install plug for neovim
 vimplug: ## Install plug for vim
 	@echo
 	echo "installing plug for vim" | cowsay | lolcat
-	[ ! -d "$(HOME)/.vim/autoload" ] && mkdir -p "$(HOME)/.vim/autoload"
+	- [ ! -d "$(HOME)/.vim/autoload" ] && mkdir -p "$(HOME)/.vim/autoload"
 	if [ -f "$(HOME)/.vim/autoload/plug.vim" ]; then
 		echo "Plug for vim already installed"
 	else

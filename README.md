@@ -7,7 +7,7 @@
 
 ## Installing
 
-You will need `make` & `build-essential` 
+You will need `make` 
 
 Clone into your `$HOME` directory or `~`
 
