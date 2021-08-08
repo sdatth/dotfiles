@@ -9,8 +9,7 @@
 " Nvim config file
 " config file location "~/.config/nvim/init.vim"
 " dependencies
-" vim plug needs to be installed , follow this guide ->
-" https://github.com/junegunn/vim-plug" 
+" vim plug needs to be installed , follow this guide -> "https://github.com/junegunn/vim-plug" 
 " vim-gtk package needs to be installed to enable copy-paste functionality to sys clipboard
 
 " to set the editor to not to act like the old version of vi

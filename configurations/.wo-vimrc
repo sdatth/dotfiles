@@ -1,3 +1,12 @@
+
+"    __   _(_)_ __ ___  _ __ ___ 
+"    \ \ / / | '_ ` _ \| '__/ __|
+"     \ V /| | | | | | | | | (__ 
+"      \_/ |_|_| |_| |_|_|  \___|
+"
+" source: https://github.com/sdatth/dotfiles
+"
+
 " Vim config file 
 " config file location "~/.vimrc"
 " dependencies
@@ -24,7 +33,7 @@ set softtabstop=4
 set shiftwidth=4
 set noswapfile
 set scrolloff=5
-"set termguicolors
+set encoding=UTF-8
 
 " leader key
 let mapleader = "," 
@@ -54,7 +63,7 @@ noremap <leader>; :Files~/<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 " to comment a selected content with double quotations '"''
-vmap <leader>' gc
+vmap <leader>l gc
 
 " to change focus to different window
 noremap <leader>w <C-w>
@@ -88,11 +97,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'neoclide/coc.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
 
 " colour scheme of the editor
 " colorscheme tender
 
-let g:python3_host_prog = '/bin/python3'

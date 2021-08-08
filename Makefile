@@ -40,6 +40,7 @@ more: ## Install additional packages
 	
 pipinstall: # Install pip and its packages
 	@echo
+	export PATH=$$PATH:$$HOME/.local/bin
 	echo "Installing pip and its packages" | cowsay | lolcat
 	cd $(HOME)/Downloads
 	curl "https://bootstrap.pypa.io/get-pip.py" -o "install-pip3.py"
@@ -165,6 +166,7 @@ symlink: delete vimplug nvimplug
 	echo "Symlinking configuration files " | cowsay | lolcat
 	rm $(HOME)/.zshrc
 	cd $(HOME)/dotfiles/
+	rm $(HOME)/.bashrc
 	rm configurations/.vimrc
 	mv configurations/.wo-vimrc configurations/.vimrc
 	rm configurations/.config/nvim/init.vim 
@@ -176,6 +178,7 @@ cpconf: delete vimplug nvimplug
 	@echo
 	echo "Copying files"
 	cd $(HOME)/dotfiles/
+	rm $(HOME)/.bashrc
 	mkdir -p ~/.vim/plugged
 	cp configurations/.wo-vimrc $(HOME)/.vimrc
 	mkdir -p ~/.config/nvim/plugged
@@ -184,6 +187,7 @@ cpconf: delete vimplug nvimplug
 	cp -r configurations/.config/ranger $(HOME)/.config/
 	cp configurations/.Xresources $(HOME)/
 	cp configurations/.zshrc $(HOME)/
+	cp configurations/.bashrc $(HOME)/
 	cp -r configurations/.config/alacritty/ $(HOME)/.config/
 
 alacritty: ## Compile and install alacritty
@@ -215,7 +219,7 @@ alacritty: ## Compile and install alacritty
 clean: ## Clean up junk files after installation
 	@echo
 	echo "cleaning up!" | cowsay | lolcat
-	rm -rf $HOME/Downloads/*
+	rm -rf $(HOME)/Downloads/*
 	echo done!
 	
 note:

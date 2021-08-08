@@ -1,8 +1,15 @@
+
+"     _ ____   _(_)_ __ ___  _ __ ___
+"    | '_ \ \ / / | '_ ` _ \| '__/ __|
+"    | | | \ V /| | | | | | | | | (__
+"    |_| |_|\_/ |_|_| |_| |_|_|  \___|
+"
+" source: https://github.com/sdatth/dotfiles
+
 " Nvim config file
 " config file location "~/.config/nvim/init.vim"
 " dependencies
-" vim plug needs to be installed , follow this guide ->
-" https://github.com/junegunn/vim-plug" 
+" vim plug needs to be installed , follow this guide -> https://github.com/junegunn/vim-plug" 
 " vim-gtk package needs to be installed to enable copy-paste functionality to sys clipboard
 
 " to set the editor to not to act like the old version of vi
@@ -59,7 +66,7 @@ noremap <leader>; :Files~/<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 " to comment a selected content with double quotations '"''
-vmap <leader>' gc
+vmap <leader>l gc
 
 " to change focus to different window
 noremap <leader>w <C-w>
@@ -93,16 +100,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
 Plug 'norcalli/nvim-colorizer.lua'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+" use value 'medium' if the contrast is too dark
+let g:gruvbox_contrast_dark = 'hard'
 
 " colour scheme of the editor
 " colorscheme gruvbox
 
 " enables the nvim-colorizer plugin
 " lua require'colorizer'.setup()
-
-let g:python3_host_prog = '/bin/python3'
 
 
 
