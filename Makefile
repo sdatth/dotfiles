@@ -172,7 +172,7 @@ symlink: delete vimplug nvimplug
 	mv configurations/.wo-vimrc configurations/.vimrc
 	rm configurations/.config/nvim/init.vim 
 	mv configurations/.config/nvim/wo-init.vim configurations/.config/nvim/init.vim
-	stow configurations/
+	stow -vt $(HOME) configurations/
 	echo done!
 
 cpconf: delete vimplug nvimplug 

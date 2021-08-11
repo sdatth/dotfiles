@@ -12,9 +12,9 @@ You will need `make`
 Clone into your `$HOME` directory or `~`
 
 ```bash
-git clone https://github.com/sdatth/dotfiles.git ~/
+git clone https://github.com/sdatth/dotfiles.git $HOME/
 # OR
-git clone https://gitlab.com/sdatth/dotfiles.git ~/
+git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 ```
 
 Run the make command to get my configuration
