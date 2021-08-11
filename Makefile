@@ -145,7 +145,9 @@ nerdfonts: ## Install nerd fonts
 	@echo
 	echo "nerd fonts" | cowsay | lolcat
 	mkdir -p $(HOME)/.local/share/fonts/firacode
-	cp $(HOME)/dotfiles/fonts/* $(HOME)/.local/share/fonts/firacode/ 
+	mkdir -p $(HOME)/.local/share/fonts/hack
+	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/ 
+	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/ 
 	echo done!
 
 starship: ## Install starship prompt
