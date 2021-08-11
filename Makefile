@@ -221,6 +221,9 @@ alacritty: ## Compile and install alacritty
 update:
 	# fzf
 	cd $(HOME)/.fzf && git pull && ./install
+	
+	# starship
+	sh -c "$$(curl -fsSL https://starship.rs/install.sh)"
 
 pull: ## Pull latest changes of git repo
 	@echo
