@@ -121,6 +121,7 @@ alias add='git add .'
 alias commit='git commit -S -m'
 alias rcommit='git commit -m'
 alias status='git status'
+alias tlog='git log --graph --oneline --branches'
 
 # others
 alias gt='gpg2 --card-status'
@@ -137,12 +138,12 @@ alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | 
 # other program configs
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export BAT_PAGER="less -R"
+
 # fzf configs
-#export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}"'
 export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview'"
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
-#export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type 1  $FD_OPTIONS"
-export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  "
+export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  "
+# export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 export PATH=$PATH:$HOME/.local/bin
 
