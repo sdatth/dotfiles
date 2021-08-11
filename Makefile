@@ -16,14 +16,14 @@ ALACRITTY_PKGS = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfi
 MORE_PKGS = wormhole
 
 .ONESHELL:
-all: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl symlink clean note ## Symlink config files
-
-copy: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl cpconf clean note ## Copy config files
-
 help: ## Show available options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+install: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl symlink clean note ## Symlink config files
+
+copy: dep bindir pipinstall fzf bat glow exa fd nerdfonts starship utubedl cpconf clean note ## Copy config files
 
 dep: ## Install dependencies
 	@echo

@@ -20,7 +20,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 Run the make command to get my configuration
 ```bash
 cd dotfiles
-make
+make install
 ```
 
 Compile alacritty from scratch
