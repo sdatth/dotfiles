@@ -29,11 +29,11 @@ colors:
     cyan:    '#96d0ff'
     white:   '#adbac7'
 
-scrolling:
- history: 0
- multiplier: 3
- faux_multiplier: 3
- auto_scroll: true
+# scrolling:
+#   history: 0
+#   multiplier: 3
+#   faux_multiplier: 3
+#   auto_scroll: true
 
 font:
   normal:

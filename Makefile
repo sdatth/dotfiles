@@ -66,6 +66,7 @@ delete: ## Delete old config files
 		[ -f "$(HOME)/.config/starship.toml" ] && rm $(HOME)/.config/starship.toml
 		[ -d "$(HOME)/.local/share/nvim/site/autoload" ] && rm -rf $(HOME)/.local/share/nvim/site/autoload
 		[ -d "$(HOME)/.vim/autoload" ] && rm -rf "$(HOME)/.vim/autoload"
+		[ -d "$(HOME)/.zsh_functions" ] && rm -rf "$(HOME)/.zsh_functions"
 		echo done!
 	elif [ $$choice == "n" ]; then
 		echo "Sorry to let u go!"
@@ -189,6 +190,7 @@ cpconf: delete vimplug nvimplug
 	cp configurations/.zshrc $(HOME)/
 	cp configurations/.bashrc $(HOME)/
 	cp -r configurations/.config/alacritty/ $(HOME)/.config/
+	cp -r configurations/.config/fm6000 $(HOME)/.config/
 
 alacritty: ## Compile and install alacritty
 	@echo

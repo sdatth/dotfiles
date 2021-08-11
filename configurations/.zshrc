@@ -135,14 +135,17 @@ alias ll='ls -la'
 alias l='ls -CF'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 
+# custom zsh completions
+fpath=$HOME/.zsh_functions
+
 # other program configs
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export BAT_PAGER="less -R"
 
 # fzf configs
 export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview'"
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  "
-export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  "
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E libreoffice -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d -E vagrant  "
+export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow -E libreoffice -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  -E vagrant " 
 # export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 export PATH=$PATH:$HOME/.local/bin
@@ -176,6 +179,9 @@ ex ()
 md(){
     glow "$@" -s dark | less -r 
 }
+
+# invoke fetch master 6000
+# $HOME/dotfiles/configurations/.config/fm6000/fm6000 -f $HOME/dotfiles/configurations/.config/fm6000/wolf.txt
 
 # uncomment the below line to use starship prompt
 eval "$(starship init zsh)"
