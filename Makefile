@@ -218,6 +218,15 @@ alacritty: ## Compile and install alacritty
 		echo "Not installing alacritty "
 	fi
 
+update:
+	# fzf
+	cd $(HOME)/.fzf && git pull && ./install
+
+pull: ## Pull latest changes of git repo
+	@echo
+	cd $(HOME)/dotfiles
+	git pull
+
 clean: ## Clean up junk files after installation
 	@echo
 	echo "cleaning up!" | cowsay | lolcat
