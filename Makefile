@@ -153,9 +153,7 @@ nerdfonts: ## Install nerd fonts
 starship: ## Install starship prompt
 	@echo 
 	echo "installing starship" | cowsay | lolcat
-	curl -fsSL https://starship.rs/install.sh > $(HOME)/Downloads/starship.sh
-	chmod +x $(HOME)/Downloads/starship.sh
-	sh -c $(HOME)/Downloads/starship.sh
+	sh -c "$$(curl -fsSL https://starship.rs/install.sh)"
 	echo done!
 
 utubedl: ## Install youtube-dl
