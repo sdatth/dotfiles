@@ -169,9 +169,9 @@ symlink: delete vimplug nvimplug
 	cd $(HOME)/dotfiles/
 	rm $(HOME)/.bashrc
 	rm configurations/.vimrc
-	mv configurations/.wo-vimrc configurations/.vimrc
+	mv extra/.wo-vimrc configurations/.vimrc
 	rm configurations/.config/nvim/init.vim 
-	mv configurations/.config/nvim/wo-init.vim configurations/.config/nvim/init.vim
+	mv extra/.wo-init.vim configurations/.config/nvim/init.vim
 	stow -vt $(HOME) configurations/
 	echo done!
 
@@ -181,9 +181,9 @@ cpconf: delete vimplug nvimplug
 	cd $(HOME)/dotfiles/
 	rm $(HOME)/.bashrc
 	mkdir -p ~/.vim/plugged
-	cp configurations/.wo-vimrc $(HOME)/.vimrc
+	cp extra/.wo-vimrc $(HOME)/.vimrc
 	mkdir -p ~/.config/nvim/plugged
-	cp configurations/.config/nvim/wo-init.vim $(HOME)/.config/nvim/init.vim
+	cp extra/.wo-init.vim $(HOME)/.config/nvim/init.vim
 	cp configurations/.config/starship.toml $(HOME)/.config/starship.toml
 	cp -r configurations/.config/ranger $(HOME)/.config/
 	cp configurations/.Xresources $(HOME)/
