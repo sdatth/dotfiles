@@ -9,7 +9,7 @@
 " Nvim config file
 " config file location "~/.config/nvim/init.vim"
 " dependencies
-" vim plug needs to be installed , follow this guide -> https://github.com/junegunn/vim-plug" 
+" vim plug needs to be installed , follow this guide -> "https://github.com/junegunn/vim-plug" 
 " vim-gtk package needs to be installed to enable copy-paste functionality to sys clipboard
 
 " to set the editor to not to act like the old version of vi
@@ -56,11 +56,15 @@ noremap <leader>x :q!<CR>
 " to save the file
 noremap <leader>o :w<CR>
 
+" close current buffer
+noremap <leader>f :bd<CR>
+
 " to source the nvim config file
 noremap <leader>s :source%<CR> 
 
 " to invoke fzf finder {use Ctrl+t to open the file in a new tab}
-noremap <leader>; :Files~/<CR>
+noremap <leader>; :Files ~/Stuff/<CR>
+noremap <leader>d :Files ~/dotfiles/<CR>
 
 " to invoke nerdtree {use shift+t to open the file in a new tab}
 noremap <leader>n :NERDTreeToggle<CR>
@@ -82,6 +86,10 @@ noremap <leader>e <Esc>:w<CR>:!;python3 %<CR>
 
 " to run bash scripts
 noremap <leader>b <Esc>:w<CR>:!;bash %<CR>
+
+" git gutter
+noremap <leader>g <Esc>:GitGutterToggle <CR>
+
 "} this is end of the key binding section
 
 
@@ -101,7 +109,11 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'ryanoasis/vim-devicons'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
+
+" disable gitgutter at startup
+let g:gitgutter_enabled = 0
 
 " use value 'medium' if the contrast is too dark
 let g:gruvbox_contrast_dark = 'hard'
