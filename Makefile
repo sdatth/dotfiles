@@ -64,10 +64,11 @@ delete: ## Delete old config files
 		[ -d "$(HOME)/.config/ranger" ] && rm -rf $(HOME)/.config/ranger
 		[ -f "$(HOME)/.vimrc" ] && rm $(HOME)/.vimrc
 		[ -f "$(HOME)/.zshrc" ] && rm $(HOME)/.zshrc
+		[ -f "$(HOME)/.bashrc" ] && rm $(HOME)/.bashrc
 		[ -f "$(HOME)/.Xresources" ] && rm $(HOME)/.Xresources
 		[ -f "$(HOME)/.config/starship.toml" ] && rm $(HOME)/.config/starship.toml
 		[ -d "$(HOME)/.local/share/nvim/site/autoload" ] && rm -rf $(HOME)/.local/share/nvim/site/autoload
-		[ -d "$(HOME)/.vim/autoload" ] && rm -rf "$(HOME)/.vim/autoload"
+		[ -d "$(HOME)/.vim" ] && rm -rf "$(HOME)/.vim"
 		[ -d "$(HOME)/.zsh_functions" ] && rm -rf "$(HOME)/.zsh_functions"
 		[ -d "$(HOME)/.config/fish" ] && rm -rf "$(HOME)/.config/fish"
 		echo done!
@@ -91,6 +92,7 @@ nvimplug: ## Install plug for neovim
 		sh -c 'curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	fi
+	mkdir -p ~/.config/nvim/plugged
 	echo done!
 
 vimplug: ## Install plug for vim
@@ -102,6 +104,7 @@ vimplug: ## Install plug for vim
 	else
 		curl -fLo $(HOME)/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
+	mkdir -p ~/.vim/plugged
 	echo done!
 
 fzf: ## Install fzf
@@ -168,12 +171,10 @@ utubedl: ## Install youtube-dl
 symlink: delete vimplug nvimplug
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
-	rm $(HOME)/.zshrc
 	cd $(HOME)/dotfiles/
-	rm $(HOME)/.bashrc
 	rm configurations/.vimrc
-	mv extra/.wo-vimrc configurations/.vimrc
 	rm configurations/.config/nvim/init.vim 
+	mv extra/.wo-vimrc configurations/.vimrc
 	mv extra/.wo-init.vim configurations/.config/nvim/init.vim
 	stow -vt $(HOME) configurations/
 	echo done!
@@ -182,10 +183,7 @@ cpconf: delete vimplug nvimplug
 	@echo
 	echo "Copying files"
 	cd $(HOME)/dotfiles/
-	rm $(HOME)/.bashrc
-	mkdir -p ~/.vim/plugged
 	cp extra/.wo-vimrc $(HOME)/.vimrc
-	mkdir -p ~/.config/nvim/plugged
 	cp extra/.wo-init.vim $(HOME)/.config/nvim/init.vim
 	cp configurations/.config/starship.toml $(HOME)/.config/starship.toml
 	cp -r configurations/.config/ranger $(HOME)/.config/
@@ -194,6 +192,7 @@ cpconf: delete vimplug nvimplug
 	cp configurations/.bashrc $(HOME)/
 	cp -r configurations/.config/alacritty/ $(HOME)/.config/
 	cp -r configurations/.config/fm6000 $(HOME)/.config/
+	cp -r configurations/.config/fish $(HOME)/.config/
 
 alacritty: ## Compile and install alacritty
 	@echo
