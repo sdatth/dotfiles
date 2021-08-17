@@ -51,7 +51,7 @@ pipinstall: # Install pip and its packages
 bindir: ## Create ~/.local/bin dir
 	- [ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
 	- [ ! -d "$(HOME)/temp" ] && mkdir -p $(HOME)/temp
-	sudo cp $(HOME)/extra/homepath.sh /etc/profile.d/
+	sudo cp $(HOME)/dotfiles/extra/homepath.sh /etc/profile.d/
 
 delete: ## Delete old config files
 	@echo

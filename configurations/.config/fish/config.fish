@@ -239,7 +239,7 @@ alias vs='vagrant ssh'
 # exa
 alias ls='exa --color=always --group-directories-first' 
 alias la='exa -a --color=always --group-directories-first'  
-alias ll='exa -l --color=always --group-directories-first'  
+alias ll='exa -al --color=always --group-directories-first'  
 alias l.='exa -a | egrep "^\."'
 
 # git
