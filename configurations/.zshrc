@@ -74,6 +74,16 @@ source /usr/share/autojump/autojump.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## aliases
+# navigation
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# Merge Xresources
+alias merge='xrdb -merge ~/.Xresources'
+
 # system & update sec
 alias au='sudo apt update'
 alias aU='sudo apt upgrade'
@@ -101,6 +111,8 @@ alias e='nvim'
 alias vimrc='vim ~/.vimrc'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias zshrc='nvim ~/.zshrc'
+alias bashrc='nvim ~/.bashrc'
+alias fishrc='nvim ~/.config/fish/config.fish'
 
 # vagrant sec
 alias vu='vagrant up'
@@ -109,9 +121,9 @@ alias vd='vagrant destroy'
 alias vs='vagrant ssh'
 
 # exa
-alias ls='exa -l --color=always --group-directories-first' # my preferred listing 
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs 
-alias ll='exa -l --color=always --group-directories-first'  # long format 
+alias ls='exa --color=always --group-directories-first' 
+alias la='exa -a --color=always --group-directories-first'  
+alias ll='exa -l --color=always --group-directories-first' 
 alias l.='exa -a | egrep "^\."'
 
 # git
@@ -120,8 +132,15 @@ alias push='git push github main && sleep 5 && git push gitlab main'
 alias add='git add .'
 alias commit='git commit -S -m'
 alias rcommit='git commit -m'
-alias status='git status'
 alias tlog='git log --graph --oneline --branches'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias fetch='git fetch'
+alias pullit='git pull origin'
+alias pushit='git push origin'
+alias tag='git tag'
+alias newtag='git tag -a'
 
 # others
 alias gt='gpg2 --card-status'
@@ -131,8 +150,6 @@ alias btop='bpytop'
 alias dc='sudo docker'
 alias wu='sudo wg-quick up wg0'
 alias wd='sudo wg-quick down wg0'
-alias ll='ls -la'
-alias l='ls -CF'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 
 # custom zsh completions
@@ -148,7 +165,7 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E libreoffice -E plug
 export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow -E libreoffice -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  -E vagrant " 
 # export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
-export PATH=$PATH:$HOME/.local/bin
+#export PATH=$PATH:$HOME/.local/bin
 
 #
 # # ex - archive extractor

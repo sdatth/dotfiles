@@ -11,7 +11,7 @@ SHELL = /bin/bash
 PIP_PKGS = bpytop
 CONF_PKGS = neovim vim vim-gtk3 curl git ranger zsh zsh-syntax-highlighting autojump
 CONF_PKGS += zsh-autosuggestions tmux fd-find stow ncdu compton unzip build-essential
-CONF_PKGS += lolcat figlet fortune cowsay python python3-testresources
+CONF_PKGS += lolcat figlet fortune cowsay python python3-testresources fish
 ALACRITTY_PKGS = cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 MORE_PKGS = wormhole
 
@@ -42,7 +42,7 @@ pipinstall: # Install pip and its packages
 	@echo
 	export PATH=$$PATH:$$HOME/.local/bin
 	echo "Installing pip and its packages" | cowsay | lolcat
-	cd $(HOME)/Downloads
+	cd $(HOME)/temp
 	curl "https://bootstrap.pypa.io/get-pip.py" -o "install-pip3.py"
 	python3 install-pip3.py
 	pip install --user --upgrade pip
@@ -50,7 +50,8 @@ pipinstall: # Install pip and its packages
 
 bindir: ## Create ~/.local/bin dir
 	- [ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin
-	- [ ! -d "$(HOME)/Downloads" ] && mkdir -p $(HOME)/Downloads
+	- [ ! -d "$(HOME)/temp" ] && mkdir -p $(HOME)/temp
+	sudo cp $(HOME)/extra/homepath.sh /etc/profile.d/
 
 delete: ## Delete old config files
 	@echo
@@ -67,6 +68,7 @@ delete: ## Delete old config files
 		[ -d "$(HOME)/.local/share/nvim/site/autoload" ] && rm -rf $(HOME)/.local/share/nvim/site/autoload
 		[ -d "$(HOME)/.vim/autoload" ] && rm -rf "$(HOME)/.vim/autoload"
 		[ -d "$(HOME)/.zsh_functions" ] && rm -rf "$(HOME)/.zsh_functions"
+		[ -d "$(HOME)/.config/fish" ] && rm -rf "$(HOME)/.config/fish"
 		echo done!
 	elif [ $$choice == "n" ]; then
 		echo "Sorry to let u go!"
@@ -111,23 +113,23 @@ fzf: ## Install fzf
 bat: ## Install bat
 	@echo 
 	echo "installing bat" | cowsay | lolcat
-	wget -P $(HOME)/Downloads/ https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
-	sudo dpkg -i $(HOME)/Downloads/bat_0.18.2_amd64.deb
+	wget -P $(HOME)/temp/ https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
+	sudo dpkg -i $(HOME)/temp/bat_0.18.2_amd64.deb
 	echo done!
 
 glow: ## Install glow
 	@echo 
 	echo "installing glow" | cowsay | lolcat
-	wget -P $(HOME)/Downloads/ https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_amd64.deb
-	sudo dpkg -i $(HOME)/Downloads/glow_1.4.1_linux_amd64.deb
+	wget -P $(HOME)/temp/ https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_amd64.deb
+	sudo dpkg -i $(HOME)/temp/glow_1.4.1_linux_amd64.deb
 	echo done!
 
 exa: ## Install exa
 	@echo
 	echo "installing exa" | cowsay | lolcat
-	cd $(HOME)/Downloads
+	cd $(HOME)/temp
 	mkdir exa
-	wget -P $(HOME)/Downloads/exa https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip
+	wget -P $(HOME)/temp/exa https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip
 	cd exa
 	unzip exa-linux-x86_64-v0.10.0.zip
 	cp bin/exa $(HOME)/.local/bin/
@@ -136,8 +138,8 @@ exa: ## Install exa
 fd: ## Install fd
 	@echo
 	echo "installing fd" | cowsay | lolcat
-	#wget -P ~/Downloads/ https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb
-	#sudo dpkg -i ~/Downloads/fd_8.2.1_amd64.deb
+	#wget -P ~/temp/ https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb
+	#sudo dpkg -i ~/temp/fd_8.2.1_amd64.deb
 	ln -s $$(which fdfind) $(HOME)/.local/bin/fd
 	echo done!
 
@@ -203,9 +205,9 @@ alacritty: ## Compile and install alacritty
 		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 		source $(HOME)/.bashrc
 		source $(HOME)/.cargo/env
-		mkdir -p $(HOME)/Downloads/alacritty
-		git clone https://github.com/alacritty/alacritty.git $(HOME)/Downloads/alacritty
-		cd $(HOME)/Downloads/alacritty/
+		mkdir -p $(HOME)/temp/alacritty
+		git clone https://github.com/alacritty/alacritty.git $(HOME)/temp/alacritty
+		cd $(HOME)/temp/alacritty/
 		rustup override set stable
 		rustup update stable
 		export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
@@ -233,7 +235,7 @@ pull: ## Pull latest changes of git repo
 clean: ## Clean up junk files after installation
 	@echo
 	echo "cleaning up!" | cowsay | lolcat
-	rm -rf $(HOME)/Downloads/*
+	rm -rf $(HOME)/temp/*
 	echo done!
 	
 note:
