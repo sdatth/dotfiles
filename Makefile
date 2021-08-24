@@ -45,8 +45,8 @@ pipinstall: # Install pip and its packages
 	cd $(HOME)/temp
 	curl "https://bootstrap.pypa.io/get-pip.py" -o "install-pip3.py"
 	python3 install-pip3.py
-	pip install --user --upgrade pip
-	pip install --user $(PIP_PKGS)
+	pip3 install --user --upgrade pip
+	pip3 install --user $(PIP_PKGS)
 
 bindir: ## Create ~/.local/bin dir
 	- [ ! -d "$(HOME)/.local/bin" ] && mkdir -p $(HOME)/.local/bin

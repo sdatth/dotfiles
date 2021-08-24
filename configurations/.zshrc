@@ -96,6 +96,9 @@ alias sr='sudo reboot'
 alias sd='sudo'
 alias sn='shutdown now'
 alias ua='bash ~/Stuff/files/configs/shell-scripts/startup.sh'
+alias pi='python3 -m pip install --user --no-cache-dir'
+alias pu='python3 -m pip install -U'
+alias pr='python3 -m pip uninstall'
 
 # rclone sec
 alias rfiles='echo "Syncing to drive" | cowsay -f tux && rclone sync -P files/ drivec:/files/ --exclude ".git/**" --exclude ".gitsecret/**" '
@@ -104,6 +107,8 @@ alias revfiles='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P dr
 alias revcloud='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/dropbox/ dropbox/'
 alias rdrop='echo "Syncing to both cloud providers" | cowsay -f tux && rclone sync -P dropbox/ db:/unsec/ && echo "" && rclone sync -P dropbox/ drivec:/dropbox/'
 alias revdrop='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P db:/unsec/ dropbox/'
+alias rprojects='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" '
+alias revprojects='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/projects/ projects/ --exclude ".git/**" --exclude "site/**" '
 
 # text editors
 alias v='vim'
@@ -147,10 +152,11 @@ alias gt='gpg2 --card-status'
 alias yt='ykman list'
 alias yd='youtube-dl'
 alias btop='bpytop'
-alias dc='sudo docker'
+alias dc='docker'
 alias wu='sudo wg-quick up wg0'
 alias wd='sudo wg-quick down wg0'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
+alias clearclip="xsel -bc"
 
 # custom zsh completions
 fpath=$HOME/.zsh_functions
