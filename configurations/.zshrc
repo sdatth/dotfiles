@@ -134,6 +134,8 @@ alias l.='exa -a | egrep "^\."'
 # git
 alias pull='git pull github main && sleep 5 && git pull gitlab main'
 alias push='git push github main && sleep 5 && git push gitlab main'
+alias pullmaster='git pull github master && sleep 5 && git pull gitlab master'
+alias pushmaster='git push github master && sleep 5 && git push gitlab master'
 alias add='git add .'
 alias commit='git commit -S -m'
 alias rcommit='git commit -m'
