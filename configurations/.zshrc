@@ -21,6 +21,7 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   tmux -u
 fi
 
+
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
@@ -71,7 +72,9 @@ alias history="history 0"
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/autojump/autojump.zsh 
+[ -f ~/.local/ubin/kubectl ] && source <(kubectl completion zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 ## aliases
 # navigation
@@ -97,7 +100,7 @@ alias sd='sudo'
 alias sn='shutdown now'
 alias ua='bash ~/Stuff/projects/configs/shell-scripts/startup.sh'
 alias pi='python3 -m pip install --user --no-cache-dir'
-alias pu='python3 -m pip install -U'
+alias pu='python3 -m pip install --user -U'
 alias pr='python3 -m pip uninstall'
 
 # rclone sec
@@ -150,11 +153,16 @@ alias tag='git tag'
 alias newtag='git tag -a'
 alias gits='git secret'
 
+# kubectl
+alias k='kubectl'
+# complete -F __start_kubectl k
+
 # others
 alias gt='gpg2 --card-status'
 alias yt='ykman list'
 alias yd='youtube-dl'
 alias btop='bpytop'
+alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias dc='docker'
 alias wu='sudo wg-quick up wg0'
 alias wd='sudo wg-quick down wg0'
@@ -211,5 +219,3 @@ md(){
 
 # uncomment the below line to use starship prompt
 eval "$(starship init zsh)"
-
-
