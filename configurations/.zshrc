@@ -104,13 +104,13 @@ alias pu='python3 -m pip install --user -U'
 alias pr='python3 -m pip uninstall'
 
 # rclone sec
-alias rfiles='echo "Syncing to drive" | cowsay -f tux && rclone sync -P files/ drivec:/files/ --exclude ".git/**" --exclude ".gitsecret/**" '
+alias rfiles='echo "Syncing to drive & backblaze" | cowsay -f tux && rclone sync -P files/ drivec:/files/ && echo && rclone sync -P files/ blazec:/files/ ' 
 alias rcloud='echo "Syncing to drive" | cowsay -f tux && rclone sync -P dropbox/ drivec:/dropbox/'
-alias revfiles='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/files/ files/ --exclude ".git/**" --exclude ".gitsecret/**" '
+alias revfiles='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/files/ files/ '
 alias revcloud='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/dropbox/ dropbox/'
-alias rdrop='echo "Syncing to both cloud providers" | cowsay -f tux && rclone sync -P dropbox/ db:/unsec/ && echo "" && rclone sync -P dropbox/ drivec:/dropbox/'
+alias rdrop='echo "Syncing to both cloud providers" | cowsay -f tux && rclone sync -P dropbox/ db:/unsec/ && echo && rclone sync -P dropbox/ drivec:/dropbox/'
 alias revdrop='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P db:/unsec/ dropbox/'
-alias rprojects='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" '
+alias rprojects='echo "Syncing to cloud providers" | cowsay -f tux && rclone sync -P projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -P projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
 alias revprojects='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/projects/ projects/ --exclude ".git/**" --exclude "site/**" '
 
 # text editors
