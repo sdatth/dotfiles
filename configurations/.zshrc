@@ -16,11 +16,10 @@
 # config file location "~/.zshrc"
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
-# to start tmux automatically when tmux launches
+# start tmux automatically when the terminal is launched
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux -u
 fi
-
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -184,9 +183,9 @@ export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow -E libreoffice -E plugg
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 #export PATH=$PATH:$HOME/.local/bin
 
-#
-# # ex - archive extractor
-# # usage: ex <file>
+# custom functions
+## ex - archive extractor
+## usage: ex <file>
 ex ()
 {
   if [ -f $1 ] ; then
@@ -210,6 +209,7 @@ ex ()
   fi
 }
 
+# render markdown files using glow with less as pager
 md(){
     glow "$@" -s dark | less -r 
 }

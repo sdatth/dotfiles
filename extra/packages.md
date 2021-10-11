@@ -41,6 +41,7 @@
 38. k3d (https://github.com/rancher/k3d)
 39. go
 40. gh (https://github.com/cli/cli)
+41. pdftk
 
 ### GUI tools
 1. gvim
