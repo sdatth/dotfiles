@@ -10,7 +10,7 @@
 #  tmux -u
 #fi
 
-if [ -z $TMUX ]; then; tmux; fi
+#if [ -z $TMUX ]; then; tmux; fi
 
 export ZDOTDIR=$HOME/.config/zsh
  
@@ -35,6 +35,10 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+
+# Setting for the new UTF-8 terminal support in Lion
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 
 # Colors
 autoload -Uz colors && colors
