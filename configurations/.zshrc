@@ -11,8 +11,7 @@
 #fi
 
 export ZDOTDIR=$HOME/.config/zsh
-setopt appendhistory
-
+ 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -30,6 +29,7 @@ setopt hist_expire_dups_first # delete duplicates first when histfile size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify     
+setopt appendhistory
 
 # completions
 autoload -Uz compinit
