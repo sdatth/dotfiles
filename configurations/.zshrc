@@ -21,16 +21,6 @@ zle_highlight=('paste:none')
 # beeping is annoying
 unsetopt BEEP
 
-# history configurations
-HISTFILE=~/.zsh_history
-SAVEHIST=1000
-savehist=2000
-setopt hist_expire_dups_first # delete duplicates first when histfile size exceeds histsize
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify     
-setopt appendhistory
-
 # completions
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -46,6 +36,22 @@ zle -N down-line-or-beginning-search
 
 # Colors
 autoload -Uz colors && colors
+
+# history configurations
+HISTFILE=~/.zsh_history
+SAVEHIST=1000
+savehist=2000
+setopt hist_expire_dups_first # delete duplicates first when histfile size exceeds histsize
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify     
+setopt appendhistory
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+# Fix backspace bug when switching modes
+bindkey "^?" backward-delete-char
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
