@@ -34,9 +34,9 @@ set softtabstop=4
 set shiftwidth=4
 
 " checks to see whether screen supports true color
-if (has("termguicolors"))
-    set termguicolors
-endif
+"if (has("termguicolors"))
+"    set termguicolors
+"endif
 
 " leader key
 let mapleader = "," 
@@ -122,7 +122,7 @@ let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 " enables the nvim-colorizer plugin
-lua require'colorizer'.setup()
+" lua require'colorizer'.setup()
 
 
 

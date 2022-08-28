@@ -2,3 +2,4 @@ plugged/
 fish_variables
 plugins/
 .vscode/
+.DS_Store
