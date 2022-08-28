@@ -41,10 +41,20 @@ nix-pman: ## Install nix package manager
    		nix-env -iA nixpkgs.$$package ; \
 	done
 
-nix: ## Install nix package manager
+nix: ## Install nix package manager on linux
 	@echo
 	sh <(curl -L https://nixos.org/nix/install) --daemon
 	echo 
+
+nix-mac: ## Install nix package manager on mac
+	@echo
+	sh <(curl -L https://nixos.org/nix/install)
+	echo
+
+nix-wsl: ## Install nix package manager on windows wsl2
+	@echo
+	sh <(curl -L https://nixos.org/nix/install) --no-daemon
+	echo
 
 delete: ## Delete old config files
 	@echo
