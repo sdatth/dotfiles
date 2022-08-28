@@ -29,7 +29,7 @@ dep: ## Install dependencies
 
 brew-pman: ## Install brew package manager
 	@echo "Installing brew package manager "
-	bash brew-install.sh
+	bash extra/brew-install.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
 	brew install $(PKGS)

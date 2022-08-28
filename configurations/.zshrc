@@ -6,6 +6,10 @@
 #    
 # source - https://github.com/sdatth/dotfiles
 
+#if command -v tmux &> /dev/null && [ -n "$ps1" ] && [[ ! "$term" =~ screen ]] && [[ ! "$term" =~ tmux ]] && [ -z "$tmux" ]; then
+#  tmux -u
+#fi
+
 export ZDOTDIR=$HOME/.config/zsh
 setopt appendhistory
 
@@ -62,5 +66,5 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E .vscode-server -E l
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
-. /home/zeta/.nix-profile/etc/profile.d/nix.sh
+if [ -e /home/zeta/.nix-profile/etc/profile.d/nix.sh ]; then . /home/zeta/.nix-profile/etc/profile.d/nix.sh; fi
 eval "$(starship init zsh)"

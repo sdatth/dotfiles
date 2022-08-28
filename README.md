@@ -1,6 +1,6 @@
 # dotfiles
 
-![machfiles image](./ss.png)
+![machfiles image](./extra/ss.png)
 
 !! Warning, this only works on ubuntu/debain distributions. It has been tested on ubuntu 20.04 only! <br> 
 !! Other people can inspect and manually copy the elements of the files! 
@@ -17,19 +17,14 @@ git clone https://github.com/sdatth/dotfiles.git $HOME/
 git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 ```
 
-Run the make command to get my configuration
+Run this command to install the nix package manager.
 ```bash
 cd dotfiles
-make install
+make nix
 ```
+(Note ! - Restart your shell for nix to work right)
 
-Compile alacritty from scratch
-```bash
-# this just follows all the steps from the official repo "https://github.com/alacritty/alacritty"
-make alacritty
-```
-
-Copy the config files without symlinks
+Run the command to install necessary packages and stow my config
 ```bash
 make copy
 ```
