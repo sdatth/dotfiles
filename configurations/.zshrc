@@ -22,8 +22,8 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # history configurations
-histfile=~/.zsh_history
-histsize=1000
+HISTFILE=~/.zsh_history
+SAVEHIST=1000
 savehist=2000
 setopt hist_expire_dups_first # delete duplicates first when histfile size exceeds histsize
 setopt hist_ignore_dups       # ignore duplicated commands history list
