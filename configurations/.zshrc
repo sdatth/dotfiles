@@ -10,7 +10,7 @@
 #  tmux -u
 #fi
 
-#if [ -z $TMUX ]; then; tmux; fi
+if [ -z $TMUX ]; then; tmux; fi
 
 export ZDOTDIR=$HOME/.config/zsh
  

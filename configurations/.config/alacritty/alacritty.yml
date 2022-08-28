@@ -1,14 +1,16 @@
 #shell:
-#  program: /usr/bin/tmux
+#  program: /Users/datthu/.nix-profile/bin/tmux
 
-background_opacity : 0.8
+#background_opacity : 1.0
 draw_bold_text_with_bright_colors: true
 
 # Link to change color scceme -> https://github.com/alacritty/alacritty/wiki/Color-schemes
 # The 'Dark dimmed' colorscheme from Github.
 colors:
   primary:
-    background: '#222D31'
+    #background: '#222D31'
+    #foreground: '#d8d8d8'
+    background: '#1d2021'
     foreground: '#d8d8d8'
   normal:
     black:   '#2d333b'
@@ -52,7 +54,7 @@ font:
     family: "FiraCode Nerd Font"
     style: Bold Italic
   
-  size: 12.0
+  size: 15.0
 
   offset:
     x: 0
