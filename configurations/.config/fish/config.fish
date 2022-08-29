@@ -15,6 +15,9 @@ set fish_greeting                                 # Supresses fish's intro messa
 set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "nvim"                                 # $EDITOR use Emacs in terminal
 
+#fzf 
+source "$HOME/.nix-profile/share/fzf/key-bindings.fish"
+
 ### SET MANPAGER
 ### Uncomment only one of these!
 
@@ -188,7 +191,7 @@ end
 
 ### ALIASES ###
 # spark aliases
-alias clear='/bin/clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
+alias clear='/usr/bin/clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
 
 # navigation
 alias ..='cd ..'
@@ -276,11 +279,9 @@ set BAT_PAGER "less -R"
 
 # fzf configs
 set FZF_DEFAULT_OPTS "--no-mouse --height 70% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview'"
-set FZF_DEFAULT_COMMAND "fd --type f --hidden --follow -E libreoffice -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d -E vagrant  "
-set FZF_CTRL_T_COMMAND "fd --type f --hidden --follow -E libreoffice -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .zoom -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d  -E vagrant " 
-# set FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+set FZF_DEFAULT_COMMAND "fd --type f --hidden --follow  -E .kube -E .cache -E Library -E Applications -E .tsh -E Movies -E Pictures -E borg -E Music -E .zsh_sessions -E .vscode-server -E libreoffice -E .nix-defexpr -E.nix-profile -E plugins -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d -E vagrant  "
+set FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set FZF_ALT_C_COMMAND "fd --type d $FD_OPTIONS"
-#set PATH=$PATH:$HOME/.local/bin
 
 
 ### SETTING THE STARSHIP PROMPT ###

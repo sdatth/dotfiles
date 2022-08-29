@@ -10,7 +10,7 @@
 #  tmux -u
 #fi
 
-if [ -z $TMUX ]; then; tmux; fi
+#if [ -z $TMUX ]; then; tmux; fi
 
 export ZDOTDIR=$HOME/.config/zsh
  
@@ -63,7 +63,11 @@ source "$ZDOTDIR/alias.zsh"
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
+# bind key 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export BAT_PAGER="less -R"
