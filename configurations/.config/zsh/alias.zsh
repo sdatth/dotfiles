@@ -9,18 +9,16 @@ alias .5='cd ../../../../..'
 # merge xresources
 alias merge='xrdb -merge ~/.xresources'
 
-# system & update sec
-alias au='sudo apt update'
-alias au='sudo apt upgrade'
-alias ai='sudo apt install'
-alias fu='flatpak update'
-alias fu='flatpak uninstall --unused'
-alias ar='sudo apt --purge remove'
-alias ssn='sudo shutdown now'
+# nixos
+alias nu="sudo nixos-rebuild switch --flake '.#zeta'"
+alias nl='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
+alias ngc='nix-collect-garbage'
+alias sngc='sudo nix-collect-garbage'
+
+# system
 alias sr='sudo reboot'
 alias sd='sudo'
 alias sn='shutdown now'
-alias ua='bash ~/stuff/projects/configs/shell-scripts/startup.sh'
 alias pi='python3 -m pip install --user --no-cache-dir'
 alias pu='python3 -m pip install --user -u'
 alias pr='python3 -m pip uninstall'
