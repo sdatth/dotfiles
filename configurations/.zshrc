@@ -58,8 +58,12 @@ bindkey "^?" backward-delete-char
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 source "$ZDOTDIR/autojump.sh"
-source "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
 source "$ZDOTDIR/alias.zsh"
+# fzf
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
