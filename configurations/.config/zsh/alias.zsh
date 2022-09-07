@@ -11,7 +11,7 @@ alias merge='xrdb -merge ~/.xresources'
 
 # system & update sec
 alias au='sudo apt update'
-alias au='sudo apt upgrade'
+alias aU='sudo apt upgrade'
 alias ai='sudo apt install'
 alias fu='flatpak update'
 alias fu='flatpak uninstall --unused'
