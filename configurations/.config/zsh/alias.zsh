@@ -57,8 +57,8 @@ alias ll='exa -al --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
 # git
-alias pull='git pull github main && sleep 5 && git pull gitlab main'
-alias push='git push github main && sleep 5 && git push gitlab main'
+alias pull='git pull github mac && sleep 5 && git pull gitlab mac'
+alias push='git push github mac && sleep 5 && git push gitlab mac'
 alias pullmaster='git pull github master && sleep 5 && git pull gitlab master'
 alias pushmaster='git push github master && sleep 5 && git push gitlab master'
 alias add='git add .'

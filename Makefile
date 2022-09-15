@@ -10,7 +10,7 @@ SHELL = /opt/homebrew/bin/bash
 
 PKGS = git fzf bat glow exa fd starship youtube-dl bpytop stow
 PKGS += neovim vim ranger zsh autojump tmux ncdu unzip
-PKGS += lolcat figlet fortune cowsay fish lazygit
+PKGS += lolcat figlet fortune cowsay fish lazygit borgbackup
 
 .ONESHELL:
 help: ## Show available options
