@@ -26,8 +26,14 @@ matches:
   - trigger: ":ngc"
     replace: "nix-collect-garbage"
 
-  - trigger: ":nu"
+  - trigger: ":ns"
     replace: "sudo nixos-rebuild switch --flake '.#zeta'"
+
+  - trigger: ":nu"
+    replace: "sudo nix flake update"
+
+  - trigger: ":nU"
+    replace: "sudo nixos-rebuild switch --upgrade --flake '.#zeta'"
 
   - trigger: ":sa"
     replace: "ssh-add ~/.ssh/id_ed25519"
