@@ -15,18 +15,18 @@ matches:
     replace: "admin@server.zeta"
 
   - trigger: ":nl"
-    replace: "nix-env --list-generations --profile /nix/var/nix/profiles/system"
+    replace: "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system"
 
   - trigger: ":ns"
-    replace: "nix-env --profile /nix/var/nix/profiles/system --switch-generation 204"
+    replace: "sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation 204"
       
   - trigger: ":nd"
-    replace: "nix-env --profile /nix/var/nix/profiles/system --delete-generations 1002 1001"
+    replace: "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations 1002 1001"
        
   - trigger: ":ngc"
     replace: "nix-collect-garbage"
 
-  - trigger: ":ns"
+  - trigger: ":nr"
     replace: "sudo nixos-rebuild switch --flake '.#zeta'"
 
   - trigger: ":nu"
