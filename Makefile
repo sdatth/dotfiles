@@ -9,8 +9,8 @@
 SHELL = /opt/homebrew/bin/bash
 
 PKGS = ansible autojump bat borgbackup bpytop cmatrix cowsay exa exiftool fd figlet fish fortune 
-PKGS += fzf gh git git-secret glow k3d kubernetes-cli lazygit lolcat magic-wormhole make muttncdu 
-PKGS += neofetch neovim pass ranger rclone rsync starship stow syncthing terraform tmux vim 
+PKGS += fzf gh git git-secret glow gnupg k3d kubernetes-cli lazygit lolcat magic-wormhole make muttncdu 
+PKGS += neofetch neovim pass pinentry-mac ranger rclone rsync starship stow syncthing terraform tmux vim 
 PKGS += wireguard-tools youtube-dl zsh zsh-autosuggestions zsh-syntax-highlighting
 
 .ONESHELL:

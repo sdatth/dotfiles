@@ -1,0 +1,16 @@
+[init]
+	defaultBranch = master
+
+[user]
+	name = dattha
+	email = datthu@tutamail.com
+	signingkey = dattha@tutamail.com
+
+[gpg]
+	program = /opt/homebrew/bin/gpg 
+
+[commit]
+	gpgsign = true
+	
+[tag]
+	gpgSign = true
