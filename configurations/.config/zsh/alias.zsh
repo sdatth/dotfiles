@@ -6,9 +6,6 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# merge xresources
-alias merge='xrdb -merge ~/.xresources'
-
 # nixos
 alias nu="sudo nixos-rebuild switch --flake '.#zeta'"
 alias nl='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
@@ -24,14 +21,8 @@ alias pu='python3 -m pip install --user -u'
 alias pr='python3 -m pip uninstall'
 
 # rclone sec
-alias rfiles='echo "syncing to drive & backblaze" | cowsay -f tux && rclone sync -p files/ drivec:/files/ && echo && rclone sync -p files/ blazec:/files/ ' 
-alias rcloud='echo "syncing to drive" | cowsay -f tux && rclone sync -p dropbox/ drivec:/dropbox/'
-alias revfiles='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/files/ files/ '
-alias revcloud='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/dropbox/ dropbox/'
-alias rdrop='echo "syncing to both cloud providers" | cowsay -f tux && rclone sync -p dropbox/ db:/unsec/ && echo && rclone sync -p dropbox/ drivec:/dropbox/'
-alias revdrop='echo "syncing to localhost" | cowsay -f tux && rclone sync -p db:/unsec/ dropbox/'
+alias rstuff='echo "syncing to drive" | cowsay -f tux && rclone sync -p ~/stuff/ drivec:/stuff/ '
 alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -p projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
-alias revprojects='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/projects/ projects/ --exclude ".git/**" --exclude "site/**" '
 
 # text editors
 alias v='vim'
