@@ -6,32 +6,25 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# merge xresources
-alias merge='xrdb -merge ~/.xresources'
-
 # system & update sec
-alias au='sudo apt update'
-alias aU='sudo apt upgrade'
-alias ai='sudo apt install'
-alias fu='flatpak update'
-alias fu='flatpak uninstall --unused'
-alias ar='sudo apt --purge remove'
-alias ssn='sudo shutdown now'
-alias sr='sudo reboot'
-alias sd='sudo'
-alias sn='shutdown now'
-alias ua='bash ~/stuff/projects/configs/shell-scripts/startup.sh'
 alias pi='python3 -m pip install --user --no-cache-dir'
 alias pu='python3 -m pip install --user -u'
-alias pr='python3 -m pip uninstall'
+alias pre='python3 -m pip uninstall'
+
+# brew 
+alias bu='brew update'
+alias bU='brew upgrade'
+alias bgc='brew cleanup && brew autoremove'
+alias bl='brew leaves'
+alias bi='brew install'
+alias br='brew uninstall'
+alias bcl='brew list --cask'
+alias bci='brew install --cask'
+alias bcr='brew uninstall --cask'
 
 # rclone sec
-alias rfiles='echo "syncing to drive & backblaze" | cowsay -f tux && rclone sync -p files/ drivec:/files/ && echo && rclone sync -p files/ blazec:/files/ ' 
-alias rcloud='echo "syncing to drive" | cowsay -f tux && rclone sync -p dropbox/ drivec:/dropbox/'
-alias revfiles='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/files/ files/ '
-alias revcloud='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/dropbox/ dropbox/'
-alias rdrop='echo "syncing to both cloud providers" | cowsay -f tux && rclone sync -p dropbox/ db:/unsec/ && echo && rclone sync -p dropbox/ drivec:/dropbox/'
-alias revdrop='echo "syncing to localhost" | cowsay -f tux && rclone sync -p db:/unsec/ dropbox/'
+alias rstuff='echo "syncing to drive & backblaze" | cowsay -f tux && rclone sync -p stuff/ drivec:/files/ ' 
+alias revfiles='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
 alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -p projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
 alias revprojects='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/projects/ projects/ --exclude ".git/**" --exclude "site/**" '
 
