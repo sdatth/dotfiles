@@ -13,6 +13,8 @@ PKGS += fzf gh git git-secret glow gnupg k3d kubernetes-cli lazygit lolcat magic
 PKGS += neofetch neovim pass pinentry-mac ranger rclone rsync starship stow syncthing terraform tmux vim 
 PKGS += wireguard-tools youtube-dl zsh zsh-autosuggestions zsh-syntax-highlighting
 
+GPKGS = alacritty iterm2 macfuse obsidian qbittorrent seafile-client utm vlc
+
 .ONESHELL:
 help: ## Show available options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
