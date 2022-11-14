@@ -4,6 +4,8 @@
 # You can refer to the official documentation:
 # https://espanso.org/docs/
 
+# to enable and disable espanso, here its right ctrl button on keyboard, press twice to activate and deactivate
+toggle_key: RIGHT_CTRL
 # Matches are the substitution rules, when you type the "trigger" string
 # it gets replaced by the "replace" string.
 matches:
@@ -44,6 +46,16 @@ matches:
   - trigger: ":ss"
     replace: "ssh zeta@10.86.229.1"
 
+  - trigger: ":wd"
+    replace: "sudo systemctl stop wg-quick-wg0"
+
+  - trigger: ":wu"
+    replace: "sudo systemctl start wg-quick-wg0"
+
+  - trigger: ":ws"
+    replace: "sudo systemctl status wg-quick-wg0"
+
+      
   # Dates
   - trigger: ":date"
     replace: "{{mydate}}"
