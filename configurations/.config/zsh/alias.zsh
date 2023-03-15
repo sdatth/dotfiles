@@ -93,6 +93,8 @@ alias k='kubectl'
 
 # others
 alias gt='gpg2 --card-status'
+alias sa='ssh-add ~/.ssh/id_ed25519'
+alias sz='ssh zeta@10.86.229.1'
 alias yt='ykman list'
 alias yd='youtube-dl'
 alias btop='bpytop'
