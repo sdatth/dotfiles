@@ -1,0 +1,9 @@
+get dotfiles
+import ssh and gpg keys
+import wireguard keys
+official packages - alacritty wireshark vlc obs-studio gnome-tweaks virt-manager (qemu-kvm packages)
+ppa - keepassxc papirus-icon-theme
+third party repo - docker vagrant brave code syncthing spotify
+direct download - onlyoffice
+
+

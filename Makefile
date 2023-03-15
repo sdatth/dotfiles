@@ -106,7 +106,7 @@ nerdfonts: ## Install nerd fonts
 	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/ 
 	echo done!
 
-symlink: delete nvimplug
+symlink: delete
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
 	cd $(HOME)/dotfiles/

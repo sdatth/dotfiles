@@ -59,11 +59,13 @@ bindkey "^?" backward-delete-char
 source "$ZDOTDIR/zsh-functions"
 source "$ZDOTDIR/autojump.sh"
 source "$ZDOTDIR/alias.zsh"
+
 # fzf
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
@@ -82,5 +84,4 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E Microsoft -E BraveS
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
-if [ -e /home/zeta/.nix-profile/etc/profile.d/nix.sh ]; then . /home/zeta/.nix-profile/etc/profile.d/nix.sh; fi
 eval "$(starship init zsh)"

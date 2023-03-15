@@ -12,6 +12,23 @@ alias nl='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 alias ngc='nix-collect-garbage'
 alias sngc='sudo nix-collect-garbage'
 
+# apt
+alias ai="sudo apt install"
+alias au="sudo apt update"
+alias aU="sudo apt upgrade"
+alias ar="sudo apt remove --purge"
+
+# brew 
+alias bu='brew update'
+alias bU='brew upgrade'
+alias bgc='brew cleanup && brew autoremove'
+alias bl='brew leaves'
+alias bi='brew install'
+alias br='brew uninstall'
+alias bcl='brew list --cask'
+alias bci='brew install --cask'
+alias bcr='brew uninstall --cask'
+
 # system
 alias sr='sudo reboot'
 alias sd='sudo'
