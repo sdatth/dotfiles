@@ -18,6 +18,11 @@ alias au="sudo apt update"
 alias aU="sudo apt upgrade"
 alias ar="sudo apt remove --purge"
 
+# screem
+alias ss="screen -S"
+alias sr="screen -r"
+alias sl="screen -ls"
+
 # brew 
 alias bu='brew update'
 alias bU='brew upgrade'
@@ -30,7 +35,6 @@ alias bci='brew install --cask'
 alias bcr='brew uninstall --cask'
 
 # system
-alias sr='sudo reboot'
 alias sd='sudo'
 alias sn='shutdown now'
 alias pi='python3 -m pip install --user --no-cache-dir'
@@ -63,8 +67,8 @@ alias ll='exa -al --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
 # git
-alias pull='git pull github main && sleep 5 && git pull gitlab main'
-alias push='git push github main && sleep 5 && git push gitlab main'
+alias pullmain='git pull github main && sleep 5 && git pull gitlab main'
+alias pushmain='git push github main && sleep 5 && git push gitlab main'
 alias pullmaster='git pull github master && sleep 5 && git pull gitlab master'
 alias pushmaster='git push github master && sleep 5 && git push gitlab master'
 alias pullwork='git pull github workstation && sleep 5 && git pull gitlab workstation'
