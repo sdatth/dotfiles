@@ -1,9 +1,18 @@
 get dotfiles
 import ssh and gpg keys
 import wireguard keys
-official packages - alacritty wireshark vlc obs-studio gnome-tweaks virt-manager (qemu-kvm packages)
-ppa - keepassxc papirus-icon-theme
+official packages - alacritty wireshark vlc obs-studio gnome-tweaks fonts-firacode virt-manager (qemu-kvm packages)
+ppa - keepassxc papirus-icon-theme nextcloud
 third party repo - docker vagrant brave code syncthing spotify
 direct download - onlyoffice
 
+
+code - change font add extensions
+font settings in ~/.config/Code/User/settings.json file
+
+add
+
+"editor.fontFamily": "'Fira Code'",
+    "terminal.integrated.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true
 
