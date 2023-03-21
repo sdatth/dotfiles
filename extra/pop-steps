@@ -1,18 +1,24 @@
 get dotfiles
 import ssh and gpg keys
 import wireguard keys
-official packages - alacritty wireshark vlc obs-studio gnome-tweaks fonts-firacode virt-manager (qemu-kvm packages)
+official packages - alacritty wireshark openresolv vlc obs-studio gnome-tweaks fonts-firacode
 ppa - keepassxc papirus-icon-theme nextcloud
 third party repo - docker vagrant brave code syncthing spotify
 direct download - onlyoffice
 
+kvm steps - 
+    sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager ruby-libvirt ebtables dnsmasq-base  libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev libguestfs-tools
+    sudo systemctl enable --now libvirtd
+    sudo usermod -aG kvm zeta
+    sudo usermod -aG libvirt zeta
+    vagrant plugin install vagrant-libvirt
 
 code - change font add extensions
-font settings in ~/.config/Code/User/settings.json file
+    font settings in ~/.config/Code/User/settings.json file
 
-add
+    add
 
-"editor.fontFamily": "'Fira Code'",
+    "editor.fontFamily": "'Fira Code'",
     "terminal.integrated.fontFamily": "'Fira Code'",
     "editor.fontLigatures": true
 

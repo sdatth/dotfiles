@@ -85,4 +85,5 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E Microsoft -E BraveS
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"

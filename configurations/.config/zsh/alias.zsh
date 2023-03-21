@@ -22,6 +22,7 @@ alias ar="sudo apt remove --purge"
 alias ss="screen -S"
 alias sr="screen -r"
 alias sl="screen -ls"
+alias sx="screen -X -S"
 
 # brew 
 alias bu='brew update'
