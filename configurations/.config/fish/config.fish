@@ -287,3 +287,5 @@ set FZF_ALT_C_COMMAND "fd --type d $FD_OPTIONS"
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
 
+
+source /Users/datthu/.docker/init-fish.sh || true # Added by Docker Desktop

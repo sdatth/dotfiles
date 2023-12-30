@@ -171,3 +171,5 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(starship init bash)"
+
+source /Users/datthu/.docker/init-bash.sh || true # Added by Docker Desktop

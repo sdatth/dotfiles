@@ -22,11 +22,14 @@ alias bcl='brew list --cask'
 alias bci='brew install --cask'
 alias bcr='brew uninstall --cask'
 
+# screen
+alias ss='screen -S'
+alias sr='screen -r'
+alias sl='screen -ls'
+
 # rclone sec
-alias rstuff='echo "syncing to drive & backblaze" | cowsay -f tux && rclone sync -p stuff/ drivec:/files/ ' 
+alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" ' 
 alias revfiles='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
-alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -p projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
-alias revprojects='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/projects/ projects/ --exclude ".git/**" --exclude "site/**" '
 
 # text editors
 alias v='vim'
@@ -73,6 +76,7 @@ alias k='kubectl'
 # complete -f __start_kubectl k
 
 # others
+alias sshadd='ssh-add ~/.ssh/id_ed25519'
 alias gt='gpg2 --card-status'
 alias yt='ykman list'
 alias yd='youtube-dl'
