@@ -7,16 +7,16 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # nixos
-alias nu="sudo nixos-rebuild switch --flake '.#zeta'"
-alias nl='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
+alias nu="doas nixos-rebuild switch --flake '.#zeta'"
+alias nl='doas nix-env --list-generations --profile /nix/var/nix/profiles/system'
 alias ngc='nix-collect-garbage'
-alias sngc='sudo nix-collect-garbage'
+alias sngc='doas nix-collect-garbage'
 
 # apt
-alias ai="sudo apt install"
-alias au="sudo apt update"
-alias aU="sudo apt upgrade"
-alias ar="sudo apt remove --purge"
+alias ai="doas apt install"
+alias au="doas apt update"
+alias aU="doas apt upgrade"
+alias ar="doas apt remove --purge"
 
 # screem
 alias ss="screen -S"
@@ -36,15 +36,15 @@ alias bci='brew install --cask'
 alias bcr='brew uninstall --cask'
 
 # system
-alias sd='sudo'
+alias sd='doas'
 alias sn='shutdown now'
 alias pi='python3 -m pip install --user --no-cache-dir'
 alias pu='python3 -m pip install --user -u'
 alias pr='python3 -m pip uninstall'
 
 # rclone sec
-alias rstuff='echo "syncing to drive" | cowsay -f tux && rclone sync -p ~/stuff/ drivec:/stuff/ '
-alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -p projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
+alias rstuff='echo "syncing to drive" | cowsay -f tux && rclone sync -P ~/stuff/ drivec:/stuff/ '
+alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -P projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
 
 # text editors
 alias v='vim'
@@ -93,6 +93,7 @@ alias k='kubectl'
 # complete -f __start_kubectl k
 
 # others
+alias sudo='doas'
 alias gt='gpg2 --card-status'
 alias sa='ssh-add ~/.ssh/id_ed25519'
 alias sz='ssh zeta@10.86.229.1'
@@ -101,8 +102,9 @@ alias yd='youtube-dl'
 alias btop='bpytop'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias dc='docker'
-alias wu='sudo wg-quick up wg0'
-alias wd='sudo wg-quick down wg0'
+alias wu='doas wg-quick up wg0'
+alias wd='doas wg-quick down wg0'
+alias wr='doas systemctl restart wg-quick@wg0'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 alias clearclip="xsel -bc"
 
