@@ -35,13 +35,15 @@ alias pu="doas pacman -Sy"
 alias pU="doas pacman -Syu"
 alias pr="doas pacman -Rs"
 
-# snap alias
+# snapper alias
 alias src="doas snapper -c root create -d" 
 alias shc="doas snapper -c home create -d" 
 alias srd="doas snapper -c root delete"
 alias shd="doas snapper -c home delete"
 alias srl="doas snapper -c root list"
 alias shl="doas snapper -c home list"
+alias sru="doas snapper -c root undochange"
+alias srh="doas snapper -c home undochange"
 alias srr="doas snapper --ambit classic rollback"
 alias grubmake="doas grub-mkconfig -o /boot/grub/grub.cfg"
 alias grubinstall="doas grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=/boot --bootloader-id=GRUB"

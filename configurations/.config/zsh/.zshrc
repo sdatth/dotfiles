@@ -13,6 +13,7 @@
 #if [ -z $TMUX ]; then; tmux; fi
 
 export ZDOTDIR=$HOME/.config/zsh
+export GPG_TTY=$(tty)
  
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
