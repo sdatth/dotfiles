@@ -18,6 +18,34 @@ alias au="doas apt update"
 alias aU="doas apt upgrade"
 alias ar="doas apt remove --purge"
 
+# brew 
+alias bu='brew update'
+alias bU='brew upgrade'
+alias bgc='brew cleanup && brew autoremove'
+alias bl='brew leaves'
+alias bi='brew install'
+alias br='brew uninstall'
+alias bcl='brew list --cask'
+alias bci='brew install --cask'
+alias bcr='brew uninstall --cask'
+
+# pacman 
+alias pi="doas pacman -S"
+alias pu="doas pacman -Sy"
+alias pU="doas pacman -Syu"
+alias pr="doas pacman -Rs"
+
+# snap alias
+alias src="doas snapper -c root create -d" 
+alias shc="doas snapper -c home create -d" 
+alias srd="doas snapper -c root delete"
+alias shd="doas snapper -c home delete"
+alias srl="doas snapper -c root list"
+alias shl="doas snapper -c home list"
+alias srr="doas snapper --ambit classic rollback"
+alias grubmake="doas grub-mkconfig -o /boot/grub/grub.cfg"
+alias grubinstall="doas grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=/boot --bootloader-id=GRUB"
+
 # screem
 alias ss="screen -S"
 alias sr="screen -r"
@@ -38,9 +66,9 @@ alias bcr='brew uninstall --cask'
 # system
 alias sd='doas'
 alias sn='shutdown now'
-alias pi='python3 -m pip install --user --no-cache-dir'
-alias pu='python3 -m pip install --user -u'
-alias pr='python3 -m pip uninstall'
+#alias pi='python3 -m pip install --user --no-cache-dir'
+#alias pu='python3 -m pip install --user -u'
+#alias pr='python3 -m pip uninstall'
 
 # rclone sec
 alias rstuff='echo "syncing to drive" | cowsay -f tux && rclone sync -P ~/stuff/ drivec:/stuff/ '
@@ -62,10 +90,10 @@ alias vd='vagrant destroy'
 alias vs='vagrant ssh'
 
 # exa
-alias ls='exa --color=always --group-directories-first' 
-alias la='exa -a --color=always --group-directories-first'  
-alias ll='exa -al --color=always --group-directories-first' 
-alias l.='exa -a | egrep "^\."'
+alias ls='eza --color=always --group-directories-first' 
+alias la='eza -a --color=always --group-directories-first'  
+alias ll='eza -al --color=always --group-directories-first' 
+alias l.='eza -a | egrep "^\."'
 
 # git
 alias pullmain='git pull github main && sleep 5 && git pull gitlab main'

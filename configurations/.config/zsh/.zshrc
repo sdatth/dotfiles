@@ -57,15 +57,15 @@ bindkey "^?" backward-delete-char
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
-source "$ZDOTDIR/autojump.sh"
+#source "$ZDOTDIR/autojump.sh"
 source "$ZDOTDIR/alias.zsh"
 
 # fzf
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
-fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "/usr/share/fzf/key-bindings.zsh"
+source "/usr/share/fzf/completion.zsh"
+
+# autojump
+[[ -s /home/zeta/.autojump/etc/profile.d/autojump.sh ]] && source /home/zeta/.autojump/etc/profile.d/autojump.sh
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -85,5 +85,5 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E tor-browser -E .tld
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"

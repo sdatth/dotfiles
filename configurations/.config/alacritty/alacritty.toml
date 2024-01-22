@@ -1,0 +1,57 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#768390"
+blue = "#6cb6ff"
+cyan = "#96d0ff"
+green = "#a5ffe1"
+magenta = "#dcbdfb"
+red = "#f47067"
+white = "#adbac7"
+yellow = "#f69d50"
+
+[colors.normal]
+black = "#2d333b"
+blue = "#6cb6ff"
+cyan = "#96d0ff"
+green = "#a5ffe1"
+magenta = "#dcbdfb"
+red = "#f47067"
+white = "#adbac7"
+yellow = "#f69d50"
+
+[colors.primary]
+background = "#040401"
+foreground = "#d8d8d8"
+
+[font]
+size = 12.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+#[font.normal.bold]
+#family = "FiraCode Nerd Font"
+#style = "Bold"
+
+#[font.normal.bold_italic]
+#family = "FiraCode Nerd Font"
+#style = "Bold Italic"
+
+#[font.normal.italic]
+#family = "FiraCode Nerd Font"
+#style = "Italic"
+
+[font.offset]
+x = 0
+y = 0
+
+[window.padding]
+x = 2
+y = 2
