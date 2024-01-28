@@ -87,9 +87,9 @@ usermod -aG libvirt dev
 vagrant plugin install vagrant-libvirt
 
 #packages
-pacman -S firefox snapper snap-pac ntfs-3g virtualbox virtualbox-guest-iso virtualbox-guest-utils virtualbox-host-modules-arch syncthing flatpak
-pacman -S rclone doas nano wget libreoffice-fresh obs-studio ufw vlc wireshark-qt transmission-gtk chromium rsync nextcloud-client python-nautilus
-pacman -S bat bpytop cowsay eza fd figlet fish glow lolcat neofetch neovim starship stow zsh fzf
+pacman -S firefox snapper snap-pac ntfs-3g virtualbox virtualbox-guest-iso virtualbox-guest-utils virtualbox-host-modules-arch syncthing flatpak openresolv
+pacman -S rclone doas nano wget libreoffice-fresh obs-studio ufw vlc wireshark-qt transmission-gtk chromium rsync nextcloud-client python-nautilus rust go
+pacman -S bat btop cowsay eza fd figlet fish glow lolcat neofetch neovim starship stow zsh fzf screen
 
 #nvidia drivers
 pacman -S nvidia nvidia-utils nvidia-settings 
@@ -212,4 +212,9 @@ When=PostTransaction
 NeedsTargets
 Exec=/bin/sh -c 'while read -r trg; do case $trg in linux*) exit 0; esac; done; /usr/bin/mkinitcpio -P' 
 
+
+# vs code extensions
+python 
+code runner
+Gruvbox Theme
 
