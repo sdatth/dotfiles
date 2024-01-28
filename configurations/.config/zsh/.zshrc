@@ -16,7 +16,10 @@ export ZDOTDIR=$HOME/.config/zsh
 
 # GPG prompt feature
 export GPG_TTY=$(tty)
- 
+
+# custom bin path
+export PATH=$PATH:$HOME/.bin
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
