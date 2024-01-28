@@ -47,10 +47,10 @@ alias vd='vagrant destroy'
 alias vs='vagrant ssh'
 
 # exa
-alias ls='exa --color=always --group-directories-first' 
-alias la='exa -a --color=always --group-directories-first'  
-alias ll='exa -al --color=always --group-directories-first' 
-alias l.='exa -a | egrep "^\."'
+alias ls='eza --color=always --group-directories-first'
+alias la='eza -a --color=always --group-directories-first' 
+alias ll='eza -al --color=always --group-directories-first'
+alias l.='eza -a | egrep "^\."'
 
 # git
 alias pull='git pull github mac && sleep 5 && git pull gitlab mac'

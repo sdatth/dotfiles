@@ -6,14 +6,14 @@
 #
 # source - https://github.com/sdatth/dotfiles
 
-SHELL = /opt/homebrew/bin/bash
+SHELL = /bin/bash
 
-PKGS = ansible autojump bat borgbackup bpytop cmatrix cowsay exa exiftool fd figlet fish fortune 
+PKGS = ansible autojump bat borgbackup btop cmatrix cowsay eza exiftool fd figlet fish fortune
 PKGS += fzf gh git git-secret glow gnupg k3d kubernetes-cli lazygit lolcat magic-wormhole make muttncdu 
 PKGS += neofetch neovim pass pinentry-mac ranger rclone rsync starship stow syncthing terraform tmux vim 
-PKGS += wireguard-tools youtube-dl zsh zsh-autosuggestions zsh-syntax-highlighting
+PKGS += wireguard-tools zsh zsh-autosuggestions zsh-syntax-highlighting
 
-GPKGS = alacritty iterm2 macfuse obsidian qbittorrent seafile-client utm vlc
+GPKGS = alacritty iterm2 macfuse obsidian qbittorrent utm vlc
 
 .ONESHELL:
 help: ## Show available options
@@ -21,42 +21,18 @@ help: ## Show available options
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install: dep nix-pman nerdfonts symlink clean note ## Symlink config files
+install: brew nerdfonts symlink clean note ## Symlink config files
 
-dep: ## Install dependencies
-	@echo
-	echo "Installing Dependencies"
-	sudo apt update
-	sudo apt install compton build-essential || exit
-	echo
-
-brew-pman: ## Install brew package manager
+brew: ## Install brew package manager
 	@echo "Installing brew package manager "
 	bash extra/brew-install.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
 	brew install $(PKGS)
 
-nix-pman: ## Install nix package manager
-	@echo
-	echo "Installing packages"
-	for package in $(PKGS); do \
-   		nix-env -iA nixpkgs.$$package ; \
-	done
-
-nix: ## Install nix package manager on linux
-	@echo
-	sh <(curl -L https://nixos.org/nix/install) --daemon
-	echo 
-
-nix-mac: ## Install nix package manager on mac
+nix: ## Install nix package manager on mac
 	@echo
 	sh <(curl -L https://nixos.org/nix/install)
-	echo
-
-nix-wsl: ## Install nix package manager on windows wsl2
-	@echo
-	sh <(curl -L https://nixos.org/nix/install) --no-daemon
 	echo
 
 delete: ## Delete old config files

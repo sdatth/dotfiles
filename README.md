@@ -17,7 +17,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 Run this command to install the nix package manager.
 ```bash
 cd dotfiles
-make nix
+make brew
 ```
 (Note ! - Restart your shell for nix to work right)
 
