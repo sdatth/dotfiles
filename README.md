@@ -14,7 +14,7 @@ git clone https://github.com/sdatth/dotfiles.git $HOME/
 git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 ```
 
-Run this command to install the nix package manager.
+Run this command to install the brew package manager.
 ```bash
 cd dotfiles
 make brew
