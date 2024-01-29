@@ -112,5 +112,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#fzf
 eval "$(starship init bash)"

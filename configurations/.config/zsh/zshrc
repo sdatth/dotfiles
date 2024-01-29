@@ -70,6 +70,9 @@ source "$ZDOTDIR/alias.zsh"
 [[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
