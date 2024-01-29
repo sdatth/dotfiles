@@ -73,6 +73,7 @@ brew: ## Install brew package manager
 	echo "Installing packages"
 	source $(HOME)/.profile
 	brew install $(PKGS)
+	brew postinstall gcc
 	echo
 
 dev: ## Optionally install development packages
@@ -113,7 +114,7 @@ nvimplug: ## Install plug for neovim
 	echo "installing plug for nvim"
 	- [ ! -d "$(HOME)/.config/nvim/autoload" ] && mkdir -p "$(HOME)/.config/nvim/autoload"
 	if [ -f "$(HOME)/.config/nvim/autoload/plug.vim" ]; then
-		echo "Plug for neovim already installed"
+		echo "Plug for neovim already installed. Please open nvim and type ':PlugUpgrade' to upgrade it"
 	else
 		echo "Installing Plug for neovim"
 		sh -c 'curl -fLo $(HOME)/.config/nvim/autoload/plug.vim --create-dirs \
@@ -154,12 +155,12 @@ note:
 	@echo
 	echo "NOTE!"
 	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file"
-	echo "2. Source profile 'source $(HOME/.profile)' to add brew bin for current shell"
+	echo "2. Source profile 'source $(HOME)/.profile' to add brew bin for current shell"
 	echo "3. Open a new zsh shell with 'zsh' command to install few dependencies"
-	echo "2. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
-	echo "3. Update the '\sudo /etc/passwd file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' "
-	echo "4: Once everything is done exec 'git restore .' in the '$(HOME)/dotfiles' dir "
-	echo "5: Reboot(Optional) and ENjOy!"
+	echo "4. Exit and open a new zsh shell again to fix few stuff"
+	echo "5. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
+	echo "6. Update the '\sudo nano /etc/passwd file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' "
+	echo "7: (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
 
