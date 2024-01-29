@@ -18,7 +18,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 
 You will need `make` 
 
-Run the command to install necessary packages for your distributions
+Run the command to install necessary packages and get my config files for your linux distribution
 ```bash
 make [arch|debian|ubuntu|rhel]
 ```
@@ -27,7 +27,7 @@ make [arch|debian|ubuntu|rhel]
 
 You will need `gmake` 
 
-Run the command to install necessary packages for your distributions
+Run the command to install necessary packages and get my config files for FreeBSD
 ```bash
 make freebsd
 ```
@@ -42,7 +42,7 @@ make help
 
 Note Important:
 
-Support for ARM64 is in the roadmap
+Support for Arm64 is in the roadmap
 
 This script will install files from 
 - zsh-autosuggestions plugin          : https://github.com/zsh-users/zsh-autosuggestions
