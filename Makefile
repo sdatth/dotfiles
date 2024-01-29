@@ -31,7 +31,7 @@ ubuntu: ubuntu-dep install ## Install on Ubuntu based distros
 
 freebsd: freebsd-dep install ## Install on FreeBSD
 
-rhel: rhel-dep install rhel-post ## Install on rhel based distros
+rhel: rhel-dep install ## Install on rhel based distros
 
 freebsd-dep: # Install doas on FreeBSD
 	@echo
@@ -44,7 +44,7 @@ rhel-dep: # Install doas on RHEl based distros
 	@echo
 	echo "Installing RPM Dependencies"
 	sudo yum install -y epel-release gcc gcc-c++ make flex bison pam-devel byacc
-    sudo yum groupinstall -y "Development Tools"
+	sudo yum groupinstall -y "Development Tools"
 	[ -d "$(HOME)/temp" ] && cd $(HOME)/temp || mkdir $(HOME)/temp 
 	cd $(HOME)/temp/
 	git clone https://github.com/slicer69/doas.git
@@ -52,11 +52,6 @@ rhel-dep: # Install doas on RHEl based distros
 	make
 	sudo make install
 	sudo cp /etc/pam.d/sudo /etc/pam.d/doas
-	echo
-
-rhel-post:
-	@echo
-	sudo chown -R $(USER):$(USER) /home/linuxbrew/
 	echo
 
 arch-dep: ##Install arch packages from standard repo
@@ -166,7 +161,7 @@ clean: ## Clean up junk files after installation
 note:
 	@echo
 	echo "NOTE!"
-	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file"
+	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file. Visit 'https://github.com/slicer69/doas.git' incase for more details "
 	echo "2. Source profile 'source $(HOME)/.profile' to add brew bin for current shell"
 	echo "3. Open a new zsh shell with 'zsh' command to install few dependencies"
 	echo "4. Exit and open a new zsh shell again to fix few stuff"

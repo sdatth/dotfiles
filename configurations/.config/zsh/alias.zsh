@@ -63,9 +63,7 @@ alias sr="screen -r"
 alias sl="screen -ls"
 alias sx="screen -X -S"
 
-# system
-alias sd='doas'
-alias sn='shutdown now'
+# python
 #alias pi='python3 -m pip install --user --no-cache-dir'
 #alias pu='python3 -m pip install --user -u'
 #alias pr='python3 -m pip uninstall'
