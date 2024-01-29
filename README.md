@@ -29,7 +29,7 @@ You will need `gmake`
 
 Run the command to install necessary packages and get my config files for FreeBSD
 ```bash
-make freebsd
+gmake freebsd
 ```
 
 ### Help
@@ -40,7 +40,7 @@ make help
 ```
 
 
-Note Important:
+#### Note Important:
 
 Support for Arm64 is in the roadmap
 
