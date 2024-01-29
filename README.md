@@ -30,6 +30,8 @@ Note Important:
 
 Support for RHEL and FreeBSD is still in development.
 
+Support for ARM64 is in the roadmap
+
 This script will install files from 
 - https://github.com/zsh-users/zsh-autosuggestions
 - https://github.com/zsh-users/zsh-syntax-highlighting
