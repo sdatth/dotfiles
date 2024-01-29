@@ -65,14 +65,14 @@ deb-dep: # Install doas on Debian based distros
 	@echo
 	echo "Installing Debian Dependencies"
 	sudo apt update
-	sudo apt install opendoas
+	sudo apt install build-essential opendoas
 	echo
 
 ubuntu-dep: # Install doas on Ubuntu based distros
 	@echo
 	echo "Installing Ubuntu Dependencies"
 	sudo apt update
-	sudo apt install doas
+	sudo apt install build-essential doas
 	echo		
 
 brew: ## Install brew package manager

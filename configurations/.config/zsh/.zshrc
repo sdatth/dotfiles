@@ -66,20 +66,23 @@ source "$ZDOTDIR/zsh-functions"
 #source "$ZDOTDIR/autojump.sh"
 source "$ZDOTDIR/alias.zsh"
 
-# fzf for arch
+
+### fzf
+# arch
 [[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
-# fzf for brew
+# brew
 if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
 fi
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
 
-# fzf for freeBSD
+# freeBSD
 [[ -s /usr/local/share/examples/fzf/shell/completion.zsh ]] && source /usr/local/share/examples/fzf/shell/completion.zsh
 [[ -s /usr/local/share/examples/fzf/shell/key-bindings.zsh ]] && source /usr/local/share/examples/fzf/shell/key-bindings.zsh 
+
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
