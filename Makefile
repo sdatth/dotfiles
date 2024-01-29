@@ -8,9 +8,9 @@
 
 SHELL = /usr/bin/bash
 
-PKGS = git fzf bat glow exa fd starship youtube-dl bpytop stow
-PKGS += neovim vim ranger zsh autojump tmux ncdu unzip
-PKGS += lolcat figlet fortune cowsay fish lazygit
+PKGS = doas git fzf bat glow exa fd starship btop stow
+PKGS += neovim vim ranger zsh tmux ncdu unzip
+PKGS += lolcat figlet cowsay fish go rust screen
 
 .ONESHELL:
 help: ## Show available options
@@ -18,43 +18,13 @@ help: ## Show available options
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install: dep nix-pman nerdfonts symlink clean note ## Symlink config files
+install: dep nerdfonts symlink clean note ## Symlink config files
 
-dep: ## Install dependencies
-	@echo
-	echo "Installing Dependencies"
-	sudo apt update
-	sudo apt install compton build-essential || exit
-	echo
-
-brew-pman: ## Install brew package manager
-	@echo "Installing brew package manager "
-	bash extra/brew-install.sh
-	echo "Installing packages"
-	source $(HOME)/.profile
-	brew install $(PKGS)
-
-nix-pman: ## Install nix package manager
+dep: ## Install nix package manager
 	@echo
 	echo "Installing packages"
-	for package in $(PKGS); do \
-   		nix-env -iA nixpkgs.$$package ; \
-	done
-
-nix: ## Install nix package manager on linux
-	@echo
-	sh <(curl -L https://nixos.org/nix/install) --daemon
-	echo 
-
-nix-mac: ## Install nix package manager on mac
-	@echo
-	sh <(curl -L https://nixos.org/nix/install)
-	echo
-
-nix-wsl: ## Install nix package manager on windows wsl2
-	@echo
-	sh <(curl -L https://nixos.org/nix/install) --no-daemon
-	echo
+	sudo pacman -S --noconfirm $(PKGS)
+	echo "permit persist zeta as root" >> /etc/doas.conf
 
 delete: ## Delete old config files
 	@echo
@@ -64,6 +34,7 @@ delete: ## Delete old config files
 		[ -d "$(HOME)/.config/nvim" ] && rm -rf $(HOME)/.config/nvim
 		[ -d "$(HOME)/.config/alacritty" ] && rm -rf $(HOME)/.config/alacritty
 		[ -d "$(HOME)/.config/ranger" ] && rm -rf $(HOME)/.config/ranger
+		[ -d "$(HOME)/.autoload" ] && rm -rf $(HOME)/.autoload
 		[ -f "$(HOME)/.vimrc" ] && rm $(HOME)/.vimrc
 		[ -f "$(HOME)/.zshrc" ] && rm $(HOME)/.zshrc
 		[ -f "$(HOME)/.bashrc" ] && rm $(HOME)/.bashrc
@@ -106,7 +77,7 @@ nerdfonts: ## Install nerd fonts
 	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/ 
 	echo done!
 
-symlink: delete nvimplug
+symlink: delete
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
 	cd $(HOME)/dotfiles/

@@ -1,0 +1,75 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# to enable and disable espanso, here its right ctrl button on keyboard, press twice to activate and deactivate
+toggle_key: RIGHT_CTRL
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+  
+  - trigger: ":ad"
+    replace: "admin@server.zeta"
+
+  - trigger: ":nl"
+    replace: "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system"
+
+  - trigger: ":ns"
+    replace: "sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation 204"
+      
+  - trigger: ":nd"
+    replace: "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations 1002 1001"
+       
+  - trigger: ":ngc"
+    replace: "nix-collect-garbage"
+
+  - trigger: ":nr"
+    replace: "sudo nixos-rebuild switch --flake '.#zeta'"
+
+  - trigger: ":nu"
+    replace: "sudo nix flake update"
+
+  - trigger: ":nU"
+    replace: "sudo nixos-rebuild switch --upgrade --flake '.#zeta'"
+
+  - trigger: ":sa"
+    replace: "ssh-add ~/.ssh/id_ed25519"
+
+  - trigger: ":sr"
+    replace: "ssh zeta@10.44.43.53"
+
+  - trigger: ":ss"
+    replace: "ssh zeta@10.86.229.1"
+
+  - trigger: ":wd"
+    replace: "sudo systemctl stop wg-quick-wg0"
+
+  - trigger: ":wu"
+    replace: "sudo systemctl start wg-quick-wg0"
+
+  - trigger: ":ws"
+    replace: "sudo systemctl status wg-quick-wg0"
+
+      
+  # Dates
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Shell commands
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo Hello from your shell"

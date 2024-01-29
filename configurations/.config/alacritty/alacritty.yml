@@ -1,5 +1,5 @@
-#shell:
-#  program: /Users/datthu/.nix-profile/bin/tmux
+shell:
+program: /run/current-system/sw/bin/tmux 
 
 #background_opacity : 1.0
 draw_bold_text_with_bright_colors: true
@@ -10,7 +10,7 @@ colors:
   primary:
     #background: '#222D31'
     #foreground: '#d8d8d8'
-    background: '#1d2021'
+    background: '#040401'
     foreground: '#d8d8d8'
   normal:
     black:   '#2d333b'
@@ -54,7 +54,7 @@ font:
     family: "FiraCode Nerd Font"
     style: Bold Italic
   
-  size: 14.0
+  size: 12.0
 
   offset:
     x: 0

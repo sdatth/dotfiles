@@ -110,6 +110,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 call plug#end()
 
 " disable gitgutter at startup

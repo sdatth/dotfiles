@@ -1,0 +1,13 @@
+[init]
+	defaultBranch = master
+
+[user]
+	name = dattha
+	email = dattha@tutamail.com
+	signingkey = dattha@tutamail.com
+
+[commit]
+	gpgsign = true
+	
+[tag]
+	gpgSign = true
