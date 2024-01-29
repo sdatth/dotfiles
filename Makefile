@@ -31,7 +31,7 @@ ubuntu: ubuntu-dep install ## Install on Ubuntu based distros
 
 freebsd: freebsd-dep install ## Install on FreeBSD
 
-rhel: rhel-dep install ## Install on rhel based distros
+rhel: rhel-dep install rhel-post ## Install on rhel based distros
 
 freebsd-dep: # Install doas on FreeBSD
 	@echo
@@ -43,8 +43,20 @@ freebsd-dep: # Install doas on FreeBSD
 rhel-dep: # Install doas on RHEl based distros 
 	@echo
 	echo "Installing RPM Dependencies"
-	sudo yum update
-	sudo yum install opendoas
+	sudo yum install -y epel-release gcc gcc-c++ make flex bison pam-devel byacc
+    sudo yum groupinstall -y "Development Tools"
+	[ -d "$(HOME)/temp" ] && cd $(HOME)/temp || mkdir $(HOME)/temp 
+	cd $(HOME)/temp/
+	git clone https://github.com/slicer69/doas.git
+	cd doas
+	make
+	sudo make install
+	sudo cp /etc/pam.d/sudo /etc/pam.d/doas
+	echo
+
+rhel-post:
+	@echo
+	sudo chown -R $(USER):$(USER) /home/linuxbrew/
 	echo
 
 arch-dep: ##Install arch packages from standard repo

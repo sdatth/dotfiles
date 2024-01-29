@@ -120,5 +120,8 @@ fi
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash"
 
+# source brew bin
+[ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 #fzf
 eval "$(starship init bash)"
