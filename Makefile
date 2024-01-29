@@ -9,8 +9,7 @@
 SHELL = /usr/bin/bash
 
 PKGS = gcc git fzf bat glow eza fd starship btop stow
-PKGS += neovim vim ranger zsh tmux ncdu unzip
-PKGS += lolcat figlet screen
+PKGS += neovim vim ranger zsh tmux ncdu unzip screen
 
 DEVPKGS = go rust python@3.12
 ARCHDEV = go rust python opendoas
@@ -80,7 +79,6 @@ brew: ## Install brew package manager
 	echo "Installing packages"
 	source $(HOME)/.profile
 	brew install $(PKGS)
-	brew postinstall gcc
 	echo
 
 dev: ## Optionally install development packages
