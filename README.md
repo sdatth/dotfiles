@@ -18,7 +18,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 
 Run the command to install necessary packages for your distributions
 ```bash
-make [arch|debian|ubuntu]
+make [arch|debian|ubuntu|rhel]
 ```
 
 Use the help recipe to see available options

@@ -11,7 +11,7 @@ SHELL = /usr/bin/bash
 PKGS = gcc git fzf bat glow eza fd starship btop stow
 PKGS += neovim vim ranger zsh tmux ncdu unzip screen
 
-FREEBSDPKGS = git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip
+FREEBSDPKGS = git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
 DEVPKGS = go rust python@3.12
 ARCHDEV = go rust python opendoas
 
@@ -37,7 +37,7 @@ freebsd-dep: # Install doas on FreeBSD
 	@echo
 	echo "Installing BSD dependencies"
 	sudo pkg update
-	sudo pkg install doas $(FREEBSDPKGS)
+	sudo pkg install $(FREEBSDPKGS)
 	echo
 
 rhel-dep: # Install doas on RHEl based distros 
@@ -164,13 +164,14 @@ clean: ## Clean up junk files after installation
 note:
 	@echo
 	echo "NOTE!"
-	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file. Visit 'https://github.com/slicer69/doas.git' incase for more details "
-	echo "2. Source profile 'source $(HOME)/.profile' to add brew bin for current shell"
-	echo "3. Open a new zsh shell with 'zsh' command to install few dependencies"
-	echo "4. Exit and open a new zsh shell again to fix few stuff"
-	echo "5. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
-	echo "6. Update the '\sudo nano /etc/passwd file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' "
-	echo "7: (Optional) Reboot and ENjOy!"
+	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file. Visit 'https://github.com/slicer69/doas.git' incase for more details"
+	echo "2. For RHEL based append 'permit persist :wheel' to this file /usr/local/etc/doas.conf"
+	echo "3. Source profile 'source $(HOME)/.profile' to add brew bin for current shell"
+	echo "4. Open a new zsh shell with 'zsh' command to install few dependencies"
+	echo "5. Exit and open a new zsh shell again to fix few stuff"
+	echo "6. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
+	echo "7. Update the '\sudo nano /etc/passwd file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' "
+	echo "8: (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
 
