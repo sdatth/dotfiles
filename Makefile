@@ -13,7 +13,7 @@ PKGS += neovim vim ranger zsh tmux ncdu unzip screen
 
 FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
 DEVPKGS = go rust python@3.12
-ARCHDEV = go rust python opendoas
+ARCHDEV = base-devel go rust python opendoas
 
 .ONESHELL:
 help: ## Show available options
@@ -58,8 +58,7 @@ rhel-dep: # Install doas on RHEl based distros
 arch-dep: ##Install arch packages from standard repo
 	@echo
 	echo "Installing ARCH packages"
-	sudo pacman -S --noconfirm $(PKGS)
-	sudo pacman -S --noconfirm $(ARCHDEV)
+	sudo pacman -S --noconfirm $(PKGS) $(ARCHDEV)
 
 deb-dep: # Install doas on Debian based distros
 	@echo
