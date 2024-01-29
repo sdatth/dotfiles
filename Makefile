@@ -52,6 +52,7 @@ rhel-dep: # Install doas on RHEl based distros
 	make
 	sudo make install
 	sudo cp /etc/pam.d/sudo /etc/pam.d/doas
+	sudo usermod -aG wheel $(USER)
 	echo
 
 arch-dep: ##Install arch packages from standard repo
