@@ -30,3 +30,18 @@ Use the help recipe to see available options
 ```bash
 make help
 ```
+
+Note Important:
+
+Support for RHEL and FreeBSD is still in development.
+
+This script will install files from 
+- https://github.com/zsh-users/zsh-autosuggestions
+- https://github.com/zsh-users/zsh-syntax-highlighting
+- https://github.com/zsh-users/zsh-history-substring-search
+
+This repo contains code/files from other repo, they are the original authors for this
+- https://github.com/junegunn/vim-plug
+- https://www.nerdfonts.com/
+- https://github.com/ryanoasis/nerd-fonts
+- https://github.com/wting/autojump
