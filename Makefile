@@ -75,11 +75,14 @@ ubuntu-dep: # Install doas on Ubuntu based distros
 	echo		
 
 brew: ## Install brew package manager
-	@echo "Installing brew package manager "
+	@echo
+	echo "Installing brew package manager"
 	bash extra/brew-install.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
-	brew install $(PKGS)
+	for item in $(PKGS); do \
+		brew install $$item ; \
+	done
 	echo
 
 dev: ## Optionally install development packages
