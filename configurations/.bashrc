@@ -84,65 +84,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias au='sudo apt update'
-alias aU='sudo apt upgrade'
-alias ai='sudo apt install'
-alias fu='flatpak update'
-alias fU='flatpak uninstall --unused'
-alias ar='sudo apt --purge remove'
-alias ssn='sudo shutdown now'
-alias sr='sudo reboot'
-alias sd='sudo'
-alias sn='shutdown now'
-alias ua='bash ~/Stuff/files/configs/shell-scripts/startup.sh'
-
-# rclone sec
-alias rfiles='echo "Syncing to drive" | cowsay -f tux && rclone sync -P files/ drivec:/files/ --exclude ".git/**" --exclude ".gitsecret/**" '
-alias rcloud='echo "Syncing to drive" | cowsay -f tux && rclone sync -P dropbox/ drivec:/dropbox/'
-alias revfiles='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/files/ files/ --exclude ".git/**" --exclude ".gitsecret/**" '
-alias revcloud='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P drivec:/dropbox/ dropbox/'
-alias rdrop='echo "Syncing to both cloud providers" | cowsay -f tux && rclone sync -P dropbox/ db:/unsec/ && echo "" && rclone sync -P dropbox/ drivec:/dropbox/'
-alias revdrop='echo "Syncing to localhost" | cowsay -f tux && rclone sync -P db:/unsec/ dropbox/'
-
-# text editors
-alias v='vim'
-alias e='nvim'
-alias vimrc='vim ~/.vimrc'
-alias nvimrc='nvim ~/.config/nvim/init.vim'
-alias zshrc='nvim ~/.zshrc'
-
-# vagrant sec
-alias vu='vagrant up'
-alias vh='vagrant halt'
-alias vd='vagrant destroy'
-alias vs='vagrant ssh'
-
-# exa
-alias ls='exa -l --color=always --group-directories-first' # my preferred listing 
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs 
-alias ll='exa -l --color=always --group-directories-first'  # long format 
-alias l.='exa -a | egrep "^\."'
-
-# git
-alias pull='git pull github main && sleep 5 && git pull gitlab main'
-alias push='git push -u github main && sleep 5 && git push -u gitlab main'
-alias add='git add .'
-alias commit='git commit -S -m'
-alias rcommit='git commit -m'
-alias status='git status'
-
-# others
-alias gt='gpg2 --card-status'
-alias yt='ykman list'
-alias yd='youtube-dl'
-alias btop='bpytop'
-alias dc='sudo docker'
-alias wu='sudo wg-quick up wg0'
-alias wd='sudo wg-quick down wg0'
-alias ll='ls -la'
-alias l='ls -CF'
-alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
+# source alias file
+source $HOME/.config/zsh/alias.zsh
 
 
 # Add an "alert" alias for long running commands.  Use like so:

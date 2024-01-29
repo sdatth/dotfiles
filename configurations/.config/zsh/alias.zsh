@@ -1,4 +1,5 @@
 ## aliases
+
 # navigation
 alias ..='cd ..'
 alias .2='cd ../..'
@@ -17,6 +18,7 @@ alias ai="doas apt install"
 alias au="doas apt update"
 alias aU="doas apt upgrade"
 alias ar="doas apt remove --purge"
+alias aR="doas apt autoremove"
 
 # brew 
 alias bu='brew update'
@@ -28,6 +30,13 @@ alias br='brew uninstall'
 alias bcl='brew list --cask'
 alias bci='brew install --cask'
 alias bcr='brew uninstall --cask'
+
+# yum
+alias yi="doas yum install"
+alias yu="doas yum check-update" 
+alias yU="doas yum upgrade"
+alias yr="doas yum remove --setopt=clean_requirements_on_remove"
+alias yR="doas yum autoremove"
 
 # pacman 
 alias pi="doas pacman -S"
@@ -53,17 +62,6 @@ alias ss="screen -S"
 alias sr="screen -r"
 alias sl="screen -ls"
 alias sx="screen -X -S"
-
-# brew 
-alias bu='brew update'
-alias bU='brew upgrade'
-alias bgc='brew cleanup && brew autoremove'
-alias bl='brew leaves'
-alias bi='brew install'
-alias br='brew uninstall'
-alias bcl='brew list --cask'
-alias bci='brew install --cask'
-alias bcr='brew uninstall --cask'
 
 # system
 alias sd='doas'
@@ -102,10 +100,6 @@ alias pullmain='git pull github main && sleep 5 && git pull gitlab main'
 alias pushmain='git push github main && sleep 5 && git push gitlab main'
 alias pullmaster='git pull github master && sleep 5 && git pull gitlab master'
 alias pushmaster='git push github master && sleep 5 && git push gitlab master'
-alias pullwork='git pull github workstation && sleep 5 && git pull gitlab workstation'
-alias pushwork='git push github workstation && sleep 5 && git push gitlab workstation'
-alias pusharch='git push github arch && sleep 5 && git push gitlab arch'
-alias pullarch='git pull github arch && sleep 5 && git pull gitlab arch'
 alias add='git add .'
 alias commit='git commit -s -m'
 alias rcommit='git commit --no-gpg-sign -m'
@@ -128,10 +122,7 @@ alias k='kubectl'
 alias sudo='doas'
 alias gt='gpg2 --card-status'
 alias sa='ssh-add ~/.ssh/id_ed25519'
-alias sz='ssh zeta@10.86.229.1'
 alias yt='ykman list'
-alias yd='youtube-dl'
-alias btop='btop'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias dc='docker'
 alias wu='doas wg-quick up wg0'

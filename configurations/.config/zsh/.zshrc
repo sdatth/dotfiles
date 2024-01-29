@@ -66,12 +66,12 @@ source "$ZDOTDIR/zsh-functions"
 #source "$ZDOTDIR/autojump.sh"
 source "$ZDOTDIR/alias.zsh"
 
-# fzf
-source "/usr/share/fzf/key-bindings.zsh"
-source "/usr/share/fzf/completion.zsh"
+# fzf for arch
+[[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
 # autojump
-[[ -s /home/zeta/.autojump/etc/profile.d/autojump.sh ]] && source /home/zeta/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -91,5 +91,8 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E tor-browser -E .tld
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
-#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# source brew bin
+[ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# start starship
 eval "$(starship init zsh)"

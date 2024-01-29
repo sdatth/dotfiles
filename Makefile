@@ -8,9 +8,12 @@
 
 SHELL = /usr/bin/bash
 
-PKGS = doas git fzf bat glow exa fd starship btop stow
+PKGS = git fzf bat glow eza fd starship btop stow
 PKGS += neovim vim ranger zsh tmux ncdu unzip
-PKGS += lolcat figlet cowsay fish go rust screen
+PKGS += lolcat figlet cowsay fish screen
+
+DEVPKGS = gcc go rust python@3.12
+ARCHDEV = go rust python opendoas
 
 .ONESHELL:
 help: ## Show available options
@@ -18,13 +21,69 @@ help: ## Show available options
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install: dep nerdfonts symlink clean note ## Symlink config files
+install: brew nerdfonts symlink clean note ## Symlink config files
 
-dep: ## Install nix package manager
+arch : arch-dep nerdfonts symlink clean note ## Install on Arc
+
+debian: deb-dep install ## Install on Debian based distros
+
+ubuntu: ubuntu-dep install ## Install on Ubuntu based distros
+
+freebsd: freebsd-dep install ## Install on FreeBSD
+
+rhel: rhel-dep install ## Install on rhel based distros
+
+freebsd-dep: ## Install doas on FreeBSD
 	@echo
-	echo "Installing packages"
+	echo "Installing BSD dependencies"
+	sudo pkg update
+	sudo pkg install doas
+	echo "permit $(USER) as root" >> /etc/doas.conf
+	echo
+
+rhel-dep: ## Install doas on RHEl based distros 
+	@echo
+	echo "Installing RPM Dependencies"
+	sudo yum update
+	sudo yum install opendoas
+	echo "permit persist $(USER) as root" >> /etc/doas.conf
+	echo
+
+arch-dep: ## Install arch packages from standard repo
+	@echo
+	echo "Installing ARCH packages"
 	sudo pacman -S --noconfirm $(PKGS)
-	echo "permit persist zeta as root" >> /etc/doas.conf
+	sudo pacman -S --noconfirm $(ARCHDEV)
+	echo "permit persist $(USER) as root" >> /etc/doas.conf
+
+deb-dep: ## Install doas on Debian based distros
+	@echo
+	echo "Installing Debian Dependencies"
+	sudo apt update
+	sudo apt install opendoas
+	echo "permit persist $(USER) as root" >> /etc/doas.conf
+	echo
+
+ubuntu-dep: ## Install doas on Ubuntu based distros
+	@echo
+	echo "Installing Ubuntu Dependencies"
+	sudo apt update
+	sudo apt install doas
+	echo "permit persist $(USER) as root" >> /etc/doas.conf
+	echo		
+
+brew: ## Install brew package manager
+	@echo "Installing brew package manager "
+	bash extra/brew-install.sh
+	echo "Installing packages"
+	source $(HOME)/.profile
+	brew install $(PKGS)
+	$(HOMEBREW_PREFIX)/opt/fzf/install
+
+dev: ## Optionally install development packages
+	@echo
+	brew install $(DEVPKGS)
+	echo	
 
 delete: ## Delete old config files
 	@echo

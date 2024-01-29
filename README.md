@@ -4,6 +4,8 @@
 
 ## Installing
 
+!!! Note: We have a separate branch for mac install. Please check that out for macOS.
+
 You will need `make` 
 
 Clone into your `$HOME` directory or `~`
@@ -14,9 +16,9 @@ git clone https://github.com/sdatth/dotfiles.git $HOME/
 git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 ```
 
-Run the command to install necessary packages and stow my config
+Run the command to install necessary packages for your distributions
 ```bash
-make install
+make [arch|debian|ubuntu|freebsd|rhel]
 ```
 
 Use the help recipe to see available options
