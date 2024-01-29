@@ -113,7 +113,12 @@ if ! shopt -oq posix; then
 fi
 
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
+fi
+
+[[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash"
+[[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash"
 
 #fzf
 eval "$(starship init bash)"

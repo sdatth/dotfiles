@@ -73,7 +73,6 @@ brew: ## Install brew package manager
 	echo "Installing packages"
 	source $(HOME)/.profile
 	brew install $(PKGS)
-	/home/linuxbrew/opt/fzf/install
 	echo
 
 dev: ## Optionally install development packages
