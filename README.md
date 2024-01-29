@@ -32,10 +32,13 @@ Run the command to install necessary packages for your distributions
 make freebsd
 ```
 
+### Help
+
 Use the help recipe to see available options
 ```bash
 make help
 ```
+
 
 Note Important:
 
