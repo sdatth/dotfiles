@@ -18,7 +18,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 
 Run the command to install necessary packages for your distributions
 ```bash
-make [arch|debian|ubuntu|freebsd|rhel]
+make [arch|debian|ubuntu]
 ```
 
 Use the help recipe to see available options
@@ -27,6 +27,8 @@ make help
 ```
 
 Note Important:
+
+Support for RHEL and FreeBSD is still in development.
 
 This script will install files from 
 - https://github.com/zsh-users/zsh-autosuggestions

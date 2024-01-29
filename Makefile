@@ -11,6 +11,7 @@ SHELL = /usr/bin/bash
 PKGS = gcc git fzf bat glow eza fd starship btop stow
 PKGS += neovim vim ranger zsh tmux ncdu unzip screen
 
+FREEBSDPKGS = git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip
 DEVPKGS = go rust python@3.12
 ARCHDEV = go rust python opendoas
 
@@ -28,7 +29,7 @@ debian: deb-dep install ## Install on Debian based distros
 
 ubuntu: ubuntu-dep install ## Install on Ubuntu based distros
 
-freebsd: freebsd-dep install ## Install on FreeBSD
+freebsd: freebsd-dep nerdfonts symlink clean note ## Install on FreeBSD
 
 rhel: rhel-dep install ## Install on rhel based distros
 
@@ -36,7 +37,7 @@ freebsd-dep: # Install doas on FreeBSD
 	@echo
 	echo "Installing BSD dependencies"
 	sudo pkg update
-	sudo pkg install doas
+	sudo pkg install doas $(FREEBSDPKGS)
 	echo
 
 rhel-dep: # Install doas on RHEl based distros 
