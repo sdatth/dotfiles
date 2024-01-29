@@ -112,13 +112,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# fzf
+# fzf for brew
 if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
 fi
-
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.bash"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.bash"
+
+# fzf for freeBSD
+[[ -s /usr/local/share/examples/fzf/shell/completion.bash ]] && source /usr/local/share/examples/fzf/shell/completion.bash
+[[ -s /usr/local/share/examples/fzf/shell/key-bindings.bash ]] && source /usr/local/share/examples/fzf/shell/key-bindings.bash 
+
+# fzf for arch
+[[ -s /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
+[[ -s /usr/share/fzf/completion.bash ]] && source /usr/share/fzf/completion.bash
 
 # source brew bin
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

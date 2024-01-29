@@ -70,13 +70,16 @@ source "$ZDOTDIR/alias.zsh"
 [[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
-# fzf
+# fzf for brew
 if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
 fi
-
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
+
+# fzf for freeBSD
+[[ -s /usr/local/share/examples/fzf/shell/completion.zsh ]] && source /usr/local/share/examples/fzf/shell/completion.zsh
+[[ -s /usr/local/share/examples/fzf/shell/key-bindings.zsh ]] && source /usr/local/share/examples/fzf/shell/key-bindings.zsh 
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh

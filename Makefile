@@ -11,7 +11,7 @@ SHELL = /usr/bin/bash
 PKGS = gcc git fzf bat glow eza fd starship btop stow
 PKGS += neovim vim ranger zsh tmux ncdu unzip screen
 
-FREEBSDPKGS = git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
+FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
 DEVPKGS = go rust python@3.12
 ARCHDEV = go rust python opendoas
 
