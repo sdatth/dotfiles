@@ -57,6 +57,12 @@ alias srr="doas snapper --ambit classic rollback"
 alias grubmake="doas grub-mkconfig -o /boot/grub/grub.cfg"
 alias grubinstall="doas grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=/boot --bootloader-id=GRUB"
 
+# distrobox
+alias db="distrobox"
+alias dbe="distrobox enter"
+alias dbs="distrobox stop"
+alias dbr="distrobox rm"
+
 # screem
 alias ss="screen -S"
 alias sr="screen -r"
