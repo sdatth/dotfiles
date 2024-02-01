@@ -60,6 +60,7 @@ alias grubinstall="doas grub-install --target=x86_64-efi --efi-directory=/efi --
 # distrobox
 alias db="distrobox"
 alias dbe="distrobox enter"
+alias dbl="distrobox list"
 alias dbs="distrobox stop"
 alias dbr="distrobox rm"
 
