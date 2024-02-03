@@ -319,11 +319,11 @@ zen() {
             ;;
 
         "list")
-                /usr/bin/distrobox list
+            /usr/bin/distrobox list
             ;;
 
         *)
-            echo "Please specify a valid distribution: -apt, -dnf, or -aur"
+            echo "Please specify a valid package manager: -apt, -dnf, -paru or -pac"
             ;;
     esac
 }
