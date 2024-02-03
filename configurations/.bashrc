@@ -85,7 +85,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # source alias file
-source $HOME/.config/zsh/alias.zsh
+if which doas > /dev/null 2>&1; then
+    source $HOME/.config/zsh/alias.zsh
+fi 
 
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -131,4 +133,6 @@ fi
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # start starship
-eval "$(starship init bash)"
+if which starship > /dev/null 2>&1; then
+    eval "$(starship init bash)"
+fi

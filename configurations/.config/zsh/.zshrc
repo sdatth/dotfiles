@@ -64,8 +64,11 @@ bindkey "^?" backward-delete-char
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 #source "$ZDOTDIR/autojump.sh"
-source "$ZDOTDIR/alias.zsh"
 
+# source alias file if doas exist
+if which doas > /dev/null 2>&1; then
+    source "$ZDOTDIR/alias.zsh"
+fi
 
 ### fzf
 # arch
@@ -109,4 +112,6 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # start starship
-eval "$(starship init zsh)"
+if which starship > /dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi

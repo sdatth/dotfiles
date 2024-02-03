@@ -63,6 +63,7 @@ alias dbe="distrobox enter"
 alias dbl="distrobox list"
 alias dbs="distrobox stop"
 alias dbr="distrobox rm"
+alias pods="podman ps -a --size --sort size"
 
 # screem
 alias ss="screen -S"
