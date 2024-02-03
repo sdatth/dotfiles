@@ -148,11 +148,46 @@ zen() {
             esac 
             ;;
         
+        "init")
+            shift
+            if confirm; then
+                if [[ "$1" = "--nvidia" ]] ; then
+                    echo "nvidia selected"
+                    # debian
+                    /usr/bin/distrobox-create --nvidia -n debian --image docker.io/library/debian:12
+                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Hello world'"
+
+                    #arch
+                    /usr/bin/distrobox-create --nvidia -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
+
+                    # fedora
+                    /usr/bin/distrobox-create --nvidia -n fedora
+                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo 'Hello world'"
+                else
+                    echo "nvidia not selected"
+                    # debian
+                    /usr/bin/distrobox-create -n debian --image docker.io/library/debian:12
+                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Hello world'"
+
+                    # arch
+                    /usr/bin/distrobox-create -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
+
+                    # fedora
+                    /usr/bin/distrobox-create -n fedora
+                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo 'Hello world'"
+                fi
+            else
+                echo "Action canceled."
+            fi
+            ;;
+
         "update")
             if confirm; then
-            /usr/bin/distrobox-upgrade -v --all
+                /usr/bin/distrobox-upgrade -v --all
             else
-            echo "Action canceled."
+                echo "Action canceled."
             fi
             ;;
 
@@ -162,7 +197,7 @@ zen() {
                 echo "y" | /usr/bin/distrobox-stop debian
                 echo "y" | /usr/bin/distrobox-stop fedora
             else
-            echo "Action canceled."
+                echo "Action canceled."
             fi    
             ;;
 

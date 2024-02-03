@@ -42,9 +42,6 @@ make help
 
 #### Note Important:
 
-I have custom functions for apt, dnf, paru under ~/.config/zsh/distrobox-alias.zsh . It will automatically source it incase it finds the distrobox binary on the OS. 
-If you use distrobox, please don't forget to remove the block of code which sources that file. 
-
 Support for Arm64 is in the roadmap
 
 This script will install files from 
