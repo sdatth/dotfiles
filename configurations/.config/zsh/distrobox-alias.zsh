@@ -4,7 +4,7 @@ apt(){
     case $1 in
         "install")
             shift 
-            /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt install $@"
+            /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt install $*"
             ;;
         "search")
             shift 
@@ -12,7 +12,7 @@ apt(){
             ;;    
         "remove")
             shift 
-            /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt remove --purge $@"
+            /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt remove --purge $*"
             ;;
         "update")
             shift
@@ -50,7 +50,7 @@ dnf(){
     case $1 in
         "install")
             shift 
-            /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf install $@"
+            /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf install $*"
             ;;
         "search")
             shift 
@@ -58,7 +58,7 @@ dnf(){
             ;;    
         "remove")
             shift 
-            /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf remove $@"
+            /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf remove $*"
             ;;
         "update")
             /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf update"
@@ -95,7 +95,7 @@ paru(){
     case $1 in
         "-S")
             shift 
-            /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -S $@"
+            /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -S $*"
             ;;
         "-Ss")
             shift 
@@ -103,7 +103,7 @@ paru(){
             ;;    
         "-Rs")
             shift 
-            /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Rs $@"
+            /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Rs $*"
             ;;
         "-Syu")
             /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Syu"
