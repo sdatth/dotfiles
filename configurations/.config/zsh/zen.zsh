@@ -33,7 +33,7 @@ zen() {
                     ;;
                 "update")
                     shift
-                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt update"
+                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt update && /usr/bin/sudo /usr/bin/apt upgrade"
                     ;;    
                 "autoremove")
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt autoremove"
@@ -282,6 +282,11 @@ zen() {
                 echo "Action canceled."
             fi
             ;;
+
+        "enter")
+            shift
+            /usr/bin/distrobox enter $1
+            ;;    
 
         "stop")
             if confirm; then
