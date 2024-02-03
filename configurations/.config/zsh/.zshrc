@@ -70,6 +70,11 @@ if which doas > /dev/null 2>&1; then
     source "$ZDOTDIR/alias.zsh"
 fi
 
+# source distrobox funtions
+if which distrobox > /dev/null 2>&1; then
+source "$ZDOTDIR/distrobox-alias.zsh"
+fi
+
 ### fzf
 # arch
 [[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
