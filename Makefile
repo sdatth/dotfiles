@@ -8,8 +8,8 @@
 
 SHELL = /usr/bin/bash
 
-PKGS = gcc git fzf bat glow eza fd starship btop stow
-PKGS += neovim vim ranger zsh tmux ncdu unzip screen
+PKGS = gcc git fzf bat neovim zsh vim glow eza fd starship btop stow
+EXTRAPKGS = ranger tmux ncdu unzip screen
 
 FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
 DEVPKGS = go rust python@3.12
@@ -58,7 +58,7 @@ rhel-dep: # Install doas on RHEl based distros
 arch-dep: ##Install arch packages from standard repo
 	@echo
 	echo "Installing ARCH packages"
-	sudo pacman -S --noconfirm $(PKGS) $(ARCHDEV)
+	sudo pacman -S --noconfirm $(PKGS) $(EXTRAPKGS) $(ARCHDEV)
 
 deb-dep: # Install doas on Debian based distros
 	@echo
