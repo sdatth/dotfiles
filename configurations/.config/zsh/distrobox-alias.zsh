@@ -136,7 +136,7 @@ paru(){
 
 # apex
 
-apex() {
+zen() {
 
     # Function to display a confirmation prompt
     confirm() {
