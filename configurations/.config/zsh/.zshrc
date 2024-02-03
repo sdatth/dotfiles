@@ -20,6 +20,11 @@ export GPG_TTY=$(tty)
 # custom bin path
 export PATH=$PATH:$HOME/.bin
 
+# ~/.local/bin path
+if [ -d $HOME/.local/bin ] ; then
+    export PATH=$PATH:$HOME/.local/bin
+fi    
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -81,9 +86,7 @@ fi
 [[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
 # brew
-if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
-fi
+[[ -d /home/linuxbrew/.linuxbrew/opt/fzf/ ]] && export PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh"
 [[ -s /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
 

@@ -43,12 +43,24 @@ zen() {
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  /usr/bin/$1
                     ;;
                 "export")
-                    shift 
-                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
+                    fi        
                     ;;
                 "delete")
-                    shift 
-                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
+                    fi        
                     ;;    
                 "raw")
                     shift
@@ -87,12 +99,24 @@ zen() {
                     /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  /usr/bin/$1
                     ;;  
                 "export")
-                    shift 
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
+                    fi        
                     ;;
                 "delete")
-                    shift 
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
+                    fi        
                     ;;    
                 "raw")
                     shift
@@ -131,12 +155,24 @@ zen() {
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  /usr/bin/$1
                     ;;       
                 "export")
-                    shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
+                    fi        
                     ;;
                 "delete")
-                    shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
+                    fi        
                     ;;    
                 "raw")
                     shift
@@ -175,13 +211,25 @@ zen() {
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  /usr/bin/$1
                     ;;       
                 "export")
-                    shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
+                    fi        
                     ;;
                 "delete")
-                    shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
-                    ;;    
+                    shift
+                    if [[ "$1" = "-a" ]] ; then 
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    elif [[ "$1" = "-b" ]] ; then
+                        shift
+                        /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
+                    fi        
+                    ;;   
                 "raw")
                     shift
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "$*"
