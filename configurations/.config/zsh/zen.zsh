@@ -289,13 +289,37 @@ zen() {
             ;;    
 
         "stop")
-            if confirm; then
-                echo "y" | /usr/bin/distrobox-stop arch
-                echo "y" | /usr/bin/distrobox-stop debian
-                echo "y" | /usr/bin/distrobox-stop fedora
+            shift
+            if [[ "$1" = "all" ]] ; then
+                if confirm; then
+                    echo "y" | /usr/bin/distrobox-stop arch
+                    echo "y" | /usr/bin/distrobox-stop debian
+                    echo "y" | /usr/bin/distrobox-stop fedora
+                else
+                    echo "Action canceled."
+                fi
             else
-                echo "Action canceled."
-            fi    
+                /usr/bin/distrobox-stop $1
+            fi
+            ;;
+
+        "start")
+            shift
+            if [[ "$1" = "all" ]] ; then
+                if confirm; then
+                    /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Started Debian Container\n'"
+                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo -e 'Started Fedora Container\n'"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo -e 'Started Arch Container\n'" 
+                else
+                    echo "Action canceled."
+                fi
+            else
+                /usr/bin/distrobox-enter  -n $1 -- /bin/sh -l -c  "echo 'Started $1 container'"
+            fi
+            ;;
+
+        "list")
+                /usr/bin/distrobox list
             ;;
 
         *)
