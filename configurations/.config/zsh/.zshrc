@@ -72,7 +72,7 @@ fi
 
 # source distrobox funtions
 if which distrobox > /dev/null 2>&1; then
-source "$ZDOTDIR/distrobox-alias.zsh"
+    source "$ZDOTDIR/distrobox-alias.zsh"
 fi
 
 ### fzf
