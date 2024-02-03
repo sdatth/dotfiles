@@ -104,27 +104,27 @@ zen() {
             esac 
             ;;
 
-        "-aur")
+        "-paru")
             shift
               
               case $1 in
                 "install")
                     shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/paru -S $*"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -S $*"
                     ;;
                 "search")
                     shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/paru -Ss $1"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -Ss $1"
                     ;;    
                 "remove")
                     shift 
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/paru -Rns $*"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -Rns $*"
                     ;;
                 "update")
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/paru -Syu"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -Syu"
                     ;;    
                 "clean")
-                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/paru -Scc"
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -Scc"
                     ;;    
                 "run")
                     shift
@@ -147,6 +147,50 @@ zen() {
                     ;;    
             esac 
             ;;
+
+        "-pac")
+            shift
+              
+              case $1 in
+                "install")
+                    shift 
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -S $*"
+                    ;;
+                "search")
+                    shift 
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Ss $1"
+                    ;;    
+                "remove")
+                    shift 
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Rs $*"
+                    ;;
+                "update")
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Syu"
+                    ;;    
+                "clean")
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -Scc"
+                    ;;    
+                "run")
+                    shift
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  /usr/bin/$1
+                    ;;       
+                "export")
+                    shift 
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                    ;;
+                "delete")
+                    shift 
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                    ;;    
+                "raw")
+                    shift
+                    /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "$*"
+                    ;;
+                *)
+                    echo "Please enter a valid pacman or paru command"
+                    ;;    
+            esac 
+            ;;    
         
         "init")
             shift
