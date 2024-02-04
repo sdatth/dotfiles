@@ -41,7 +41,7 @@ zen() {
         echo "  zen [command]"
         echo ""
         echo "Available Commands:"
-        echo "  init        Initialize three containers debian, fedora, arch."
+        echo "  init        Initialize three containers debian, rocky, arch."
         echo "  update      Update all or a single container."
         echo "  enter       Enter specified container."
         echo "  start       Start all or a single container."
@@ -139,49 +139,49 @@ zen() {
                     ;;
                 "install")
                     shift 
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf install $*"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf install $*"
                     ;;
                 "search")
                     shift 
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf search $1"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf search $1"
                     ;;    
                 "remove")
                     shift 
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf remove $*"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf remove $*"
                     ;;
                 "update")
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf update"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf update"
                     ;;    
                 "clean")
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf clean packages"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf clean packages"
                     ;;    
                 "run")
                     shift
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  /usr/bin/$1
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  /usr/bin/$1
                     ;;  
                 "export")
                     shift
                     if [[ "$1" = "-a" ]] ; then 
                         shift
-                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
+                        /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1"
                     elif [[ "$1" = "-b" ]] ; then
                         shift
-                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
+                        /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin"
                     fi        
                     ;;
                 "delete")
                     shift
                     if [[ "$1" = "-a" ]] ; then 
                         shift
-                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
+                        /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/distrobox-export --app $1 --delete"
                     elif [[ "$1" = "-b" ]] ; then
                         shift
-                        /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
+                        /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "/usr/bin/distrobox-export --bin /usr/bin/$1 --export-path $HOME/.local/bin --delete"
                     fi        
                     ;;    
                 "raw")
                     shift
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "$*"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "$*"
                     ;;
                 *)
                     echo "Please enter a valid dnf command"
@@ -316,13 +316,13 @@ zen() {
                     /usr/bin/distrobox-create --nvidia -n debian --image docker.io/library/debian:12
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Hello world'"
 
-                    #arch
+                    # arch
                     /usr/bin/distrobox-create --nvidia -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
 
-                    # fedora
-                    /usr/bin/distrobox-create --nvidia -n fedora
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo 'Hello world'"
+                    # rocky
+                    /usr/bin/distrobox-create --nvidia -n rocky --image quay.io/rockylinux/rockylinux:9
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "echo 'Hello world'"
                 else
                     echo "nvidia not selected"
                     # debian
@@ -333,9 +333,9 @@ zen() {
                     /usr/bin/distrobox-create -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
 
-                    # fedora
-                    /usr/bin/distrobox-create -n fedora
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo 'Hello world'"
+                    # rocky
+                    /usr/bin/distrobox-create -n rocky --image quay.io/rockylinux/rockylinux:9
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "echo 'Hello world'"
                 fi
             else
                 echo "Action canceled."
@@ -361,7 +361,7 @@ zen() {
                 if confirm; then
                     echo "y" | /usr/bin/distrobox-stop arch
                     echo "y" | /usr/bin/distrobox-stop debian
-                    echo "y" | /usr/bin/distrobox-stop fedora
+                    echo "y" | /usr/bin/distrobox-stop rocky
                 else
                     echo "Action canceled."
                 fi
@@ -375,7 +375,7 @@ zen() {
             if [[ "$1" = "--all" || "$1" = "-a" ]] ; then
                 if confirm; then
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Started Debian Container\n'"
-                    /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo -e 'Started Fedora Container\n'"
+                    /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "echo -e 'Started Rocky Container\n'"
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo -e 'Started Arch Container\n'" 
                 else
                     echo "Action canceled."
