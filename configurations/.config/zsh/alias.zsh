@@ -125,6 +125,7 @@ alias k='kubectl'
 # complete -f __start_kubectl k
 
 # others
+alias libnet='doas virsh net-start default'
 alias sourcez='source $HOME/.zshrc'
 alias sudo='doas'
 alias gt='gpg2 --card-status'

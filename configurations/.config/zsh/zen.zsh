@@ -2,6 +2,61 @@
 
 zen() {
 
+    # Define the help function
+    sub_help() {
+        echo "Work with the specified container, accessing the package manager and environment."
+        echo ""
+        echo "Usage:"
+        echo "  zen [--package_manager] [command]"
+        echo ""
+        echo "Available Commands:"
+        echo "  autoremove  Remove packages that are no longer required."
+        echo "  clean       Clean the package manager's cache."
+        #echo "  enter       Enter the container's environment."
+        echo "  export      Export an application or binary from the subsystem."
+        echo "  install     Install the specified package."
+        #echo "  list        List all installed packages."
+        echo "  remove      Remove the specified packages."
+        echo "  run         Run specific command on the container."
+        echo "  raw         Run raw commands on the container."
+        echo "  search      Search for packages matching the specified query."
+        #echo "  show        Show information about the specified package."
+        #echo "  start       container.start.description"
+        #echo "  stop        container.stop.description"
+        echo "  delete      Unexport an application or binary from the container."
+        echo "  update      Update the package cache and upgrade all the packages."
+        echo ""
+        echo "Flags:"
+        echo "  -h, --help   Show help for the specified subsystem."
+        echo "  -a, --app    Export a GUI application."
+        echo "  -b, --bin    Export a binary."
+        echo ""
+        #echo "Use 'zen [container] [command] --help' for more information about a command."
+    }
+
+    top_help() { # init, update , enter , start ,stop , list
+        echo "Work with the specified container, accessing the package manager and environment."
+        echo ""
+        echo "Usage:"
+        echo "  zen [command]"
+        echo ""
+        echo "Available Commands:"
+        echo "  init        Initialize three containers debian, fedora, arch."
+        echo "  update      Update all or a single container."
+        echo "  enter       Enter specified container."
+        echo "  start       Start all or a single container."
+        echo "  stop        Stop all or a single container."
+        echo "  list        List all containers."
+        echo ""
+        echo "Flags:"
+        echo "  -a, --all    All containers are used."
+        echo "  -h, --help   Show help."
+        echo ""
+        echo "Use 'zen [--package_manager] --help' for more information under container level."
+        echo "Available package managers - ' --apt , --dnf , --paru , --pac '"
+
+    }
+
     # Function to display a confirmation prompt
     confirm() {
     echo "Are you sure you want to proceed? (y/n) \c"
@@ -19,6 +74,9 @@ zen() {
             shift
             
             case $1 in
+                "--help" | "-h")
+                    sub_help
+                    ;;
                 "install")
                     shift 
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/apt install $*"
@@ -76,6 +134,9 @@ zen() {
             shift
              
              case $1 in
+                "--help" | "-h")
+                    sub_help
+                    ;;
                 "install")
                     shift 
                     /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/dnf install $*"
@@ -132,6 +193,9 @@ zen() {
             shift
               
               case $1 in
+                "--help" | "-h")
+                    sub_help
+                    ;;
                 "install")
                     shift 
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/paru -S $*"
@@ -188,6 +252,9 @@ zen() {
             shift
               
               case $1 in
+                "--help" | "-h")
+                    sub_help
+                    ;;
                 "install")
                     shift 
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "/usr/bin/sudo /usr/bin/pacman -S $*"
@@ -321,7 +388,11 @@ zen() {
         "list")
             /usr/bin/distrobox list
             ;;
-
+        
+        "--help" | "-h")
+            top_help
+            ;;
+        
         *)
             echo "Please specify a valid package manager: --apt, --dnf, --paru or --pac"
             ;;
