@@ -15,7 +15,7 @@ zen() {
 
     case $1 in
         
-        "-apt")
+        "--apt")
             shift
             
             case $1 in
@@ -72,7 +72,7 @@ zen() {
             esac                    
             ;;
 
-        "-dnf")
+        "--dnf")
             shift
              
              case $1 in
@@ -128,7 +128,7 @@ zen() {
             esac 
             ;;
 
-        "-paru")
+        "--paru")
             shift
               
               case $1 in
@@ -184,7 +184,7 @@ zen() {
             esac 
             ;;
 
-        "-pac")
+        "--pac")
             shift
               
               case $1 in
@@ -290,7 +290,7 @@ zen() {
 
         "stop")
             shift
-            if [[ "$1" = "all" ]] ; then
+            if [[ "$1" = "--all" || "$1" = "-a" ]] ; then
                 if confirm; then
                     echo "y" | /usr/bin/distrobox-stop arch
                     echo "y" | /usr/bin/distrobox-stop debian
@@ -305,7 +305,7 @@ zen() {
 
         "start")
             shift
-            if [[ "$1" = "all" ]] ; then
+            if [[ "$1" = "--all" || "$1" = "-a" ]] ; then
                 if confirm; then
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Started Debian Container\n'"
                     /usr/bin/distrobox-enter  -n fedora -- /bin/sh -l -c  "echo -e 'Started Fedora Container\n'"
@@ -323,7 +323,7 @@ zen() {
             ;;
 
         *)
-            echo "Please specify a valid package manager: -apt, -dnf, -paru or -pac"
+            echo "Please specify a valid package manager: --apt, --dnf, --paru or --pac"
             ;;
     esac
 }

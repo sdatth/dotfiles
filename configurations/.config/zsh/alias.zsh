@@ -125,6 +125,7 @@ alias k='kubectl'
 # complete -f __start_kubectl k
 
 # others
+alias sourcez='source $HOME/.zshrc'
 alias sudo='doas'
 alias gt='gpg2 --card-status'
 alias sa='ssh-add ~/.ssh/id_ed25519'
