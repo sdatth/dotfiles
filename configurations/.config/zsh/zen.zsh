@@ -310,31 +310,34 @@ zen() {
         "init")
             shift
             if confirm; then
+            [ -d "$HOME/box" ] && echo "Box dir exists" && return
+            [ ! -d "$HOME/box" ] && mkdir -p $HOME/box/debian $HOME/box/arch $HOME/box/rocky 
+
                 if [[ "$1" = "--nvidia" ]] ; then
                     echo "nvidia selected"
                     # debian
-                    /usr/bin/distrobox-create --nvidia -n debian --image docker.io/library/debian:12
+                    /usr/bin/distrobox-create --nvidia -n debian --image docker.io/library/debian:12 --home $HOME/box/debian
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Hello world'"
 
                     # arch
-                    /usr/bin/distrobox-create --nvidia -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
+                    /usr/bin/distrobox-create --nvidia -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest --home $HOME/box/arch
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
 
                     # rocky
-                    /usr/bin/distrobox-create --nvidia -n rocky --image quay.io/rockylinux/rockylinux:9
+                    /usr/bin/distrobox-create --nvidia -n rocky --image quay.io/rockylinux/rockylinux:9 --home $HOME/box/rocky
                     /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "echo 'Hello world'"
                 else
                     echo "nvidia not selected"
                     # debian
-                    /usr/bin/distrobox-create -n debian --image docker.io/library/debian:12
+                    /usr/bin/distrobox-create -n debian --image docker.io/library/debian:12 --home $HOME/box/debian
                     /usr/bin/distrobox-enter  -n debian -- /bin/sh -l -c  "echo 'Hello world'"
 
                     # arch
-                    /usr/bin/distrobox-create -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest
+                    /usr/bin/distrobox-create -n arch --image quay.io/toolbx-images/archlinux-toolbox:latest --home $HOME/box/arch
                     /usr/bin/distrobox-enter  -n arch -- /bin/sh -l -c  "echo 'Hello world'"
 
                     # rocky
-                    /usr/bin/distrobox-create -n rocky --image quay.io/rockylinux/rockylinux:9
+                    /usr/bin/distrobox-create -n rocky --image quay.io/rockylinux/rockylinux:9 --home $HOME/box/rocky
                     /usr/bin/distrobox-enter  -n rocky -- /bin/sh -l -c  "echo 'Hello world'"
                 fi
             else
