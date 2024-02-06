@@ -25,6 +25,9 @@ if [ -d $HOME/.local/bin ] ; then
     export PATH=$PATH:$HOME/.local/bin
 fi    
 
+# colour theme to work inside screen
+export TERM=xterm-256color
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments

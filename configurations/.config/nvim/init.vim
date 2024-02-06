@@ -11,6 +11,7 @@
 " dependencies
 " vim plug needs to be installed , follow this guide -> "https://github.com/junegunn/vim-plug" 
 " vim-gtk package needs to be installed to enable copy-paste functionality to sys clipboard
+" xclip should be installed for copy paste functionality in neovim
 
 " to set the editor to not to act like the old version of vi
 set nocompatible
@@ -32,6 +33,7 @@ set showcmd
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set clipboard+=unnamedplus
 
 " checks to see whether screen supports true color
 "if (has("termguicolors"))
