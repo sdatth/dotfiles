@@ -13,7 +13,7 @@ EXTRAPKGS = ranger tmux ncdu unzip screen
 
 FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
 DEVPKGS = go rust python@3.12
-ARCHDEV = base-devel go rust python opendoas
+ARCHDEV = base-devel go rust python opendoas xclip
 
 .ONESHELL:
 help: ## Show available options
