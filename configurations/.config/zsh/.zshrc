@@ -101,9 +101,6 @@ fi
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-# autocomplete
-[[ -s $HOME/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]] && source $HOME/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
