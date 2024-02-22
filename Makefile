@@ -8,8 +8,8 @@
 
 SHELL = /bin/bash
 
-PKGS = ansible autojump bat borgbackup btop cmatrix cowsay eza exiftool fd figlet fish fortune
-PKGS += fzf gh git git-secret glow gnupg k3d kubernetes-cli lazygit lolcat magic-wormhole make muttncdu 
+PKGS = ansible autojump bat borgbackup btop cmatrix cowsay exa exiftool fd figlet fish
+PKGS += fzf gh git git-secret glow gnupg lolcat magic-wormhole make zoxide 
 PKGS += neofetch neovim pass pinentry-mac ranger rclone rsync starship stow syncthing terraform tmux vim 
 PKGS += wireguard-tools zsh zsh-autosuggestions zsh-syntax-highlighting
 

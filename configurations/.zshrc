@@ -66,8 +66,8 @@ source "$ZDOTDIR/alias.zsh"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
 # brew paths
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -84,6 +84,12 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E .tldrc -E iterm2 -E
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
-eval "$(starship init zsh)"
+if which zoxide > /dev/null 2>&1; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 
-source /Users/datthu/.docker/init-zsh.sh || true # Added by Docker Desktop
+if which starship > /dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
+
+
