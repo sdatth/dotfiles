@@ -132,7 +132,14 @@ fi
 # source brew bin
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# start zoxide
+if which zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd bash)"
+fi
+
 # start starship
 if which starship > /dev/null 2>&1; then
     eval "$(starship init bash)"
 fi
+
+

@@ -8,7 +8,7 @@
 
 SHELL = /usr/bin/bash
 
-PKGS = gcc git fzf bat neovim zsh vim glow eza fd starship btop stow
+PKGS = gcc git fzf bat neovim zsh vim glow eza fd starship btop stow zoxide
 EXTRAPKGS = ranger tmux ncdu unzip screen
 
 FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas

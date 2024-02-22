@@ -38,12 +38,12 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-autoload -Uz compinit
-zstyle ':completion:*' menu select
+#autoload -Uz compinit
+#zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
-zmodload zsh/complist
+#zmodload zsh/complist
 # compinit
-_comp_options+=(globdots)		# Include hidden files.
+#_comp_options+=(globdots)		# Include hidden files.
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -101,10 +101,14 @@ fi
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
+# autocomplete
+[[ -s $HOME/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]] && source $HOME/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "marlonrichert/zsh-autocomplete"
 
 # bind key 
 bindkey '^[[A' history-substring-search-up
@@ -121,6 +125,11 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # source brew bin
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# start zoxide
+if which zoxide > /dev/null 2>&1; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # start starship
 if which starship > /dev/null 2>&1; then
