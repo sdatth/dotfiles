@@ -6,14 +6,14 @@
 #    
 # source - https://github.com/sdatth/dotfiles
 
+
+# invoke tmux when terminal is launched
 #if command -v tmux &> /dev/null && [ -n "$ps1" ] && [[ ! "$term" =~ screen ]] && [[ ! "$term" =~ tmux ]] && [ -z "$tmux" ]; then
 #  tmux -u
 #fi
 
-#if [ -z $TMUX ]; then; tmux; fi
-
+# zsh home dir
 export ZDOTDIR=$HOME/.config/zsh
-#export GPG_TTY=$(tty)
  
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
@@ -58,8 +58,8 @@ bindkey "^?" backward-delete-char
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
-#source "$ZDOTDIR/autojump.sh"
 source "$ZDOTDIR/alias.zsh"
+
 # Plugins
 #zsh_add_plugin "zsh-users/zsh-autosuggestions"
 #zsh_add_plugin "zsh-users/zsh-syntax-highlighting"

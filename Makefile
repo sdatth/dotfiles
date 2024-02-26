@@ -8,12 +8,15 @@
 
 SHELL = /bin/bash
 
-PKGS = ansible autojump bat borgbackup btop cmatrix cowsay exa exiftool fd figlet fish
-PKGS += fzf gh git git-secret glow gnupg lolcat magic-wormhole make zoxide 
-PKGS += neofetch neovim pass pinentry-mac ranger rclone rsync starship stow syncthing terraform tmux vim 
-PKGS += wireguard-tools zsh zsh-autosuggestions zsh-syntax-highlighting
+DPKGS = bat zsh stow glow eza fzf zsh-autosuggestions zsh-syntax-highlighting git make zoxide pinentry-mac
+DPKGS += starship autojump fd vim neovim
 
-GPKGS = alacritty iterm2 macfuse obsidian qbittorrent utm vlc
+EPKGS = ansible borgbackup btop cmatrix cowsay exiftool figlet fish
+EPKGS += gh git-secret gnupg lolcat magic-wormhole wireguard-tools
+EPKGS += neofetch pass rclone rsync syncthing terraform tmux
+
+GPKGS = alacritty keepassxc	trezor-suite vlc zed gimp macfuse onlyoffice spotify utm warp zoom iterm2
+GPKGS += qbittorrent tor-browser visual-studio-code wireshark nextcloud
 
 .ONESHELL:
 help: ## Show available options
@@ -28,7 +31,21 @@ brew: ## Install brew package manager
 	bash extra/brew-install.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
-	brew install $(PKGS)
+	for item in $(DPKGS); do \
+		brew install $$item ; \
+	done
+
+extra-packages: ## Install additional packages
+	@echo "Installing GUI packages "
+	source $(HOME)/.profile
+	echo "Installing additional packages"
+	for item in $(EPKGS); do \
+		brew install $$item ; \
+	done
+	echo "Installing GUI packages"
+	for item in $(GPKGS); do \
+		brew install $$item ; \
+	done	
 
 nix: ## Install nix package manager on mac
 	@echo
@@ -85,7 +102,7 @@ nerdfonts: ## Install nerd fonts
 	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/ 
 	echo done!
 
-symlink: delete nvimplug
+symlink: delete
 	@echo 
 	echo "Symlinking configuration files " | cowsay | lolcat
 	cd $(HOME)/dotfiles/

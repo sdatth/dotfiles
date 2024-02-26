@@ -18,9 +18,9 @@ alias bgc='brew cleanup && brew autoremove'
 alias bl='brew leaves'
 alias bi='brew install'
 alias br='brew uninstall'
-alias bcl='brew list --cask'
-alias bci='brew install --cask'
-alias bcr='brew uninstall --cask'
+alias blc='brew list --cask'
+alias bic='brew install --cask'
+alias brc='brew uninstall --cask'
 
 # screen
 alias ss='screen -S'
@@ -29,7 +29,7 @@ alias sl='screen -ls'
 
 # rclone sec
 alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" ' 
-alias revfiles='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
+alias revstuff='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
 
 # text editors
 alias v='vim'
@@ -38,15 +38,8 @@ alias vimrc='vim ~/.vimrc'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias zshrc='nvim ~/.zshrc'
 alias bashrc='nvim ~/.bashrc'
-alias fishrc='nvim ~/.config/fish/config.fish'
 
-# vagrant sec
-alias vu='vagrant up'
-alias vh='vagrant halt'
-alias vd='vagrant destroy'
-alias vs='vagrant ssh'
-
-# exa
+# eza
 alias ls='eza --color=always --group-directories-first'
 alias la='eza -a --color=always --group-directories-first' 
 alias ll='eza -al --color=always --group-directories-first'
@@ -79,12 +72,7 @@ alias k='kubectl'
 alias sshadd='ssh-add ~/.ssh/id_ed25519'
 alias gt='gpg2 --card-status'
 alias yt='ykman list'
-alias yd='youtube-dl'
-alias btop='bpytop'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
-alias dc='docker'
-alias wu='sudo wg-quick up wg0'
-alias wd='sudo wg-quick down wg0'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 alias clearclip="xsel -bc"
 
