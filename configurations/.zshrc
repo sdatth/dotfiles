@@ -66,10 +66,16 @@ source "$ZDOTDIR/alias.zsh"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
 # brew paths
-[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -s $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -s $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# fzf
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+[ -s /opt/homebrew/opt/fzf/shell/completion.zsh ] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+[ -s /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 # bind key 
 bindkey '^[[A' history-substring-search-up

@@ -109,12 +109,16 @@ if ! shopt -oq posix; then
 fi
 
 # source alias file
-if which doas > /dev/null 2>&1; then
+if which eza > /dev/null 2>&1; then
     source $HOME/.config/zsh/alias.zsh
 fi 
 
-# fzf completions
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# fzf
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+[ -s /opt/homebrew/opt/fzf/shell/completion.bash ] && source "/opt/homebrew/opt/fzf/shell/completion.bash" 2> /dev/null
+[ -s /opt/homebrew/opt/fzf/shell/key-bindings.bash ] && source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
 
 # zoxide
 if which zoxide > /dev/null 2>&1; then
