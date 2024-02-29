@@ -65,7 +65,7 @@ noremap <leader>f :bd<CR>
 noremap <leader>s :source%<CR> 
 
 " to invoke fzf finder {use Ctrl+t to open the file in a new tab}
-noremap <leader>; :Files ~/stuff/<CR>
+noremap <leader>; :Files ~/<CR>
 noremap <leader>d :Files ~/dotfiles/<CR>
 
 " to invoke nerdtree {use shift+t to open the file in a new tab}
