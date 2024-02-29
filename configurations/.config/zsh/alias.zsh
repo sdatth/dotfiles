@@ -21,6 +21,7 @@ alias br='brew uninstall'
 alias blc='brew list --cask'
 alias bic='brew install --cask'
 alias brc='brew uninstall --cask'
+alias buc='brew upgrade --cask $(brew list --cask)'
 
 # screen
 alias ss='screen -S'
@@ -75,7 +76,7 @@ alias yt='ykman list'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 alias clearclip="xsel -bc"
-
+alias sourcez='source ~/.zshrc'
 # custom functions
 ## ex - archive extractor
 ## usage: ex <file>
