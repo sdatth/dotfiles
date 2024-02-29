@@ -11,7 +11,7 @@ alias pi='python3 -m pip install --user --no-cache-dir'
 alias pu='python3 -m pip install --user -u'
 alias pre='python3 -m pip uninstall'
 
-# brew 
+# brew
 alias bu='brew update'
 alias bU='brew upgrade'
 alias bgc='brew cleanup && brew autoremove'
@@ -22,6 +22,7 @@ alias blc='brew list --cask'
 alias bic='brew install --cask'
 alias brc='brew uninstall --cask'
 alias buc='brew upgrade --cask $(brew list --cask)'
+alias boc='brew outdated --cask --greedy --verbose'
 
 # screen
 alias ss='screen -S'
@@ -29,7 +30,7 @@ alias sr='screen -r'
 alias sl='screen -ls'
 
 # rclone sec
-alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" ' 
+alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" '
 alias revstuff='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
 
 # text editors
@@ -42,7 +43,7 @@ alias bashrc='nvim ~/.bashrc'
 
 # eza
 alias ls='eza --color=always --group-directories-first'
-alias la='eza -a --color=always --group-directories-first' 
+alias la='eza -a --color=always --group-directories-first'
 alias ll='eza -al --color=always --group-directories-first'
 alias l.='eza -a | egrep "^\."'
 
@@ -105,7 +106,7 @@ ex ()
 
 # render markdown files using glow with less as pager
 md(){
-    glow "$@" -s dark | less -r 
+    glow "$@" -s dark | less -r
 }
 
 # invoke fetch master 6000
