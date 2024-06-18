@@ -14,7 +14,10 @@
 
 # zsh home dir
 export ZDOTDIR=$HOME/.config/zsh
- 
+
+# adding .local/bin path
+export PATH=$PATH:/$HOME/.local/bin
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -59,6 +62,7 @@ bindkey "^?" backward-delete-char
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 source "$ZDOTDIR/alias.zsh"
+source "$ZDOTDIR/fabric.zsh"
 
 # Plugins
 #zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -84,6 +88,10 @@ bindkey '^[[B' history-substring-search-down
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export BAT_PAGER="less -R"
 
+# start fabirc ai
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
+
 # fzf configs
 export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview'"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E .tldrc -E iterm2 -E joplin-desktop -E cache -E .kube -E .cache -E Library -E Applications -E .tsh -E Movies -E Pictures -E borg -E Music -E .zsh_sessions -E .vscode-server -E libreoffice -E .nix-defexpr -E.nix-profile -E plugins -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d -E vagrant  "
@@ -97,5 +105,4 @@ fi
 if which starship > /dev/null 2>&1; then
     eval "$(starship init zsh)"
 fi
-
 

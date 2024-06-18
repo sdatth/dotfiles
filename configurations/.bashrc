@@ -113,6 +113,9 @@ if which eza > /dev/null 2>&1; then
     source $HOME/.config/zsh/alias.zsh
 fi 
 
+# start fabric
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
+
 # fzf
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
@@ -129,4 +132,3 @@ fi
 if which starship > /dev/null 2>&1; then
     eval "$(starship init bash)"
 fi
-
