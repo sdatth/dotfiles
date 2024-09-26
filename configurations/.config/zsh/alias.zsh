@@ -31,6 +31,8 @@ alias sl='screen -ls'
 
 # rclone sec
 alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" '
+alias rnext='rclone sync -P ~/Nextcloud/ drivec:/nextcloud/ --exclude ".DS_Store" '
+alias rlab='rclone sync -P ~/usf/homelab drivec:/homelab/ --exclude ".DS_Store" '
 alias revstuff='echo "syncing to localhost" | cowsay -f tux && rclone sync -p drivec:/stuff/ ~/Stuff/ '
 
 # text editors

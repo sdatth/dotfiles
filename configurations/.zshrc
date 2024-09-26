@@ -16,7 +16,7 @@
 export ZDOTDIR=$HOME/.config/zsh
 
 # adding .local/bin path
-export PATH=$PATH:/$HOME/.local/bin
+export PATH="$PATH:/$HOME/.local/bin:/Applications/Docker.app/Contents/Resources/bin/"
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
