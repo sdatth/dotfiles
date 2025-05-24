@@ -40,7 +40,7 @@ echo "🐧 OS Distribution: $DISTRO ($DISTRO_ID)"
 # 🎯 Print distro family message
 echo
 case "$DISTRO_ID" in
-  rhel | centos | fedora | rocky | alma)
+  rhel | centos | fedora | rocky | alma | almalinux)
     echo "🔴 RHEL-based distribution detected."
     ;;
   debian | ubuntu | linuxmint | pop)
@@ -67,7 +67,7 @@ install_make() {
     ubuntu | debian | linuxmint | pop)
       sudo apt update && sudo apt install -y build-essential doas git
       ;;
-    rhel | centos | rocky | alma)
+    rhel | centos | rocky | alma | almalinux)
       sudo yum groupinstall -y "Development Tools"
       sudo yum install doas git
       ;;
@@ -143,7 +143,7 @@ fi
 echo
 cd $HOME/dotfiles
 case "$DISTRO_ID" in
-  rhel | centos | fedora | rocky | alma)
+  rhel | centos | fedora | rocky | alma | almalinux)
     echo "🔴 RHEL-based distribution detected."
     make rhel
     ;;
