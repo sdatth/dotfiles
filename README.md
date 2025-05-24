@@ -2,7 +2,13 @@
 
 ![machfiles image](./extra/ss.png)
 
-## Installing
+## One line Installation
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/sdatth/dotfiles/refs/heads/main/script.sh)
+```
+
+## Manual Installation
 
 !!! Note: We have a separate branch for mac install. Please check that out for macOS.
 !!! You will need `make` package
