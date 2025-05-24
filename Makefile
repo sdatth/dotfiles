@@ -103,7 +103,7 @@ dev: ## Optionally install development packages
 
 delete: ## Delete old config files
 	@echo
-	read -p "Warning this will delete old files if present [y|n]: " choice
+	read -p "Warning this will delete old configuration files if present [y|n]: " choice
 	if [ $$choice == "y" ]; then
 		echo "removing old files and dirs"
 		[ -d "$(HOME)/.config/nvim" ] && rm -rf $(HOME)/.config/nvim
@@ -145,7 +145,7 @@ nvimplug: ## Install plug for neovim
 
 nerdfonts: ## Install nerd fonts
 	@echo
-	echo "nerd fonts"
+	echo "Installing nerd fonts"
 	mkdir -p $(HOME)/.local/share/fonts/firacode
 	mkdir -p $(HOME)/.local/share/fonts/hack
 	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/
