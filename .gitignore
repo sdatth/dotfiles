@@ -4,3 +4,4 @@ plugins/
 .vscode/
 .DS_Store
 .zcompdump
+__pycache__/
