@@ -5,6 +5,7 @@
 ## Installing
 
 !!! Note: We have a separate branch for mac install. Please check that out for macOS.
+!!! You will need `make` package
 
 Clone into your `$HOME` directory or `~`
 
@@ -14,9 +15,13 @@ git clone https://github.com/sdatth/dotfiles.git $HOME/
 git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
 ```
 
-### For Linux Distros
+### Choose your package manager
 
-You will need `make` 
+(Note : Arm64 only has compatibility with nix)
+
+make [brew|nix]
+
+### For Linux Distros
 
 Run the command to install necessary packages and get my config files for your linux distribution
 ```bash
@@ -25,7 +30,7 @@ make [arch|debian|ubuntu|rhel]
 
 ### For FreeBSD
 
-You will need `gmake` 
+You will need `gmake`
 
 Run the command to install necessary packages and get my config files for FreeBSD
 ```bash
@@ -42,9 +47,7 @@ make help
 
 #### Note Important:
 
-Support for Arm64 is in the roadmap
-
-This script will install files from 
+This script will install files from
 - zsh-autosuggestions plugin          : https://github.com/zsh-users/zsh-autosuggestions
 - zsh-syntax-highlighting plugin      : https://github.com/zsh-users/zsh-syntax-highlighting
 - zsh-history-substring-search plugin : https://github.com/zsh-users/zsh-history-substring-search

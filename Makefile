@@ -21,17 +21,17 @@ help: ## Show available options
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install: brew nerdfonts symlink clean note ## Symlink config files
+config: nerdfonts symlink clean note ## Symlink config files
 
 arch : arch-dep nerdfonts symlink clean note ## Install on Arc
 
-debian: deb-dep install ## Install on Debian based distros
+debian: deb-dep config ## Install on Debian based distros
 
-ubuntu: ubuntu-dep install ## Install on Ubuntu based distros
+ubuntu: ubuntu-dep config ## Install on Ubuntu based distros
 
 freebsd: freebsd-dep nerdfonts symlink clean note ## Install on FreeBSD
 
-rhel: rhel-dep install ## Install on rhel based distros
+rhel: rhel-dep config ## Install on rhel based distros
 
 freebsd-dep: # Install doas on FreeBSD
 	@echo
@@ -40,12 +40,12 @@ freebsd-dep: # Install doas on FreeBSD
 	sudo pkg install $(FREEBSDPKGS)
 	echo
 
-rhel-dep: # Install doas on RHEl based distros 
+rhel-dep: # Install doas on RHEl based distros
 	@echo
 	echo "Installing RPM Dependencies"
 	sudo yum install -y epel-release gcc gcc-c++ make flex bison pam-devel byacc
 	sudo yum groupinstall -y "Development Tools"
-	[ -d "$(HOME)/temp" ] && cd $(HOME)/temp || mkdir $(HOME)/temp 
+	[ -d "$(HOME)/temp" ] && cd $(HOME)/temp || mkdir $(HOME)/temp
 	cd $(HOME)/temp/
 	git clone https://github.com/slicer69/doas.git
 	cd doas
@@ -72,9 +72,9 @@ ubuntu-dep: # Install doas on Ubuntu based distros
 	echo "Installing Ubuntu Dependencies"
 	sudo apt update
 	sudo apt install build-essential doas
-	echo		
+	echo
 
-brew: ## Install brew package manager
+brew: ## Install brew package manager & brew packages
 	@echo
 	echo "Installing brew package manager"
 	bash extra/brew-install.sh
@@ -85,15 +85,26 @@ brew: ## Install brew package manager
 	done
 	echo
 
+nix: ## Install nix package manager & nix packages
+	@echo
+	echo "Installing nix package manager"
+	sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+	source $(HOME)/.nix-profile/etc/profile.d/nix.sh
+	echo "Installing packages"
+	for item in $(PKGS); do \
+		nix-env -iA nixpkgs.$$item ; \
+	done
+	echo
+
 dev: ## Optionally install development packages
 	@echo
 	brew install $(DEVPKGS)
-	echo	
+	echo
 
 delete: ## Delete old config files
 	@echo
 	read -p "Warning this will delete old files if present [y|n]: " choice
-	if [ $$choice == "y" ]; then    
+	if [ $$choice == "y" ]; then
 		echo "removing old files and dirs"
 		[ -d "$(HOME)/.config/nvim" ] && rm -rf $(HOME)/.config/nvim
 		[ -d "$(HOME)/.config/alacritty" ] && rm -rf $(HOME)/.config/alacritty
@@ -119,7 +130,7 @@ delete: ## Delete old config files
 	echo done!
 
 nvimplug: ## Install plug for neovim
-	@echo 
+	@echo
 	echo "installing plug for nvim"
 	- [ ! -d "$(HOME)/.config/nvim/autoload" ] && mkdir -p "$(HOME)/.config/nvim/autoload"
 	if [ -f "$(HOME)/.config/nvim/autoload/plug.vim" ]; then
@@ -137,13 +148,13 @@ nerdfonts: ## Install nerd fonts
 	echo "nerd fonts"
 	mkdir -p $(HOME)/.local/share/fonts/firacode
 	mkdir -p $(HOME)/.local/share/fonts/hack
-	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/ 
-	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/ 
+	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/
+	cp $(HOME)/dotfiles/fonts/hack/* $(HOME)/.local/share/fonts/hack/
 	echo done!
 
 symlink: delete
 	@echo
-	source $(HOME)/.profile 
+	source $(HOME)/.profile
 	echo "Symlinking configuration files"
 	cd $(HOME)/dotfiles/
 	stow -vt $(HOME) configurations/
@@ -174,4 +185,3 @@ note:
 	echo "8: (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
-
