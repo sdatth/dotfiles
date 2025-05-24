@@ -2,6 +2,11 @@
 
 ![machfiles image](./extra/ss.png)
 
+#### Note
+- This is a script to get all my configurations, it will either install nix or brew package manager according to your choice.
+- Only nix is supported for arm64.
+- We have a separate branch for mac install. Please check that out for macOS.
+
 ## One line Installation
 
 ```bash
@@ -10,7 +15,6 @@ bash <(curl -fsSL https://raw.githubusercontent.com/sdatth/dotfiles/refs/heads/m
 
 ## Manual Installation
 
-!!! Note: We have a separate branch for mac install. Please check that out for macOS.
 !!! You will need `make` package
 
 Clone into your `$HOME` directory or `~`

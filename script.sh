@@ -59,45 +59,37 @@ if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne
   done
 fi
 
-# 🎯 Print distro family message
-echo
-echo "🐧 OS Distribution: $DISTRO ($DISTRO_ID)"
-# Print result
-if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
-  echo "🟢 Debian-based system detected."
-elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
-  echo "🔴 RHEL-based system detected."
-elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
-  echo "🔵 ARCH-based system detected."
-fi
-
-
 echo
 
 # 🛠 Install make based on distro
 install_make() {
-  echo "🔧 Installing 'make'..."
+  echo "🔧 Installing few dependencies"
   # 🛠️ Install make and related build tools
   if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
+    echo "🟢 Debian-based system detected."
     echo "🔧 Installing packages for Debian-based system..."
     sudo apt update && sudo apt install -y build-essential doas git
 
   elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
     if [[ "$DISTRO_ID" == "fedora" ]]; then
+      echo "🔴 RHEL-based system detected."
       echo "🔧 Installing packages for Fedora..."
       sudo dnf groupinstall -y "Development Tools"
       sudo dnf install -y make git
     else
+      echo "🔴 RHEL-based system detected."
       echo "🔧 Installing packages for RHEL-based system..."
       sudo yum groupinstall -y "Development Tools"
       sudo yum install -y git make
     fi
 
   elif [[ "$IS_ARCH_BASED" -eq 1  ]]; then
+    echo "🔵 ARCH-based system detected."
     echo "🔧 Installing packages for Arch-based system..."
     sudo pacman -Sy --noconfirm base-devel git make
 
   elif [[ "$DISTRO_ID" == "freebsd" ]]; then
+    echo "🟣 FreeBSD system detected."
     echo "🔧 Installing packages for FreeBSD..."
     sudo pkg install -y gmake git
 
@@ -162,21 +154,18 @@ fi
 
 # 🎯 Symlink files
 echo
+echo "Symlink Files"
 cd $HOME/dotfiles
 if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
-  echo "🟢 Debian-based distribution detected."
   make ubuntu
 
 elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
-  echo "🔴 RHEL-based distribution detected."
   make rhel
 
 elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
-  echo "🔵 Arch-based distribution detected."
   make arch
 
 elif [[ "$DISTRO_ID" == "freebsd" ]]; then
-  echo "🟣 FreeBSD system detected."
   gmake freebsd
 
 else
