@@ -18,6 +18,9 @@ export ZDOTDIR=$HOME/.config/zsh
 # adding .local/bin path
 export PATH="$PATH:/$HOME/.local/bin:/Applications/Docker.app/Contents/Resources/bin/"
 
+# ansible path
+export ANSIBLE_CONFIG=/Users/datthu/usf/homelab/ansible/ansible.cfg
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
