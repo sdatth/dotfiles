@@ -90,12 +90,12 @@ install_make() {
     else
       echo "🔧 Installing packages for RHEL-based system..."
       sudo yum groupinstall -y "Development Tools"
-      sudo yum install -y git
+      sudo yum install -y git make
     fi
 
   elif [[ "$IS_ARCH_BASED" -eq 1  ]]; then
     echo "🔧 Installing packages for Arch-based system..."
-    sudo pacman -Sy --noconfirm base-devel git
+    sudo pacman -Sy --noconfirm base-devel git make
 
   elif [[ "$DISTRO_ID" == "freebsd" ]]; then
     echo "🔧 Installing packages for FreeBSD..."
