@@ -69,7 +69,7 @@ install_make() {
       ;;
     rhel | centos | rocky | alma | almalinux)
       sudo yum groupinstall -y "Development Tools"
-      sudo yum install doas git
+      sudo yum install git
       ;;
     fedora)
       sudo dnf groupinstall -y "Development Tools"

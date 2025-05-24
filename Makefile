@@ -175,14 +175,14 @@ clean: ## Clean up junk files after installation
 note:
 	@echo
 	echo "NOTE!"
-	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file.
-	echo "2. For RHEL and FreeBSD based append 'permit persist :wheel' to this file /usr/local/etc/doas.conf"
-	echo "3. Source profile 'source $(HOME)/.profile' to add brew bin for current shell" or 'source /etc/profile.d/nix.sh' for nix package manager."
+	echo "1. Append this line 'permit persist $(USER) as root' to /etc/doas.conf file."
+	echo "2. For RHEL and FreeBSD based append 'permit persist :wheel' to this file '/usr/local/etc/doas.conf'"
+	echo "3. Source profile 'source $(HOME)/.profile' to add brew bin for current shell or 'source /etc/profile.d/nix.sh' for nix package manager."
 	echo "4. Open a new zsh shell with 'zsh' command to install few dependencies"
 	echo "5. Exit and open a new zsh shell again to fix few stuff"
 	echo "6. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
 	echo "7. Update the '\sudo nano /etc/passwd' file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' or '$(HOME)/.nix-profile/bin/zsh'"
-	echo "8: Run this incase of FreeBSD 'chsh -s /usr/local/bin/zsh $(USER)' to change SHELL"
-	echo "8: (Optional) Reboot and ENjOy!"
+	echo "8. Run this incase of FreeBSD 'chsh -s /usr/local/bin/zsh $(USER)' to change SHELL"
+	echo "9. (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
