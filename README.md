@@ -10,16 +10,18 @@
 Clone into your `$HOME` directory or `~`
 
 ```bash
-git clone https://github.com/sdatth/dotfiles.git $HOME/
+git clone https://github.com/sdatth/dotfiles.git
 # OR
-git clone https://gitlab.com/sdatth/dotfiles.git $HOME/
+git clone https://gitlab.com/sdatth/dotfiles.git
 ```
 
 ### Choose your package manager
 
 (Note : Arm64 only has compatibility with nix)
 
+```bash
 make [brew|nix]
+```
 
 ### For Linux Distros
 
