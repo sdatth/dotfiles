@@ -89,7 +89,7 @@ nix: ## Install nix package manager & nix packages
 	@echo
 	echo "Installing nix package manager"
 	sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
-	source $(HOME)/.nix-profile/etc/profile.d/nix.sh
+	source /etc/profile.d/nix.sh
 	echo "Installing packages"
 	for item in $(PKGS); do \
 		nix-env -iA nixpkgs.$$item ; \
@@ -155,6 +155,7 @@ nerdfonts: ## Install nerd fonts
 symlink: delete
 	@echo
 	source $(HOME)/.profile
+	[ -f "/etc/profile.d/nix.sh" ] && source /etc/profile.d/nix.sh
 	echo "Symlinking configuration files"
 	cd $(HOME)/dotfiles/
 	stow -vt $(HOME) configurations/
