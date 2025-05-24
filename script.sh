@@ -35,60 +35,81 @@ elif [[ "$OS_TYPE" == "FreeBSD" ]]; then
   DISTRO_ID="freebsd"
 fi
 
-echo "🐧 OS Distribution: $DISTRO ($DISTRO_ID)"
+IS_DEBIAN_BASED=0
+IS_RHEL_BASED=0
+IS_ARCH_BASED=0
+if [[ "$DISTRO_ID" == "debian" || "$DISTRO_ID" == "ubuntu" ]]; then
+  IS_DEBIAN_BASED=1
+elif [[ "$DISTRO_ID" == "rhel" || "$DISTRO_ID" == "centos" || "$DISTRO_ID" == "rocky" || "$DISTRO_ID" == "almalinux" ]]; then
+  IS_RHEL_BASED=1
+elif [[ "$DISTRO_ID" == "arch" || "$DISTRO_ID" == "manjaro" ]]; then
+  IS_ARCH_BASED=1
+fi
+
+# Fallback if still undetermined
+if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne 1 ]]; then
+  echo "⚠️ Could not detect base distro. Please choose:"
+  select CHOICE in "Debian-based" "RHEL-based" "ARCH-based" "Exit"; do
+    case "$CHOICE" in
+      "Debian-based") IS_DEBIAN_BASED=1; break ;;
+      "RHEL-based") IS_RHEL_BASED=1; break ;;
+      "ARCH-based") IS_ARCH_BASED=1; break ;;
+      "Exit") exit 1 ;;
+    esac
+  done
+fi
 
 # 🎯 Print distro family message
 echo
-case "$DISTRO_ID" in
-  rhel | centos | fedora | rocky | alma | almalinux)
-    echo "🔴 RHEL-based distribution detected."
-    ;;
-  debian | ubuntu | linuxmint | pop)
-    echo "🟢 Debian/Ubuntu-based distribution detected."
-    ;;
-  arch | manjaro)
-    echo "🔵 Arch-based distribution detected."
-    ;;
-  freebsd)
-    echo "🟣 FreeBSD system detected."
-    ;;
-  *)
-    echo "⚠️ Unknown or unsupported distribution."
-    exit 1
-    ;;
-esac
+echo "🐧 OS Distribution: $DISTRO ($DISTRO_ID)"
+# Print result
+if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
+  echo "🟢 Debian-based system detected."
+elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
+  echo "🔴 RHEL-based system detected."
+elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
+  echo "🔵 ARCH-based system detected."
+fi
+
 
 echo
 
 # 🛠 Install make based on distro
 install_make() {
   echo "🔧 Installing 'make'..."
-  case "$DISTRO_ID" in
-    ubuntu | debian | linuxmint | pop)
-      sudo apt update && sudo apt install -y build-essential doas git
-      ;;
-    rhel | centos | rocky | alma | almalinux)
-      sudo yum groupinstall -y "Development Tools"
-      sudo yum install git
-      ;;
-    fedora)
+  # 🛠️ Install make and related build tools
+  if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
+    echo "🔧 Installing packages for Debian-based system..."
+    sudo apt update && sudo apt install -y build-essential doas git
+
+  elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
+    if [[ "$DISTRO_ID" == "fedora" ]]; then
+      echo "🔧 Installing packages for Fedora..."
       sudo dnf groupinstall -y "Development Tools"
-      sudo dnf install make git
-      ;;
-    arch | manjaro)
-      sudo pacman -Sy --noconfirm base-devel git
-      ;;
-    freebsd)
-      sudo pkg install -y gmake git
-      ;;
-    *)
-      echo "⚠️ Could not determine how to install make for $DISTRO_ID."
-      ;;
-  esac
+      sudo dnf install -y make git
+    else
+      echo "🔧 Installing packages for RHEL-based system..."
+      sudo yum groupinstall -y "Development Tools"
+      sudo yum install -y git
+    fi
+
+  elif [[ "$IS_ARCH_BASED" -eq 1  ]]; then
+    echo "🔧 Installing packages for Arch-based system..."
+    sudo pacman -Sy --noconfirm base-devel git
+
+  elif [[ "$DISTRO_ID" == "freebsd" ]]; then
+    echo "🔧 Installing packages for FreeBSD..."
+    sudo pkg install -y gmake git
+
+  else
+    echo "⚠️ Could not determine how to install make for '$DISTRO_ID'."
+  fi
+
   echo "✅ make installed (or already available)."
 }
 
 install_make
+
 echo
 
 # 📦 Package manager logic
@@ -101,7 +122,7 @@ if [[ "$ARCH" == "arm64" ]]; then
   make nix
   echo "✅ Nix installed."
 
-elif [[ "$DISTRO_ID" == "arch" || "$DISTRO_ID" == "manjaro" || "$DISTRO_ID" == "freebsd" ]]; then
+elif [[ "$IS_ARCH_BASED" -eq 1 || "$DISTRO_ID" == "freebsd" ]]; then
   echo "ℹ️ No package manager (Nix/Brew) will be installed on $DISTRO_ID."
 
 else
@@ -142,24 +163,22 @@ fi
 # 🎯 Symlink files
 echo
 cd $HOME/dotfiles
-case "$DISTRO_ID" in
-  rhel | centos | fedora | rocky | alma | almalinux)
-    echo "🔴 RHEL-based distribution detected."
-    make rhel
-    ;;
-  debian | ubuntu | linuxmint | pop)
-    echo "🟢 Debian/Ubuntu-based distribution detected."
-    make ubuntu
-    ;;
-  arch | manjaro)
-    echo "🔵 Arch-based distribution detected."
-    make arch
-    ;;
-  freebsd)
-    echo "🟣 FreeBSD system detected."
-    gmake freebsd
-    ;;
-  *)
-    echo "⚠️ Unknown or unsupported distribution."
-    ;;
-esac
+if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
+  echo "🟢 Debian-based distribution detected."
+  make ubuntu
+
+elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
+  echo "🔴 RHEL-based distribution detected."
+  make rhel
+
+elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
+  echo "🔵 Arch-based distribution detected."
+  make arch
+
+elif [[ "$DISTRO_ID" == "freebsd" ]]; then
+  echo "🟣 FreeBSD system detected."
+  gmake freebsd
+
+else
+  echo "⚠️ Unknown or unsupported distribution."
+fi
