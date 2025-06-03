@@ -40,7 +40,7 @@ alias v='vim'
 alias e='nvim'
 alias vimrc='vim ~/.vimrc'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
-alias zshrc='nvim ~/.zshrc'
+alias zshrc='nvim ~/.config/zsh/.zshrc'
 alias bashrc='nvim ~/.bashrc'
 
 # eza

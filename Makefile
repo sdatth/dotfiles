@@ -9,11 +9,11 @@
 SHELL = /bin/bash
 
 DPKGS = bat zsh stow glow eza fzf zsh-autosuggestions zsh-syntax-highlighting git make zoxide pinentry-mac
-DPKGS += starship autojump fd vim neovim
+DPKGS += starship autojump fd vim neovim tmux
 
 EPKGS = ansible borgbackup btop cmatrix cowsay exiftool figlet fish
 EPKGS += gh git-secret gnupg lolcat magic-wormhole wireguard-tools
-EPKGS += neofetch pass rclone rsync syncthing terraform tmux
+EPKGS += neofetch pass rclone rsync syncthing terraform 
 
 GPKGS = alacritty keepassxc	trezor-suite vlc zed gimp macfuse onlyoffice spotify utm warp zoom iterm2
 GPKGS += qbittorrent tor-browser visual-studio-code wireshark nextcloud
