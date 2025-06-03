@@ -6,6 +6,9 @@
 #    
 # source - https://github.com/sdatth/dotfiles
 
+# source brew bin
+[ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 ## TMUX
 if command -v tmux >/dev/null 2>&1; then
   if [[ -z "$TMUX" && -n "$PS1" && -z "$ZSH_AUTOSTARTED_TMUX" ]]; then
@@ -124,9 +127,6 @@ export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-i
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow -E docker -E @trezor -E 'Code - OSS' -E chromium -E .cargo -E .vscode-oss -E tor-browser -E .tldrc -E Microsoft -E BraveSoftware -E .kube -E .cache -E Library -E Applications -E .tsh -E Movies -E Pictures -E borg -E Music -E .zsh_sessions -E .vscode-server -E libreoffice -E .nix-defexpr -E.nix-profile -E plugins -E plugged -E coc -E google-chrome -E Code -E .git -E tor -E .local -E .vscode -E .npm -E oth -E snap -E .cache -E .vim -E node_modules  -E .ansible -E .anydesk -E .atom -E .clamtk -E .fzf -E .gem -E .gnupg -E ipython -E .joplin -E .jupyter -E .mozilla -E .npm -E .password-store -E .pki -E .ssh -E .var -E .vagrant.d -E vagrant  "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
-
-# source brew bin
-[ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # start zoxide
 if which zoxide > /dev/null 2>&1; then
