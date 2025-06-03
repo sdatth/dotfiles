@@ -9,10 +9,14 @@
 
 # Start tmux automatically if not already inside one
 if command -v tmux >/dev/null 2>&1; then
-  # Only start if not already in tmux and if a terminal
   if [[ -z "$TMUX" && -n "$PS1" && -z "$ZSH_AUTOSTARTED_TMUX" ]]; then
     export ZSH_AUTOSTARTED_TMUX=1
-    exec tmux
+    # Reattach if a session exists, otherwise create a new one
+    if tmux has-session 2>/dev/null; then
+      exec tmux attach-session
+    else
+      exec tmux new-session
+    fi
   fi
 fi
 
