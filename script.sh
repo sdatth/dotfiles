@@ -102,15 +102,21 @@ install_make() {
 
 install_make
 
+# clone dotfiles repo
+if [ -d "$HOME/dotfiles" ]; then
+    rm -rf $HOME/dotfiles
+    git clone https://github.com/sdatth/dotfiles.git
+else
+    cd $HOME
+    git clone https://github.com/sdatth/dotfiles.git
+fi
+
 echo
 
 # 📦 Package manager logic
 if [[ "$ARCH" == "arm64" ]]; then
   echo "⚙️ ARM architecture detected — installing Nix only."
-  cd $HOME
-  rm -rf dotfiles
-  git clone https://github.com/sdatth/dotfiles.git
-  cd dotfiles
+  cd $HOME/dotfiles
   make nix
   echo "✅ Nix installed."
 
@@ -123,20 +129,14 @@ else
     case $PM in
       Nix)
         echo "📦 Installing Nix package manager..."
-        cd $HOME
-        rm -rf dotfiles
-        git clone https://github.com/sdatth/dotfiles.git
-        cd dotfiles
+        cd $HOME/dotfiles
         make nix
         echo "✅ Nix installed."
         break
         ;;
       Homebrew)
         echo "🍺 Installing Homebrew package manager..."
-        cd $HOME
-        rm -rf dotfiles
-        git clone https://github.com/sdatth/dotfiles.git
-        cd dotfiles
+        cd $HOME/dotfiles
         make brew
         echo "✅ Homebrew installed."
         break
@@ -154,8 +154,9 @@ fi
 
 # 🎯 Symlink files
 echo
-echo "Symlink Files"
 cd $HOME/dotfiles
+echo "Symlink Files"
+
 if [[ "$IS_DEBIAN_BASED" -eq 1 ]]; then
   make ubuntu
 
@@ -163,17 +164,9 @@ elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
   make rhel
 
 elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
-  cd $HOME
-  rm -rf dotfiles
-  git clone https://github.com/sdatth/dotfiles.git
-  cd dotfiles
   make arch
 
 elif [[ "$DISTRO_ID" == "freebsd" ]]; then
-  cd $HOME
-  rm -rf dotfiles
-  git clone https://github.com/sdatth/dotfiles.git
-  cd dotfiles
   gmake freebsd
 
 else
