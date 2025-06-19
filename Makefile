@@ -181,7 +181,7 @@ note:
 	echo "6. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
 	echo "7. Update the '\sudo nano /etc/passwd' file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' or '$(HOME)/.nix-profile/bin/zsh'"
 	echo "8. Run this incase of FreeBSD 'chsh -s /usr/local/bin/zsh $(USER)' to change SHELL"
-	echo "9. Incase of arch update the shell of $(USER) in '/etc/passwd' to $(which zsh)"
+	echo "9. Incase of arch update the shell of $(USER) in '/etc/passwd' to $$(which zsh)"
 	echo "10. (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
