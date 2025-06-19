@@ -163,9 +163,17 @@ elif [[ "$IS_RHEL_BASED" -eq 1 ]]; then
   make rhel
 
 elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
+  cd $HOME
+  rm -rf dotfiles
+  git clone https://github.com/sdatth/dotfiles.git
+  cd dotfiles
   make arch
 
 elif [[ "$DISTRO_ID" == "freebsd" ]]; then
+  cd $HOME
+  rm -rf dotfiles
+  git clone https://github.com/sdatth/dotfiles.git
+  cd dotfiles
   gmake freebsd
 
 else
