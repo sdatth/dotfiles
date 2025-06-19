@@ -9,11 +9,9 @@
 SHELL = /usr/bin/bash
 
 PKGS = gcc git fzf bat tmux neovim zsh vim glow eza fd starship btop stow zoxide
-EXTRAPKGS = ranger ncdu unzip screen
-
-FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux ncdu unzip doas
+FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux doas
 DEVPKGS = go rust python@3.12
-ARCHDEV = base-devel go rust python opendoas xclip
+ARCHDEV = base-devel go rust python opendoas xclip alacritty
 
 .ONESHELL:
 help: ## Show available options
@@ -58,7 +56,7 @@ rhel-dep: # Install doas on RHEl based distros
 arch-dep: ##Install arch packages from standard repo
 	@echo
 	echo "Installing ARCH packages"
-	sudo pacman -S --noconfirm $(PKGS) $(EXTRAPKGS) $(ARCHDEV)
+	sudo pacman -S --noconfirm $(PKGS) $(ARCHDEV)
 
 deb-dep: # Install doas on Debian based distros
 	@echo
@@ -183,6 +181,7 @@ note:
 	echo "6. Open nvim then execute ':PlugInstall' in the respective editors to install all the plugins"
 	echo "7. Update the '\sudo nano /etc/passwd' file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' or '$(HOME)/.nix-profile/bin/zsh'"
 	echo "8. Run this incase of FreeBSD 'chsh -s /usr/local/bin/zsh $(USER)' to change SHELL"
-	echo "9. (Optional) Reboot and ENjOy!"
+	echo "9. Incase of arch update the shell of $(USER) in '/etc/passwd' to $(which zsh)"
+	echo "10. (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
