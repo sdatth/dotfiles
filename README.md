@@ -2,7 +2,7 @@
 
 ![machfiles image](./extra/ss.png)
 
-## Installing
+## Installation
 
 You will need `make`
 
