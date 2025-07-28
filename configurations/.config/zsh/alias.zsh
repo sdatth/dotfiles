@@ -83,6 +83,7 @@ alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone syn
 # text editors
 alias v='vim'
 alias e='nvim'
+alias z='zeditor'
 alias vimrc='vim ~/.vimrc'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias zshrc='nvim ~/.config/zsh/.zshrc'
