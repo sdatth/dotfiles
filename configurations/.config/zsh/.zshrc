@@ -29,18 +29,15 @@ export GPG_TTY=$(tty)
 # custom bin path
 export PATH=$PATH:$HOME/.bin
 
+
 # Start ssh-agent if it's not already running
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval $(ssh-agent -s) &>/dev/null
+    eval $(ssh-agent -s)
     if [ -f $HOME/.ssh/dev_key ]; then
-      ssh-add $HOME/.ssh/dev_key &>/dev/null
+      ssh-add $HOME/.ssh/dev_key
     fi  
 fi
 
-# If inside tmux, propagate SSH_AUTH_SOCK to new panes/windows
-if [ -n "$TMUX" ]; then
-    export SSH_AUTH_SOCK=$SSH_AUTH_SOCK
-fi
 
 
 # ~/.local/bin path
