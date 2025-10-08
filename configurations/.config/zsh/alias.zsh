@@ -66,7 +66,7 @@ alias dbr="distrobox rm"
 alias pods="podman ps -a --size --sort size"
 
 # screem
-alias ss="screen -S"
+alias si="screen -S"
 alias sr="screen -r"
 alias sl="screen -ls"
 alias sx="screen -X -S"
