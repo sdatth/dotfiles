@@ -91,6 +91,9 @@ bindkey "^?" backward-delete-char
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 
+# source alias file
+source "$ZDOTDIR/alias.zsh"
+
 # source distrobox funtions
 if which distrobox > /dev/null 2>&1; then
     source "$ZDOTDIR/zen.zsh"
