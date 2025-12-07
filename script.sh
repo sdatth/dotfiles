@@ -33,6 +33,8 @@ if [[ "$OS_TYPE" == "Linux" ]]; then
 elif [[ "$OS_TYPE" == "FreeBSD" ]]; then
   DISTRO="freebsd"
   DISTRO_ID="freebsd"
+  IS_FREEBSD_BASED=1
+  echo "⚙️ FreeBSD detected"
 elif [[ "$OS_TYPE" == "Darwin" ]]; then
   DISTRO="darwin"
   DISTRO_ID="darwin"
@@ -52,7 +54,7 @@ elif [[ "$DISTRO_ID" == "arch" || "$DISTRO_ID" == "manjaro" ]]; then
 fi
 
 # Fallback if still undetermined
-if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne 1 && "$IS_MAC_BASED" -ne 1 ]]; then
+if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne 1 && "$IS_MAC_BASED" -ne 1 && "$IS_FREEBSD_BASED" -ne 1 ]]; then
   echo "⚠️ Could not detect base distro. Please choose:"
   select CHOICE in "Debian-based" "RHEL-based" "ARCH-based" "Exit"; do
     case "$CHOICE" in
@@ -220,7 +222,7 @@ elif [[ "$DISTRO_ID" == "freebsd" ]]; then
   gmake freebsd
 
 elif [[ "$DISTRO_ID" == "darwin" ]]; then
-  gmake config
+  gmake mac
 
 else
   echo "⚠️ Unknown or unsupported distribution."
