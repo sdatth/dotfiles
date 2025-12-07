@@ -120,6 +120,9 @@ delete: ## Delete old config files
 		[ -d "$(HOME)/.vim" ] && rm -rf "$(HOME)/.vim"
 		[ -d "$(HOME)/.zsh_functions" ] && rm -rf "$(HOME)/.zsh_functions"
 		[ -d "$(HOME)/.config/fish" ] && rm -rf "$(HOME)/.config/fish"
+		[ -d "$(HOME)/.local/share/fonts/firacode" ] && rm -rf "$(HOME)/.local/share/fonts/firacode"
+		[ -d "$(HOME)/.local/share/fonts/hack" ] && rm -rf "$(HOME)/.local/share/fonts/hack"
+
 		echo done!
 	elif [ $$choice == "n" ]; then
 		echo "Sorry to let u go!"
