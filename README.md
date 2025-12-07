@@ -31,7 +31,8 @@ git clone https://gitlab.com/sdatth/dotfiles.git
 (Note : Choose brew for macos for better compatibility)
 
 ```bash
-make [brew|nix]
+make [brew|nix]  ## Linux Distros
+gmake brew       ## MacOS
 ```
 
 ### For Linux Distros
