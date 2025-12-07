@@ -3,7 +3,7 @@
 #    |_  / __| '_ \| '__/ __|
 #     / /\__ \ | | | | | (__
 #    /___|___/_| |_|_|  \___|
-#    
+#
 # source - https://github.com/sdatth/dotfiles
 
 # source brew bin
@@ -26,24 +26,23 @@ export ZDOTDIR=$HOME/.config/zsh
 # GPG prompt feature
 export GPG_TTY=$(tty)
 
-# custom bin path
-export PATH=$PATH:$HOME/.bin
-
-
 # Start ssh-agent if it's not already running
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval $(ssh-agent -s) &>/dev/null
     if [ -f $HOME/.ssh/dev_key ]; then
       ssh-add $HOME/.ssh/dev_key &>/dev/null
-    fi  
+    fi
 fi
-
-
 
 # ~/.local/bin path
 if [ -d $HOME/.local/bin ] ; then
-    export PATH=$PATH:$HOME/.local/bin
-fi    
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
+# ~/.bin path
+if [ -d $HOME/.bin ] ; then
+    export PATH="$PATH:$HOME/.bin"
+fi
 
 # colour theme to work inside screen
 export TERM=xterm-256color
@@ -80,7 +79,7 @@ HISTSIZE=10000
 setopt hist_expire_dups_first # delete duplicates first when histfile size exceeds histsize
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify     
+setopt hist_verify
 setopt appendhistory
 
 # vi mode
@@ -91,11 +90,6 @@ bindkey "^?" backward-delete-char
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
-
-# source alias file if doas exist
-if which doas > /dev/null 2>&1; then
-    source "$ZDOTDIR/alias.zsh"
-fi
 
 # source distrobox funtions
 if which distrobox > /dev/null 2>&1; then
@@ -114,7 +108,14 @@ fi
 
 # freeBSD
 [[ -s /usr/local/share/examples/fzf/shell/completion.zsh ]] && source /usr/local/share/examples/fzf/shell/completion.zsh
-[[ -s /usr/local/share/examples/fzf/shell/key-bindings.zsh ]] && source /usr/local/share/examples/fzf/shell/key-bindings.zsh 
+[[ -s /usr/local/share/examples/fzf/shell/key-bindings.zsh ]] && source /usr/local/share/examples/fzf/shell/key-bindings.zsh
+
+# mac
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+[[ -s /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ -s /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 
 # autojump
@@ -126,7 +127,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 #zsh_add_plugin "marlonrichert/zsh-autocomplete"
 
-# bind key 
+# bind key
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

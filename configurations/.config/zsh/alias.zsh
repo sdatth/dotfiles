@@ -8,19 +8,19 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # nixos
-alias nu="doas nixos-rebuild switch --flake '.#zeta'"
-alias nl='doas nix-env --list-generations --profile /nix/var/nix/profiles/system'
+alias nu="sudo nixos-rebuild switch --flake '.#zeta'"
+alias nl='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
 alias ngc='nix-collect-garbage'
-alias sngc='doas nix-collect-garbage'
+alias sngc='sudo nix-collect-garbage'
 
 # apt
-alias ai="doas apt install"
-alias au="doas apt update"
-alias aU="doas apt upgrade"
-alias ar="doas apt remove --purge"
-alias aR="doas apt autoremove"
+alias ai="sudo apt install"
+alias au="sudo apt update"
+alias aU="sudo apt upgrade"
+alias ar="sudo apt remove --purge"
+alias aR="sudo apt autoremove"
 
-# brew 
+# brew
 alias bu='brew update'
 alias bU='brew upgrade'
 alias bgc='brew cleanup && brew autoremove'
@@ -32,30 +32,30 @@ alias bci='brew install --cask'
 alias bcr='brew uninstall --cask'
 
 # yum
-alias yi="doas yum install"
-alias yu="doas yum check-update" 
-alias yU="doas yum upgrade"
-alias yr="doas yum remove --setopt=clean_requirements_on_remove"
-alias yR="doas yum autoremove"
+alias yi="sudo yum install"
+alias yu="sudo yum check-update"
+alias yU="sudo yum upgrade"
+alias yr="sudo yum remove --setopt=clean_requirements_on_remove"
+alias yR="sudo yum autoremove"
 
-# pacman 
-alias pi="doas pacman -S"
-alias pu="doas pacman -Sy"
-alias pU="doas pacman -Syu"
-alias pr="doas pacman -Rs"
+# pacman
+alias pi="sudo pacman -S"
+alias pu="sudo pacman -Sy"
+alias pU="sudo pacman -Syu"
+alias pr="sudo pacman -Rs"
 
 # snapper alias
-alias src="doas snapper -c root create -d" 
-alias shc="doas snapper -c home create -d" 
-alias srd="doas snapper -c root delete"
-alias shd="doas snapper -c home delete"
-alias srl="doas snapper -c root list"
-alias shl="doas snapper -c home list"
-alias sru="doas snapper -c root undochange"
-alias shu="doas snapper -c home undochange"
-alias srr="doas snapper --ambit classic rollback"
-alias grubmake="doas grub-mkconfig -o /boot/grub/grub.cfg"
-alias grubinstall="doas grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=/boot --bootloader-id=GRUB"
+alias src="sudo snapper -c root create -d"
+alias shc="sudo snapper -c home create -d"
+alias srd="sudo snapper -c root delete"
+alias shd="sudo snapper -c home delete"
+alias srl="sudo snapper -c root list"
+alias shl="sudo snapper -c home list"
+alias sru="sudo snapper -c root undochange"
+alias shu="sudo snapper -c home undochange"
+alias srr="sudo snapper --ambit classic rollback"
+alias grubmake="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias grubinstall="sudo grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=/boot --bootloader-id=GRUB"
 
 # distrobox
 alias db="distrobox"
@@ -77,8 +77,8 @@ alias sx="screen -X -S"
 #alias pr='python3 -m pip uninstall'
 
 # rclone sec
-alias rstuff='echo "syncing to drive" | cowsay -f tux && rclone sync -P ~/stuff/ drivec:/stuff/ '
-alias rprojects='echo "syncing to cloud providers" | cowsay -f tux && rclone sync -P projects/ drivec:/projects/ --exclude ".git/**" --exclude "site/**" && echo && rclone sync -p projects/ blazec:/projects/ --exclude ".git/**" --exclude "site/**"'
+alias rstuff='rclone sync -P ~/stuff/ drivec:/stuff/ --exclude ".DS_Store" '
+alias revstuff='rclone sync -P drivec:/stuff/ ~/stuff/ --exclude ".DS_Store" '
 
 # text editors
 alias v='vim'
@@ -96,10 +96,10 @@ alias vh='vagrant halt'
 alias vd='vagrant destroy'
 alias vs='vagrant ssh'
 
-# exa
-alias ls='eza --color=always --group-directories-first' 
-alias la='eza -a --color=always --group-directories-first'  
-alias ll='eza -al --color=always --group-directories-first' 
+# eza
+alias ls='eza --color=always --group-directories-first'
+alias la='eza -a --color=always --group-directories-first'
+alias ll='eza -al --color=always --group-directories-first'
 alias l.='eza -a | egrep "^\."'
 
 # git
@@ -126,17 +126,15 @@ alias k='kubectl'
 # complete -f __start_kubectl k
 
 # others
-alias libnet='doas virsh net-start default'
+alias libnet='sudo virsh net-start default'
 alias sourcez='source $HOME/.zshrc'
-alias sudo='doas'
 alias gt='gpg2 --card-status'
 alias sa='ssh-add ~/.ssh/id_ed25519'
 alias yt='ykman list'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
-alias dc='docker'
-alias wu='doas wg-quick up wg0'
-alias wd='doas wg-quick down wg0'
-alias wr='doas systemctl restart wg-quick@wg0'
+alias wu='sudo wg-quick up wg0'
+alias wd='sudo wg-quick down wg0'
+alias wr='sudo systemctl restart wg-quick@wg0'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 alias clearclip="xsel -bc"
 
@@ -168,7 +166,7 @@ ex ()
 
 # render markdown files using glow with less as pager
 md(){
-    glow "$@" -s dark | less -r 
+    glow "$@" -s dark | less -r
 }
 
 # invoke fetch master 6000
