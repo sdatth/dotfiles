@@ -72,9 +72,8 @@ install_gmake() {
     local version="4.4.1"
     local tarball="make-$version.tar.gz"
     local url="https://ftp.gnu.org/gnu/make/$tarball"
-    cd $HOME/dotfiles
-    mkdir tmp
-    cd tmp
+    mkdir $HOME/gmake-tmp
+    cd $HOME/gmake-tmp
 
     echo "📥 Downloading GNU Make $version ..."
     curl -LO "$url" || { echo "❌ Download failed"; return 1; }
@@ -94,8 +93,8 @@ install_gmake() {
     sudo make install || { echo "❌ Install failed"; return 1; }
 
     echo "🧹 Cleaning up..."
-    cd $HOME/dotfiles
-    rm -rf tmp
+    cd $HOME
+    rm -rf gmake-tmp
 
 
     echo "✅ Done! Installed as: /usr/local/bin/gmake"
