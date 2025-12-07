@@ -36,6 +36,8 @@ elif [[ "$OS_TYPE" == "FreeBSD" ]]; then
 elif [[ "$OS_TYPE" == "Darwin" ]]; then
   DISTRO="darwin"
   DISTRO_ID="darwin"
+  IS_MAC_BASED=1
+  echo "⚙️ MacOS detected"
 fi
 
 IS_DEBIAN_BASED=0
@@ -50,7 +52,7 @@ elif [[ "$DISTRO_ID" == "arch" || "$DISTRO_ID" == "manjaro" ]]; then
 fi
 
 # Fallback if still undetermined
-if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne 1 ]]; then
+if [[ "$IS_DEBIAN_BASED" -ne 1 && "$IS_RHEL_BASED" -ne 1 && "$IS_ARCH_BASED" -ne 1 && "$IS_MAC_BASED" -ne 1 ]]; then
   echo "⚠️ Could not detect base distro. Please choose:"
   select CHOICE in "Debian-based" "RHEL-based" "ARCH-based" "Exit"; do
     case "$CHOICE" in
@@ -65,6 +67,42 @@ fi
 echo
 
 # 🛠 Install make based on distro
+# gmake for macos
+install_gmake() {
+    local version="4.4.1"
+    local tarball="make-$version.tar.gz"
+    local url="https://ftp.gnu.org/gnu/make/$tarball"
+    cd $HOME/dotfiles
+    mkdir tmp
+    cd tmp
+
+    echo "📥 Downloading GNU Make $version ..."
+    curl -LO "$url" || { echo "❌ Download failed"; return 1; }
+
+    echo "📦 Extracting..."
+    tar -xzf "$tarball" || { echo "❌ Extraction failed"; return 1; }
+
+    cd "make-$version" || { echo "❌ Directory not found"; return 1; }
+
+    echo "🔧 Configuring with program-prefix=g (installs as gmake)..."
+    ./configure --program-prefix=g || { echo "❌ Configure failed"; return 1; }
+
+    echo "🔨 Building..."
+    make || { echo "❌ Build failed"; return 1; }
+
+    echo "📀 Installing (sudo required)..."
+    sudo make install || { echo "❌ Install failed"; return 1; }
+
+    echo "🧹 Cleaning up..."
+    cd $HOME/dotfiles
+    rm -rf tmp
+
+
+    echo "✅ Done! Installed as: /usr/local/bin/gmake"
+    echo "➡️ Run: gmake --version"
+}
+
+# make for linux
 install_make() {
   echo "🔧 Installing few dependencies"
   # 🛠️ Install make and related build tools
@@ -96,6 +134,9 @@ install_make() {
     echo "🔧 Installing packages for FreeBSD..."
     sudo pkg install -y gmake git
 
+  elif [[ "$DISTRO_ID" == "darwin" ]]; then
+    install_gmake
+
   else
     echo "⚠️ Could not determine how to install make for '$DISTRO_ID'."
   fi
@@ -105,59 +146,26 @@ install_make() {
 
 install_make
 
-install_gmake() {
-    local version="4.4.1"
-    local tarball="make-$version.tar.gz"
-    local url="https://ftp.gnu.org/gnu/make/$tarball"
-
-    echo "📥 Downloading GNU Make $version ..."
-    curl -LO "$url" || { echo "❌ Download failed"; return 1; }
-
-    echo "📦 Extracting..."
-    tar -xzf "$tarball" || { echo "❌ Extraction failed"; return 1; }
-
-    cd "make-$version" || { echo "❌ Directory not found"; return 1; }
-
-    echo "🔧 Configuring with program-prefix=g (installs as gmake)..."
-    ./configure --program-prefix=g || { echo "❌ Configure failed"; return 1; }
-
-    echo "🔨 Building..."
-    make || { echo "❌ Build failed"; return 1; }
-
-    echo "📀 Installing (sudo required)..."
-    sudo make install || { echo "❌ Install failed"; return 1; }
-
-    echo "🧹 Cleaning up..."
-    cd ..
-    rm -rf "make-$version" "$tarball"
-
-    echo "✅ Done! Installed as: /usr/local/bin/gmake"
-    echo "➡️ Run: gmake --version"
-}
-
-if [[ "$(uname)" == "Darwin" ]]; then
-    install_gmake
-fi
 
 # clone dotfiles repo
-if [ -d "$HOME/dotfiles" ]; then
-    rm -rf $HOME/dotfiles
-    git clone https://github.com/sdatth/dotfiles.git
-else
-    cd $HOME
-    git clone https://github.com/sdatth/dotfiles.git
-fi
+#if [ -d "$HOME/dotfiles" ]; then
+#    rm -rf $HOME/dotfiles
+#    git clone https://github.com/sdatth/dotfiles.git
+#else
+#    cd $HOME
+#    git clone https://github.com/sdatth/dotfiles.git
+#fi
 
 echo
 
 # 📦 Package manager logic
-if [[ "$ARCH" == "arm64" && "$DISTRO_ID" == "Darwin" ]]; then
+if [[ "$ARCH" == "arm64" && "$DISTRO_ID" == "darwin" ]]; then
   echo "⚙️ MacOS detected installing brew package manager"
   cd $HOME/dotfiles
   gmake brew
   echo "✅ Brew installed."
 
-elif [[ "$ARCH" == "arm64" ]]; then
+elif [[ "$ARCH" == "arm64" && "$IS_MAC_BASED" -ne 1 ]]; then
   echo "⚙️ ARM architecture detected — installing Nix only."
   cd $HOME/dotfiles
   make nix

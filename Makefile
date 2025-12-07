@@ -77,8 +77,8 @@ ubuntu-dep: # Install doas on Ubuntu based distros
 brew: ## Install brew package manager & brew packages
 	@echo
 	echo "Installing brew package manager"
-	[[ "$(uname)" == "Linux" ]] && bash extra/brew-install.sh
-	[[ "$(uname)" == "Darwin" ]] && bash extra/brew-install-mac.sh
+	[ "$$(uname)" == "Linux" ] && bash extra/brew-install.sh
+	[ "$$(uname)" == "Darwin" ] && bash extra/brew-install-mac.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
 	for item in $(PKGS); do \
