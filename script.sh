@@ -148,13 +148,13 @@ install_make
 
 
 # clone dotfiles repo
-#if [ -d "$HOME/dotfiles" ]; then
-#    rm -rf $HOME/dotfiles
-#    git clone https://github.com/sdatth/dotfiles.git
-#else
-#    cd $HOME
-#    git clone https://github.com/sdatth/dotfiles.git
-#fi
+if [ -d "$HOME/dotfiles" ]; then
+    rm -rf $HOME/dotfiles
+    git clone https://github.com/sdatth/dotfiles.git
+else
+    cd $HOME
+    git clone https://github.com/sdatth/dotfiles.git
+fi
 
 echo
 
