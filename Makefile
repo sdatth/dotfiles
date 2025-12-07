@@ -22,7 +22,7 @@ help: ## Show available options
 
 config: nerdfonts symlink clean note ## Symlink config files
 
-arch : arch-dep nerdfonts symlink clean note ## Install on Arc
+arch : arch-dep config ## Install on Arc
 
 debian: deb-dep config ## Install on Debian based distros
 
@@ -31,6 +31,8 @@ ubuntu: ubuntu-dep config ## Install on Ubuntu based distros
 freebsd: freebsd-dep nerdfonts symlink clean note ## Install on FreeBSD
 
 rhel: rhel-dep config ## Install on rhel based distros
+
+mac: config ## Install on MacOS
 
 
 freebsd-dep: # Install doas on FreeBSD

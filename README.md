@@ -36,27 +36,20 @@ make [brew|nix]
 
 ### For Linux Distros
 
-Run the command to install necessary packages and get my config files for your linux distribution
 ```bash
 make [arch|debian|ubuntu|rhel]
 ```
 
 ### For FreeBSD
 
-You will need `gmake`
-
-Run the command to install necessary packages and get my config files for FreeBSD
 ```bash
 gmake freebsd
 ```
 
 ### For MacOS
 
-You will need `gmake`
-
-Run the command to install necessary packages and get my config files for MacOS
 ```bash
-gmake config
+gmake mac
 ```
 
 ### Help
