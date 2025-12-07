@@ -27,9 +27,10 @@ alias bgc='brew cleanup && brew autoremove'
 alias bl='brew leaves'
 alias bi='brew install'
 alias br='brew uninstall'
-alias bcl='brew list --cask'
-alias bci='brew install --cask'
-alias bcr='brew uninstall --cask'
+alias blc='brew list --cask'
+alias bic='brew install --cask'
+alias brc='brew uninstall --cask'
+alias buc='brew upgrade --cask $(brew list --cask)'
 
 # yum
 alias yi="sudo yum install"
