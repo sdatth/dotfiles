@@ -24,21 +24,3 @@ format = "via [ﰨ $version](bold green) "
 # truncation_length = 8
 # truncation_symbol = "…/"
 #format = "[$path ﱮ]($style)[$read_only]($read_only_style) "
-
-# Please follow the steps for your shell to complete the installation:
-
-#  Bash
-#  Add the following to the end of ~/.bashrc:
-#
-#      eval "$(starship init bash)"
-
-#  Fish
-#  Add the following to the end of ~/.config/fish/config.fish:
-
-#      starship init fish | source
-
-# zsh
-#  add the following to the end of ~/.zshrc:
-
-#     eval "$(starship init zsh)"
-
