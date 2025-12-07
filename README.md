@@ -5,7 +5,7 @@
 #### Note
 - This is a script to get all my configurations, it will either install nix or brew package manager according to your choice.
 - Only nix is supported for arm64.
-- We have a separate branch for mac install. Please check that out for macOS.
+- For MacOS the package manager is hardcoded as brew as it is the best one out there.
 
 ## One line Installation
 
@@ -15,7 +15,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/sdatth/dotfiles/refs/heads/m
 
 ## Manual Installation
 
-!!! You will need `make` package
+!!! You will need `make` or `gmake` (for macos & freebsd) package
 
 Clone into your `$HOME` directory or `~`
 
@@ -28,6 +28,7 @@ git clone https://gitlab.com/sdatth/dotfiles.git
 ### Choose your package manager
 
 (Note : Arm64 only has compatibility with nix)
+(Note : Choose brew for macos for better compatibility)
 
 ```bash
 make [brew|nix]
@@ -47,6 +48,15 @@ You will need `gmake`
 Run the command to install necessary packages and get my config files for FreeBSD
 ```bash
 gmake freebsd
+```
+
+### For MacOS
+
+You will need `gmake`
+
+Run the command to install necessary packages and get my config files for MacOS
+```bash
+gmake config
 ```
 
 ### Help
