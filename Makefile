@@ -6,9 +6,10 @@
 #
 # source - https://github.com/sdatth/dotfiles
 
-SHELL = /usr/bin/bash
+SHELL = /bin/bash
 
 PKGS = gcc git fzf bat tmux neovim zsh vim glow eza fd starship btop stow zoxide
+MPKGS = pinentry-mac gmake
 FREEBSDPKGS = gcc git fzf bat glow eza fd-find starship btop stow neovim vim py39-ranger zsh tmux doas
 DEVPKGS = go rust python@3.12
 ARCHDEV = base-devel go rust python opendoas xclip alacritty
@@ -30,6 +31,7 @@ ubuntu: ubuntu-dep config ## Install on Ubuntu based distros
 freebsd: freebsd-dep nerdfonts symlink clean note ## Install on FreeBSD
 
 rhel: rhel-dep config ## Install on rhel based distros
+
 
 freebsd-dep: # Install doas on FreeBSD
 	@echo
@@ -75,7 +77,8 @@ ubuntu-dep: # Install doas on Ubuntu based distros
 brew: ## Install brew package manager & brew packages
 	@echo
 	echo "Installing brew package manager"
-	bash extra/brew-install.sh
+	[[ "$(uname)" == "Linux" ]] && bash extra/brew-install.sh
+	[[ "$(uname)" == "Darwin" ]] && bash extra/brew-install-mac.sh
 	echo "Installing packages"
 	source $(HOME)/.profile
 	for item in $(PKGS); do \

@@ -33,6 +33,9 @@ if [[ "$OS_TYPE" == "Linux" ]]; then
 elif [[ "$OS_TYPE" == "FreeBSD" ]]; then
   DISTRO="freebsd"
   DISTRO_ID="freebsd"
+elif [[ "$OS_TYPE" == "Darwin" ]]; then
+  DISTRO="darwin"
+  DISTRO_ID="darwin"
 fi
 
 IS_DEBIAN_BASED=0
@@ -102,6 +105,40 @@ install_make() {
 
 install_make
 
+install_gmake() {
+    local version="4.4.1"
+    local tarball="make-$version.tar.gz"
+    local url="https://ftp.gnu.org/gnu/make/$tarball"
+
+    echo "📥 Downloading GNU Make $version ..."
+    curl -LO "$url" || { echo "❌ Download failed"; return 1; }
+
+    echo "📦 Extracting..."
+    tar -xzf "$tarball" || { echo "❌ Extraction failed"; return 1; }
+
+    cd "make-$version" || { echo "❌ Directory not found"; return 1; }
+
+    echo "🔧 Configuring with program-prefix=g (installs as gmake)..."
+    ./configure --program-prefix=g || { echo "❌ Configure failed"; return 1; }
+
+    echo "🔨 Building..."
+    make || { echo "❌ Build failed"; return 1; }
+
+    echo "📀 Installing (sudo required)..."
+    sudo make install || { echo "❌ Install failed"; return 1; }
+
+    echo "🧹 Cleaning up..."
+    cd ..
+    rm -rf "make-$version" "$tarball"
+
+    echo "✅ Done! Installed as: /usr/local/bin/gmake"
+    echo "➡️ Run: gmake --version"
+}
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    install_gmake
+fi
+
 # clone dotfiles repo
 if [ -d "$HOME/dotfiles" ]; then
     rm -rf $HOME/dotfiles
@@ -114,7 +151,13 @@ fi
 echo
 
 # 📦 Package manager logic
-if [[ "$ARCH" == "arm64" ]]; then
+if [[ "$ARCH" == "arm64" && "$DISTRO_ID" == "Darwin" ]]; then
+  echo "⚙️ MacOS detected installing brew package manager"
+  cd $HOME/dotfiles
+  gmake brew
+  echo "✅ Brew installed."
+
+elif [[ "$ARCH" == "arm64" ]]; then
   echo "⚙️ ARM architecture detected — installing Nix only."
   cd $HOME/dotfiles
   make nix
@@ -168,6 +211,9 @@ elif [[ "$IS_ARCH_BASED" -eq 1 ]]; then
 
 elif [[ "$DISTRO_ID" == "freebsd" ]]; then
   gmake freebsd
+
+elif [[ "$DISTRO_ID" == "darwin" ]]; then
+  gmake config
 
 else
   echo "⚠️ Unknown or unsupported distribution."
