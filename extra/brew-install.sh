@@ -1,7 +1,7 @@
 #!/bin/bash
 if which brew > /dev/null 2>&1; then
     echo "Brew package manager already exist"
-    exit
+    exit 0
 elif [[ "$(uname)" == "Linux" ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.profile
