@@ -136,7 +136,10 @@ install_make() {
     sudo pkg install -y gmake git
 
   elif [[ "$DISTRO_ID" == "darwin" ]]; then
-    install_gmake
+    if ! which gmake > /dev/null 2>&1; then
+        install_gmake
+    fi
+
 
   else
     echo "⚠️ Could not determine how to install make for '$DISTRO_ID'."
