@@ -151,6 +151,8 @@ nvimplug: ## Install plug for neovim
 nerdfonts: ## Install nerd fonts
 	@echo
 	echo "Installing nerd fonts"
+	source $(HOME)/.profile
+	[ "$$(uname)" == "Darwin" ] && brew install --cask font-fira-code-nerd-font
 	mkdir -p $(HOME)/.local/share/fonts/firacode
 	mkdir -p $(HOME)/.local/share/fonts/hack
 	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/
@@ -189,6 +191,7 @@ note:
 	echo "7. Update the '\sudo nano /etc/passwd' file, change the users shell to '/home/linuxbrew/.linuxbrew/bin/zsh' or '$(HOME)/.nix-profile/bin/zsh'"
 	echo "8. Run this incase of FreeBSD 'chsh -s /usr/local/bin/zsh $(USER)' to change SHELL"
 	echo "9. Incase of arch update the shell of $(USER) in '/etc/passwd' to $$(which zsh)"
-	echo "10. (Optional) Reboot and ENjOy!"
+	echo "10. For Mac change the font style in the terminal setting to use firacode"
+	echo "11. (Optional) Reboot and ENjOy!"
 	echo ""
 	echo "Done installing the script!"
