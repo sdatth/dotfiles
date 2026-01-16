@@ -152,7 +152,7 @@ nerdfonts: ## Install nerd fonts
 	@echo
 	echo "Installing nerd fonts"
 	source $(HOME)/.profile
-	[ "$$(uname)" == "Darwin" ] && brew install --cask font-fira-code-nerd-font
+	[ "$$(uname)" == "Darwin" ] && brew install --cask font-fira-code-nerd-font && exit 0
 	mkdir -p $(HOME)/.local/share/fonts/firacode
 	mkdir -p $(HOME)/.local/share/fonts/hack
 	cp $(HOME)/dotfiles/fonts/firacode/* $(HOME)/.local/share/fonts/firacode/

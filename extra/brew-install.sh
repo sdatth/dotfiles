@@ -1,4 +1,5 @@
 #!/bin/bash
+[ ! -f "$HOME/.profile" ] && touch $HOME/.profile
 if which brew > /dev/null 2>&1; then
     echo "Brew package manager already exist"
     exit 0
