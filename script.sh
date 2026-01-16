@@ -168,6 +168,7 @@ if [[ "$ARCH" == "arm64" && "$DISTRO_ID" == "darwin" ]]; then
   echo "⚙️ MacOS detected installing brew package manager"
   cd $HOME/dotfiles
   gmake brew
+  gmake brew-packages
   echo "✅ Brew installed."
 
 elif [[ "$ARCH" == "arm64" && "$IS_MAC_BASED" -ne 1 ]]; then
@@ -194,6 +195,7 @@ else
         echo "🍺 Installing Homebrew package manager..."
         cd $HOME/dotfiles
         make brew
+        make brew-packages
         echo "✅ Homebrew installed."
         break
         ;;

@@ -76,16 +76,31 @@ ubuntu-dep: # Install doas on Ubuntu based distros
 	sudo apt install build-essential doas
 	echo
 
-brew: ## Install brew package manager & brew packages
+brew-packages: ## Install brew packages
 	@echo
-	echo "Installing brew package manager"
-	bash extra/brew-install.sh
-	echo "Installing packages"
+	echo "Installing brew packages"
 	source $(HOME)/.profile
 	for item in $(PKGS); do \
 		brew install $$item ; \
 	done
 	echo
+
+.SILENT: brew
+brew: ## Install Homebrew if not present
+	[ ! -f "$(HOME)/.profile" ] && touch "$(HOME)/.profile"
+	if command -v brew >/dev/null 2>&1; then
+		echo "Brew package manager already exists"
+		exit 0
+	fi
+
+	# install brew package manager
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+	if [ "$$(uname)" = "Linux" ]; then
+		echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$(HOME)/.profile"
+	elif [ "$$(uname)" = "Darwin" ]; then
+		echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> "$(HOME)/.profile"
+	fi
 
 nix: ## Install nix package manager & nix packages
 	@echo
