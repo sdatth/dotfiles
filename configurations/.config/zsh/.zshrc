@@ -8,6 +8,7 @@
 
 # source brew bin
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -d "/opt/homebrew/bin" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## TMUX
 if command -v tmux >/dev/null 2>&1; then
