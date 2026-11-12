@@ -138,7 +138,7 @@ alias wd='sudo wg-quick down wg0'
 alias wr='sudo systemctl restart wg-quick@wg0'
 alias tb="nc termbin.com 9999"  # usage [echo "hello world" | tb] , [cat file | tb]
 alias clearclip="xsel -bc"
-alias clear='printf \"\\033[2J\\033[H\\033[3J\"'
+alias clear="printf '\033[2J\033[H\033[3J'"
 
 # custom functions
 ## ex - archive extractor
