@@ -11,16 +11,16 @@
 [ -d "/opt/homebrew/bin" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## TMUX
-if command -v tmux >/dev/null 2>&1; then
-  if [[ -z "$TMUX" && -n "$PS1" && -z "$ZSH_AUTOSTARTED_TMUX" ]]; then
-    export ZSH_AUTOSTARTED_TMUX=1
-    if tmux has-session 2>/dev/null; then
-      exec tmux attach-session
-    else
-      exec tmux new-session
-    fi
-  fi
-fi
+#if command -v tmux >/dev/null 2>&1; then
+#  if [[ -z "$TMUX" && -n "$PS1" && -z "$ZSH_AUTOSTARTED_TMUX" ]]; then
+#    export ZSH_AUTOSTARTED_TMUX=1
+#    if tmux has-session 2>/dev/null; then
+#      exec tmux attach-session
+#    else
+#      exec tmux new-session
+#    fi
+#  fi
+#fi
 
 export ZDOTDIR=$HOME/.config/zsh
 
